@@ -39,10 +39,27 @@
     UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(onGestureRecognized:)];
     
-    UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(onGestureRecognized:)];
+    UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc]
+                                           initWithTarget:self action:@selector(onGestureRecognized:)];
     
-    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch, rotate])
+    UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(onGestureRecognized:)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    UISwipeGestureRecognizer* rightSwipe = [[UISwipeGestureRecognizer alloc]
+                                           initWithTarget:self action:@selector(onGestureRecognized:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    UISwipeGestureRecognizer* upSwipe = [[UISwipeGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(onGestureRecognized:)];
+    upSwipe.direction =  UISwipeGestureRecognizerDirectionUp;
+    
+    UISwipeGestureRecognizer* downSwipe = [[UISwipeGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(onGestureRecognized:)];
+    downSwipe.direction =  UISwipeGestureRecognizerDirectionDown;
+    
+    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch,
+                                           rotate, leftSwipe, rightSwipe, upSwipe, downSwipe])
     {
         [window addGestureRecognizer:gesture];
     }

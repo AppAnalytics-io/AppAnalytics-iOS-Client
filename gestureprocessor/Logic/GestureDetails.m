@@ -1,4 +1,5 @@
 #import "GestureDetails.h"
+#import "UISwipeGestureRecognizer+DirectionString.h"
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
@@ -39,6 +40,11 @@
     {
         UIRotationGestureRecognizer* rotate = (UIRotationGestureRecognizer*) self.gestureRecognizer;
         info = [NSString stringWithFormat:@"%@ %.3f", info, RADIANS_TO_DEGREES(rotate.rotation)];
+    }
+    else if (self.isSwipe)
+    {
+        UISwipeGestureRecognizer* swipe = (UISwipeGestureRecognizer*) self.gestureRecognizer;
+        info = [NSString stringWithFormat:@"%@ %@", info, swipe.directionText];
     }
     return info;
 }

@@ -18,6 +18,7 @@
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
+		7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		7289A96C1A44471E00CF5CF6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		7289A96F1A44477800CF5CF6 /* GestureDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDetails.h; sourceTree = "<group>"; };
 		7289A9701A44477800CF5CF6 /* GestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDetails.m; sourceTree = "<group>"; };
+		7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwipeGestureRecognizer+DirectionString.h"; sourceTree = "<group>"; };
+		7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwipeGestureRecognizer+DirectionString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 			children = (
 				7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */,
 				7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */,
+				7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */,
+				7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
+				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
