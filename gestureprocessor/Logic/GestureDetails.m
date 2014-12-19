@@ -1,5 +1,7 @@
 #import "GestureDetails.h"
 
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+
 @interface GestureDetails ()
 
 @property (nonatomic, strong, readwrite) NSString* typeName;
@@ -33,6 +35,11 @@
         UIPinchGestureRecognizer* pinch = (UIPinchGestureRecognizer*) self.gestureRecognizer;
         info = [NSString stringWithFormat:@"%@ %.3f", info, pinch.scale];
     }
+    else if (self.isRotate)
+    {
+        UIRotationGestureRecognizer* rotate = (UIRotationGestureRecognizer*) self.gestureRecognizer;
+        info = [NSString stringWithFormat:@"%@ %.3f", info, RADIANS_TO_DEGREES(rotate.rotation)];
+    }
     return info;
 }
 
@@ -57,6 +64,10 @@
     else if (self.isPinch)
     {
         return @"Pinch";
+    }
+    else if (self.isRotate)
+    {
+        return @"Rotate";
     }
     else if (self.isSwipe)
     {
@@ -98,6 +109,11 @@
 - (BOOL)isPinch
 {
     return [self checkGestureClass:[UIPinchGestureRecognizer class]];
+}
+
+- (BOOL)isRotate
+{
+    return [self checkGestureClass:[UIRotationGestureRecognizer class]];
 }
 
 - (BOOL)isSwipe

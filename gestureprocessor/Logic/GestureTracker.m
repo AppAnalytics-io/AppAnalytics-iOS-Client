@@ -39,7 +39,10 @@
     UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(onGestureRecognized:)];
     
-    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch])
+    UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(onGestureRecognized:)];
+    
+    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch, rotate])
     {
         [window addGestureRecognizer:gesture];
     }
