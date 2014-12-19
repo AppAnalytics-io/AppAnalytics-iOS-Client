@@ -28,6 +28,11 @@
 - (NSString*)info
 {
     NSString* info = [self gestureTypeName];
+    if (self.isPinch)
+    {
+        UIPinchGestureRecognizer* pinch = (UIPinchGestureRecognizer*) self.gestureRecognizer;
+        info = [NSString stringWithFormat:@"%@ %.3f", info, pinch.scale];
+    }
     return info;
 }
 
@@ -44,6 +49,14 @@
     else if (self.isTripleTap)
     {
         return @"Triple Tap";
+    }
+    else if (self.isLongTap)
+    {
+        return @"Long Tap";
+    }
+    else if (self.isPinch)
+    {
+        return @"Pinch";
     }
     else if (self.isSwipe)
     {
@@ -80,6 +93,11 @@
 - (BOOL)isLongTap
 {
     return [self checkGestureClass:[UILongPressGestureRecognizer class]];
+}
+
+- (BOOL)isPinch
+{
+    return [self checkGestureClass:[UIPinchGestureRecognizer class]];
 }
 
 - (BOOL)isSwipe

@@ -22,12 +22,12 @@
                                    initWithTarget:self action:@selector(onGestureRecognized:)];
     tap.numberOfTapsRequired = 1;
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc]
                                          initWithTarget:self action:@selector(onGestureRecognized:)];
     doubleTap.numberOfTapsRequired = 2;
     [tap requireGestureRecognizerToFail:doubleTap];
     
-    UITapGestureRecognizer *tripleTap = [[UITapGestureRecognizer alloc]
+    UITapGestureRecognizer* tripleTap = [[UITapGestureRecognizer alloc]
                                          initWithTarget:self action:@selector(onGestureRecognized:)];
     tripleTap.numberOfTapsRequired = 3;
     [doubleTap requireGestureRecognizerToFail:tripleTap];
@@ -36,7 +36,10 @@
                                              initWithTarget:self action:@selector(onGestureRecognized:)];
     longTap.minimumPressDuration = kLongTapDuration;
     
-    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap])
+    UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(onGestureRecognized:)];
+    
+    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch])
     {
         [window addGestureRecognizer:gesture];
     }
@@ -44,22 +47,10 @@
 
 - (void)onGestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
-    [[Logger instance] gestureRecognized:gestureRecognizer];
-}
-
-- (void)onTap:(UITapGestureRecognizer*)tap
-{
-
-}
-
-- (void)onLongTap:(UILongPressGestureRecognizer*)longTap
-{
-
-}
-
-- (void)onDoubleTap:(UITapGestureRecognizer*)doubleTap
-{
-
+    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized)
+    {
+        [[Logger instance] gestureRecognized:gestureRecognizer];
+    }
 }
 
 @end
