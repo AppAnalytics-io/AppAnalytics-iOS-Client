@@ -19,6 +19,7 @@
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
 		7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
+		7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,9 @@
 		7289A9701A44477800CF5CF6 /* GestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDetails.m; sourceTree = "<group>"; };
 		7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwipeGestureRecognizer+DirectionString.h"; sourceTree = "<group>"; };
 		7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwipeGestureRecognizer+DirectionString.m"; sourceTree = "<group>"; };
+		7289A9761A4468AC00CF5CF6 /* LogInfoProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInfoProtocol.h; sourceTree = "<group>"; };
+		7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeDetails.h; sourceTree = "<group>"; };
+		7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +181,11 @@
 		7289A9721A44477D00CF5CF6 /* Data Types */ = {
 			isa = PBXGroup;
 			children = (
+				7289A9761A4468AC00CF5CF6 /* LogInfoProtocol.h */,
 				7289A96F1A44477800CF5CF6 /* GestureDetails.h */,
 				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
+				7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */,
+				7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */,
 			);
 			name = "Data Types";
 			sourceTree = "<group>";
@@ -262,6 +269,7 @@
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
+				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

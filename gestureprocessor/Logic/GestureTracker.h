@@ -5,5 +5,6 @@
 
 + (instancetype)instance;
 - (void)trackWindowGestures:(UIWindow*)window;
+- (void)onShake:(UIWindow*)window;
 
 @end

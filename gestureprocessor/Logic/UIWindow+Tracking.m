@@ -4,18 +4,6 @@
 
 @implementation UIWindow (Tracking)
 
-#pragma mark - Life Cycle
-
-- (instancetype)initWithFrameSwizzled:(CGRect)frame
-{
-    self = [self initWithFrameSwizzled:frame];
-    if (self)
-    {
-        [[GestureTracker instance] trackWindowGestures:self];
-    }
-    return self;
-}
-
 #pragma mark - Swizzling
 
 + (void)load
@@ -25,6 +13,9 @@
     {
         [self swizzleOriginalMethod:@selector(initWithFrame:)
                                with:@selector(initWithFrameSwizzled:)];
+        
+        [self swizzleOriginalMethod:@selector(motionEnded:withEvent:)
+                               with:@selector(motionEndedSwizzled:withEvent:)];
     });
 }
 
@@ -51,6 +42,30 @@
     else
     {
         method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
+
+#pragma mark - Life Cycle
+
+- (instancetype)initWithFrameSwizzled:(CGRect)frame
+{
+    self = [self initWithFrameSwizzled:frame];
+    if (self)
+    {
+        [[GestureTracker instance] trackWindowGestures:self];
+    }
+    return self;
+}
+
+#pragma mark - Motion Tracking
+
+- (void)motionEndedSwizzled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    [self motionEndedSwizzled:motion withEvent:event];
+    
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        [[GestureTracker instance] onShake:self];
     }
 }
 

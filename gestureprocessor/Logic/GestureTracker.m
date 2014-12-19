@@ -1,7 +1,6 @@
 #import "GestureTracker.h"
 #import "GestureTrackerConfig.h"
 #import "Logger.h"
-#import "GestureDetails.h"
 
 @implementation GestureTracker
 
@@ -71,6 +70,11 @@
     {
         [[Logger instance] gestureRecognized:gestureRecognizer];
     }
+}
+
+- (void)onShake:(UIWindow*)window
+{
+    [[Logger instance] shakeRecognized];
 }
 
 @end

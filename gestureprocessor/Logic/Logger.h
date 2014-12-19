@@ -7,7 +7,8 @@
 
 + (instancetype)instance;
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer;
+- (void)shakeRecognized;
 
-@property (nonatomic, strong, readonly) NSMutableArray* gestures;
+@property (nonatomic, strong, readonly) NSMutableArray* actions;
 
 @end

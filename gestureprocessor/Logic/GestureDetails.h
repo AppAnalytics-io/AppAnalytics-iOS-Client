@@ -1,12 +1,9 @@
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "LogInfoProtocol.h"
 
-@interface GestureDetails : NSObject
+@interface GestureDetails : NSObject <LogInfo>
 
 - (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer;
-
-- (NSString*)gestureTypeName;
-- (NSString*)info;
 
 - (BOOL)isTap;
 - (BOOL)isSingleTap;
