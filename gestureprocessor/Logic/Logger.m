@@ -72,6 +72,7 @@ static NSUInteger gIndex = 0;
     ShakeDetails* details = [[ShakeDetails alloc] init];
     details.index = gIndex++;
     [self.actions addObject:details];
+    [self printDebugInfo:details];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
@@ -83,7 +84,7 @@ static NSUInteger gIndex = 0;
     NSLog(@"Position Y %.3f", actionDetails.position.y);
     NSLog(@"Param1 %@", actionDetails.info);
     NSLog(@"Triggered View Controller ID %@", actionDetails.triggerViewControllerID);
-    NSLog(@"Triggered View ID %@", actionDetails.triggerViewID);
+    NSLog(@"Triggered Element ID %@", actionDetails.triggerViewID);
 }
 
 @end

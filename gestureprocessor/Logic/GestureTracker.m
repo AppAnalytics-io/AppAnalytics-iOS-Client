@@ -72,7 +72,7 @@
     }
 }
 
-- (void)onShake:(UIWindow*)window
+- (void)onShake
 {
     [[Logger instance] shakeRecognized];
 }
