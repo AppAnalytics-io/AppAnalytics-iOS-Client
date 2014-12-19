@@ -3,7 +3,7 @@
 @interface GestureDetails ()
 
 @property (nonatomic, strong, readwrite) NSString* typeName;
-@property (nonatomic, copy, readwrite) UIGestureRecognizer* gestureRecognizer;
+@property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
 
 @end
 
@@ -25,11 +25,17 @@
     
 }
 
+- (NSString*)info
+{
+    NSString* info = [self gestureTypeName];
+    return info;
+}
+
 - (NSString*)gestureTypeName
 {
-    if (self.isTap)
+    if (self.isSingleTap)
     {
-        return @"Tap";
+        return @"Single Tap";
     }
     else if (self.isDoubleTap)
     {
@@ -43,11 +49,20 @@
     {
         return @"Swipe";
     }
+    else
+    {
+        return @"Unknown";
+    }
     
     return nil;
 }
 
 - (BOOL)isTap
+{
+    return [self checkGestureClass:[UITapGestureRecognizer class]];
+}
+
+- (BOOL)isSingleTap
 {
     return [self checkTapGestureRequiresTaps:1];
 }

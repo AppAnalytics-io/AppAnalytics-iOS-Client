@@ -6,6 +6,7 @@
 - (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer;
 
 - (NSString*)gestureTypeName;
+- (NSString*)info;
 
 - (BOOL)isTap;
 - (BOOL)isDoubleTap;

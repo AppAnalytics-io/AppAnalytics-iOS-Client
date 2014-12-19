@@ -1,5 +1,7 @@
 #import "GestureTracker.h"
 #import "GestureTrackerConfig.h"
+#import "Logger.h"
+#import "GestureDetails.h"
 
 @implementation GestureTracker
 
@@ -17,51 +19,47 @@
 - (void)trackWindowGestures:(UIWindow*)window
 {
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self action:@selector(onTap:)];
+                                   initWithTarget:self action:@selector(onGestureRecognized:)];
     tap.numberOfTapsRequired = 1;
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]
-                                         initWithTarget:self action:@selector(onDoubleTap:)];
+                                         initWithTarget:self action:@selector(onGestureRecognized:)];
     doubleTap.numberOfTapsRequired = 2;
     [tap requireGestureRecognizerToFail:doubleTap];
     
+    UITapGestureRecognizer *tripleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(onGestureRecognized:)];
+    tripleTap.numberOfTapsRequired = 3;
+    [doubleTap requireGestureRecognizerToFail:tripleTap];
+    
     UILongPressGestureRecognizer* longTap = [[UILongPressGestureRecognizer alloc]
-                                             initWithTarget:self action:@selector(onLongTap:)];
+                                             initWithTarget:self action:@selector(onGestureRecognized:)];
     longTap.minimumPressDuration = kLongTapDuration;
     
-    for (UIGestureRecognizer* gesture in @[tap, doubleTap, longTap])
+    for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap])
     {
         [window addGestureRecognizer:gesture];
     }
 }
 
+- (void)onGestureRecognized:(UIGestureRecognizer*)gestureRecognizer
+{
+    [[Logger instance] gestureRecognized:gestureRecognizer];
+}
+
 - (void)onTap:(UITapGestureRecognizer*)tap
 {
-    if (tap.state == UIGestureRecognizerStateRecognized)
-    {
-        [self logGestureInfo:tap];
-    }
+
 }
 
 - (void)onLongTap:(UILongPressGestureRecognizer*)longTap
 {
-    if (longTap.state == UIGestureRecognizerStateRecognized)
-    {
-        [self logGestureInfo:longTap];
-    }
+
 }
 
 - (void)onDoubleTap:(UITapGestureRecognizer*)doubleTap
 {
-    if (doubleTap.state == UIGestureRecognizerStateRecognized)
-    {
-        [self logGestureInfo:doubleTap];
-    }
-}
 
-- (void)logGestureInfo:(UIGestureRecognizer*)gesture
-{
-    NSLog(@"[%@] Number of touches %lu", NSStringFromClass([gesture class]), gesture.numberOfTouches);
 }
 
 @end
