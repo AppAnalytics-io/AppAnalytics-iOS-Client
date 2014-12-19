@@ -16,6 +16,8 @@
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
 		7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C5011A3F1A8C003A4C3D /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
+		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
+		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,11 @@
 		7227C5011A3F1A8C003A4C3D /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
+		7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConfig.h; sourceTree = "<group>"; };
+		7289A96B1A44471E00CF5CF6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		7289A96C1A44471E00CF5CF6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		7289A96F1A44477800CF5CF6 /* GestureDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDetails.h; sourceTree = "<group>"; };
+		7289A9701A44477800CF5CF6 /* GestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +140,13 @@
 		7227C4F81A3F14B2003A4C3D /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */,
-				7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */,
+				7289A96E1A44475900CF5CF6 /* Categories */,
+				7289A9721A44477D00CF5CF6 /* Data Types */,
+				7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */,
 				7289A9641A44401300CF5CF6 /* GestureTracker.h */,
 				7289A9651A44401300CF5CF6 /* GestureTracker.m */,
+				7289A96B1A44471E00CF5CF6 /* Logger.h */,
+				7289A96C1A44471E00CF5CF6 /* Logger.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -148,6 +158,24 @@
 				7227C5011A3F1A8C003A4C3D /* OpenUDID.m */,
 			);
 			path = OpenUDID;
+			sourceTree = "<group>";
+		};
+		7289A96E1A44475900CF5CF6 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */,
+				7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		7289A9721A44477D00CF5CF6 /* Data Types */ = {
+			isa = PBXGroup;
+			children = (
+				7289A96F1A44477800CF5CF6 /* GestureDetails.h */,
+				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
+			);
+			name = "Data Types";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,11 +248,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */,
 				7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
+				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
