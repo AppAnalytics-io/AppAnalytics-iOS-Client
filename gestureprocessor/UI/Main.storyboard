@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="yXV-Bp-RFX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -21,7 +21,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232" y="377.71999999999997"/>
+            <point key="canvasLocation" x="71" y="887"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jVm-lK-QNb">
+            <objects>
+                <navigationController id="yXV-Bp-RFX" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s6R-ri-70d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tUX-pF-6Zk" kind="relationship" relationship="rootViewController" id="7Xb-ha-8E5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7cW-rE-qWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="71" y="207"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Spi-fR-RQY">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8V-RT-5sB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="tUX-pF-6Zk" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ay-IU-lHf"/>
+                        <viewControllerLayoutGuide type="bottom" id="iEd-Jr-ylz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5QK-0c-psc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ktk-WL-I4E"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="541" y="207"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -2,6 +2,9 @@
 #import "GestureTrackerConfig.h"
 #import "Logger.h"
 
+@interface GestureTracker () <UIGestureRecognizerDelegate>
+@end
+
 @implementation GestureTracker
 
 + (instancetype)instance
@@ -9,9 +12,9 @@
     static GestureTracker* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
-    {
-        _self = [[GestureTracker alloc] init];
-    });
+                  {
+                      _self = [[GestureTracker alloc] init];
+                  });
     return _self;
 }
 
@@ -42,24 +45,25 @@
                                            initWithTarget:self action:@selector(onGestureRecognized:)];
     
     UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc]
-                                       initWithTarget:self action:@selector(onGestureRecognized:)];
+                                           initWithTarget:self action:@selector(onGestureRecognized:)];
     leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
     
     UISwipeGestureRecognizer* rightSwipe = [[UISwipeGestureRecognizer alloc]
-                                           initWithTarget:self action:@selector(onGestureRecognized:)];
+                                            initWithTarget:self action:@selector(onGestureRecognized:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
     UISwipeGestureRecognizer* upSwipe = [[UISwipeGestureRecognizer alloc]
-                                        initWithTarget:self action:@selector(onGestureRecognized:)];
+                                         initWithTarget:self action:@selector(onGestureRecognized:)];
     upSwipe.direction =  UISwipeGestureRecognizerDirectionUp;
     
     UISwipeGestureRecognizer* downSwipe = [[UISwipeGestureRecognizer alloc]
-                                         initWithTarget:self action:@selector(onGestureRecognized:)];
+                                           initWithTarget:self action:@selector(onGestureRecognized:)];
     downSwipe.direction =  UISwipeGestureRecognizerDirectionDown;
     
     for (UIGestureRecognizer* gesture in @[tap, doubleTap, tripleTap, longTap, pinch,
                                            rotate, leftSwipe, rightSwipe, upSwipe, downSwipe])
     {
+        gesture.delegate = self;
         [window addGestureRecognizer:gesture];
     }
 }
@@ -75,6 +79,18 @@
 - (void)onShake
 {
     [[Logger instance] shakeRecognized];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
 }
 
 @end
