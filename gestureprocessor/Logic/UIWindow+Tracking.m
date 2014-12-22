@@ -6,8 +6,6 @@
 
 @implementation UIWindow (Tracking)
 
-#pragma mark - Swizzling
-
 + (void)load
 {
     static dispatch_once_t onceToken;
@@ -17,8 +15,6 @@
                                with:@selector(initWithFrameSwizzled:)];
     });
 }
-
-#pragma mark - Life Cycle
 
 - (instancetype)initWithFrameSwizzled:(CGRect)frame
 {
