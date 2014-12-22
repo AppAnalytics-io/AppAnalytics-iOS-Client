@@ -95,9 +95,10 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    NSArray* classes = @[[UITextView class], [UITextField class]];
+#if 0
+    NSArray* classes = @[@"UITextView", @"UITextField", @"ADDimmerView", @"UIWebBrowserView"];
     
-    if ([classes containsObject:[touch.view class]] &&
+    if ([classes containsObject:NSStringFromClass([touch.view class])] &&
         [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]])
     {
         UITapGestureRecognizer* tap = (UITapGestureRecognizer*) gestureRecognizer;
@@ -109,6 +110,12 @@
 
         }
     }
+#endif
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
     return YES;
 }
 

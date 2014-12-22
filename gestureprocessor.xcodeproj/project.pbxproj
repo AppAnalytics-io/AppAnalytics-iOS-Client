@@ -27,6 +27,11 @@
 		72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F011A483D7000CEC369 /* UIControl+Tracking.m */; };
 		72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfoProtocol.m */; };
 		72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */; };
+		72922F0C1A4861D500CEC369 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0B1A4861D500CEC369 /* GLKit.framework */; };
+		72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0D1A4861D800CEC369 /* AdSupport.framework */; };
+		72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0F1A4861DD00CEC369 /* MapKit.framework */; };
+		72922F131A48623300CEC369 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F121A48623300CEC369 /* iAd.framework */; };
+		72922F161A48682A00CEC369 /* UITextView+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F151A48682A00CEC369 /* UITextView+Tracking.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,12 @@
 		72922F031A4849AA00CEC369 /* LogInfoProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfoProtocol.m; sourceTree = "<group>"; };
 		72922F051A48572C00CEC369 /* UISegmentedControl+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+Tracking.h"; sourceTree = "<group>"; };
 		72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+Tracking.m"; sourceTree = "<group>"; };
+		72922F0B1A4861D500CEC369 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		72922F0D1A4861D800CEC369 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		72922F0F1A4861DD00CEC369 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		72922F121A48623300CEC369 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		72922F141A48682A00CEC369 /* UITextView+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Tracking.h"; sourceTree = "<group>"; };
+		72922F151A48682A00CEC369 /* UITextView+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Tracking.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +87,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72922F131A48623300CEC369 /* iAd.framework in Frameworks */,
+				72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */,
+				72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */,
+				72922F0C1A4861D500CEC369 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				7227C4B71A3F037F003A4C3D /* gestureprocessor */,
+				72922F111A4861E200CEC369 /* Frameworks */,
 				7227C4B61A3F037F003A4C3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +218,8 @@
 				72922F011A483D7000CEC369 /* UIControl+Tracking.m */,
 				7289A97A1A447FEE00CF5CF6 /* UIResponder+Tracking.h */,
 				7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */,
+				72922F141A48682A00CEC369 /* UITextView+Tracking.h */,
+				72922F151A48682A00CEC369 /* UITextView+Tracking.m */,
 				72922F051A48572C00CEC369 /* UISegmentedControl+Tracking.h */,
 				72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */,
 				7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */,
@@ -221,6 +239,17 @@
 				7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */,
 			);
 			name = "Data Types";
+			sourceTree = "<group>";
+		};
+		72922F111A4861E200CEC369 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72922F121A48623300CEC369 /* iAd.framework */,
+				72922F0F1A4861DD00CEC369 /* MapKit.framework */,
+				72922F0D1A4861D800CEC369 /* AdSupport.framework */,
+				72922F0B1A4861D500CEC369 /* GLKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +326,7 @@
 				7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
+				72922F161A48682A00CEC369 /* UITextView+Tracking.m in Sources */,
 				7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
