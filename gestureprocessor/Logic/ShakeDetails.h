@@ -3,4 +3,6 @@
 
 @interface ShakeDetails : NSObject <LogInfo>
 
+- (instancetype)initWithIndex:(NSUInteger)index;
+
 @end

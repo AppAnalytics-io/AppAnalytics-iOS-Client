@@ -3,7 +3,7 @@
 
 typedef NS_ENUM(NSInteger, ActionType)
 {
-    ActionType_Unknown = -1,
+    ActionType_Unknown = 0,
     ActionType_SingleTap,
     ActionType_DoubleTap,
     ActionType_TripleTap,
@@ -14,9 +14,10 @@ typedef NS_ENUM(NSInteger, ActionType)
     ActionType_Shake
 };
 
+extern NSString* NSStringWithActionType(ActionType input);
+
 @protocol LogInfo <NSObject>
 
-- (NSString*)typeTextName;
 - (NSString*)info;
 
 @property (nonatomic, readonly) NSUInteger index;

@@ -61,29 +61,42 @@ static NSUInteger gIndex = 0;
 
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
-    GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer];
-    details.index = gIndex++;
-    [self.actions addObject:details];
-    [self printDebugInfo:details];
+    GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:gIndex++];
+    [self addAction:details];
+}
+
+- (void)gestureRecognized:(ActionType)type
+          triggerPosition:(CGPoint)position
+            triggerViewID:(NSString *)viewID
+{
+    GestureDetails* details = [[GestureDetails alloc] initWithType:type
+                                                   triggerPosition:position
+                                                     triggerViewID:viewID
+                                                             index:gIndex++];
+    [self addAction:details];
 }
 
 - (void)shakeRecognized
 {
     ShakeDetails* details = [[ShakeDetails alloc] init];
-    details.index = gIndex++;
-    [self.actions addObject:details];
-    [self printDebugInfo:details];
+    [self addAction:details];
+}
+
+- (void)addAction:(id<LogInfo>)actionDetails
+{
+    [self.actions addObject:actionDetails];
+    [self printDebugInfo:actionDetails];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
 //    NSLog(@"Order ID [%lu]", actionDetails.index);
-    NSLog(@"Type [%@]", actionDetails.typeTextName);
+    NSLog(@"Type [%@]", NSStringWithActionType(actionDetails.type));
 //    NSLog(@"Time [%@]", actionDetails.timestamp);
 //    NSLog(@"Position X [%.3f]", actionDetails.position.x);
 //    NSLog(@"Position Y [%.3f]", actionDetails.position.y);
 //    NSLog(@"Param1 [%@]", actionDetails.info);
-    NSLog(@"Triggered View Controller ID [%@]", actionDetails.triggerViewControllerID);
+    NSLog(@"Triggered VC ID [%@]", actionDetails.triggerViewControllerID);
     NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
 }
 

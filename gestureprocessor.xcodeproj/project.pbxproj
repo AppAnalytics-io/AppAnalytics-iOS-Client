@@ -24,6 +24,8 @@
 		72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* GestureTrackerHelpers.m */; };
 		72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */; };
 		72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
+		72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F011A483D7000CEC369 /* UIControl+Tracking.m */; };
+		72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfoProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,9 @@
 		72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
 		72922EFD1A48339100CEC369 /* KeyboardWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardWatcher.h; sourceTree = "<group>"; };
 		72922EFE1A48339100CEC369 /* KeyboardWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardWatcher.m; sourceTree = "<group>"; };
+		72922F001A483D7000CEC369 /* UIControl+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+Tracking.h"; sourceTree = "<group>"; };
+		72922F011A483D7000CEC369 /* UIControl+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Tracking.m"; sourceTree = "<group>"; };
+		72922F031A4849AA00CEC369 /* LogInfoProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfoProtocol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +195,8 @@
 				72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */,
 				7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */,
 				7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */,
+				72922F001A483D7000CEC369 /* UIControl+Tracking.h */,
+				72922F011A483D7000CEC369 /* UIControl+Tracking.m */,
 				7289A97A1A447FEE00CF5CF6 /* UIResponder+Tracking.h */,
 				7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */,
 				7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */,
@@ -202,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				7289A9761A4468AC00CF5CF6 /* LogInfoProtocol.h */,
+				72922F031A4849AA00CEC369 /* LogInfoProtocol.m */,
 				7289A96F1A44477800CF5CF6 /* GestureDetails.h */,
 				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
 				7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */,
@@ -285,12 +293,14 @@
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
 				7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */,
+				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
 				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */,
+				72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */,
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
 				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,

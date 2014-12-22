@@ -3,7 +3,13 @@
 
 @interface GestureDetails : NSObject <LogInfo>
 
-- (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer;
+- (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
+                                    index:(NSUInteger)index;
+
+- (instancetype)initWithType:(ActionType)type
+             triggerPosition:(CGPoint)position
+               triggerViewID:(NSString*)viewID
+                       index:(NSUInteger)index;
 
 - (BOOL)isTap;
 - (BOOL)isSingleTap;

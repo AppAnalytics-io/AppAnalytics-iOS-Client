@@ -19,13 +19,32 @@
 
 @implementation GestureDetails
 
-- (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
+- (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer index:(NSUInteger)index
 {
     self = [super init];
     if (self)
     {
         self.gestureRecognizer = gestureRecognizer;
+        self.index = index;
         [self configure];
+    }
+    return self;
+}
+
+- (instancetype)initWithType:(ActionType)type
+             triggerPosition:(CGPoint)position
+               triggerViewID:(NSString *)viewID
+                       index:(NSUInteger)index
+{
+    self = [super init];
+    if (self)
+    {
+        self.type = type;
+        self.timestamp = [NSDate new];
+        self.triggerViewControllerID = [GestureTrackerHelpers topViewControllerClassName];
+        self.position = position;
+        self.triggerViewID = viewID;
+        self.index = index;
     }
     return self;
 }
@@ -93,44 +112,6 @@
         info = [NSString stringWithFormat:@"%@", swipe.directionText];
     }
     return info;
-}
-
-- (NSString*)typeTextName
-{
-    if (self.isSingleTap)
-    {
-        return @"Single Tap";
-    }
-    else if (self.isDoubleTap)
-    {
-        return @"Double Tap";
-    }
-    else if (self.isTripleTap)
-    {
-        return @"Triple Tap";
-    }
-    else if (self.isLongTap)
-    {
-        return @"Long Tap";
-    }
-    else if (self.isPinch)
-    {
-        return @"Pinch";
-    }
-    else if (self.isRotate)
-    {
-        return @"Rotate";
-    }
-    else if (self.isSwipe)
-    {
-        return @"Swipe";
-    }
-    else
-    {
-        return @"Unknown";
-    }
-    
-    return nil;
 }
 
 - (BOOL)isTap

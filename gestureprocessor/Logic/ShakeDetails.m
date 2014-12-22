@@ -16,7 +16,7 @@
 
 #pragma mark - LogInfo protocol
 
-- (instancetype)init
+- (instancetype)initWithIndex:(NSUInteger)index
 {
     self = [super init];
     if (self)
@@ -25,18 +25,14 @@
         self.timestamp = [NSDate new];
         self.position = CGPointZero;
         self.triggerViewControllerID = [GestureTrackerHelpers topViewControllerClassName];
+        self.index = index;
     }
     return self;
 }
 
-- (NSString*)typeTextName
-{
-    return @"Shake";
-}
-
 - (NSString*)info
 {
-    return [self typeTextName];
+    return nil;
 }
 
 @end
