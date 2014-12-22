@@ -4,7 +4,6 @@
 
 @implementation UISegmentedControl (Tracking)
 
-
 + (void)load
 {
     static dispatch_once_t onceToken;

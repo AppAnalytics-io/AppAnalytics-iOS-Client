@@ -24,15 +24,6 @@
     self = [super init];
     if (self)
     {
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(keyboardTouched:)
-//                                                     name:UITextFieldTextDidChangeNotification
-//                                                   object:nil];
-//        
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(keyboardTouched:)
-//                                                     name:UITextViewTextDidChangeNotification
-//                                                   object:nil];
     }
     return self;
 }
@@ -104,6 +95,20 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    NSArray* classes = @[[UITextView class], [UITextField class]];
+    
+    if ([classes containsObject:[touch.view class]] &&
+        [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]])
+    {
+        UITapGestureRecognizer* tap = (UITapGestureRecognizer*) gestureRecognizer;
+        if (tap.numberOfTapsRequired == 1)
+        {
+            [[Logger instance] gestureRecognized:ActionType_SingleTap
+                                 triggerPosition:[touch locationInView:nil]
+                                   triggerViewID:NSStringFromClass([touch.view class])];
+
+        }
+    }
     return YES;
 }
 

@@ -129,7 +129,7 @@
     UIView* targetView = rootView;
     for (UIView* view in rootView.subviews)
     {
-        if (CGRectContainsPoint(view.frame, position))
+        if (CGRectContainsPoint(view.frame, position) && !view.hidden)
         {
             targetView = view;
         }
