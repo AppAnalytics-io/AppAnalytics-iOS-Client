@@ -44,14 +44,44 @@
     return className;
 }
 
-+ (NSString*)subviewClassNameAtPosition:(CGPoint)position ofView:(UIView*)rootView
++ (BOOL)isKeyboardPressed:(CGPoint)touchPosition
 {
     if ([KeyboardWatcher instance].isKeyboardShown)
     {
-        if (CGRectContainsPoint([KeyboardWatcher instance].keyboardFrame, position))
+        if (CGRectContainsPoint([KeyboardWatcher instance].keyboardFrame, touchPosition))
         {
-            return @"Keyboard";
+            return YES;
         }
+    }
+    return NO;
+}
+
++ (BOOL)isTabBarPressed:(CGPoint)touchPosition
+{
+    UIViewController* topVC = [self topViewController];
+    UIViewController* parentVC = topVC.parentViewController;
+    
+    if ([parentVC isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController* tabController = (UITabBarController*) parentVC;
+        CGRect tabBarFrame = tabController.tabBar.frame;
+        if (CGRectContainsPoint(tabBarFrame, touchPosition))
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
++ (NSString*)subviewClassNameAtPosition:(CGPoint)position ofView:(UIView*)rootView
+{
+    if ([self isKeyboardPressed:position])
+    {
+        return @"Keyboard";
+    }
+    else if ([self isTabBarPressed:position])
+    {
+        return @"TabBarItem";
     }
     
     UIView* targetView = nil;
