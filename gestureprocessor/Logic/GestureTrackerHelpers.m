@@ -1,4 +1,5 @@
 #import "GestureTrackerHelpers.h"
+#import "ViewController.h"
 
 @implementation GestureTrackerHelpers
 
@@ -32,6 +33,9 @@
             topController = tabCon.selectedViewController;
         }
     }
+    
+    ViewController* vc = (ViewController*) topController;
+    NSLog(@"%lu", vc.index);
     
     return topController;
 }

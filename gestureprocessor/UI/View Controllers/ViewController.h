@@ -2,6 +2,7 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic) NSUInteger index;
 
 @end
 
