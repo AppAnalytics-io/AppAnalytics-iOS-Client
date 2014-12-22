@@ -1,5 +1,5 @@
 #import "GestureTrackerHelpers.h"
-#import "ViewController.h"
+#import "KeyboardWatcher.h"
 
 @implementation GestureTrackerHelpers
 
@@ -34,9 +34,6 @@
         }
     }
     
-    ViewController* vc = (ViewController*) topController;
-    NSLog(@"%lu", vc.index);
-    
     return topController;
 }
 
@@ -46,5 +43,50 @@
     NSString* className = NSStringFromClass([topViewController class]);
     return className;
 }
+
++ (NSString*)subviewClassNameAtPosition:(CGPoint)position ofView:(UIView*)rootView
+{
+    if ([KeyboardWatcher instance].isKeyboardShown)
+    {
+        if (CGRectContainsPoint([KeyboardWatcher instance].keyboardFrame, position))
+        {
+            return @"Keyboard";
+        }
+    }
+    
+    UIView* targetView = nil;
+    for (UIView* view in rootView.subviews)
+    {
+        if (CGRectContainsPoint(view.frame, position))
+        {
+            targetView = view;
+        }
+    }
+    
+    return NSStringFromClass([targetView class]);
+}
+
+#if 0
++ (UIView*)subviewAtPosition:(CGPoint)position ofView:(UIView*)rootView
+{
+    UIView* targetView = nil;
+    for (UIView* view in rootView.subviews)
+    {
+        if (CGRectContainsPoint(view.frame, position))
+        {
+            targetView = view;
+            if (targetView.subviews)
+            {
+                [self subviewAtPosition:[targetView convertPoint:position fromView:rootView] ofView:targetView];
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    return targetView;
+}
+#endif
 
 @end

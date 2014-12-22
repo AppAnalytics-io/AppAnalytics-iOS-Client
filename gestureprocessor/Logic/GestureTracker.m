@@ -3,6 +3,7 @@
 #import "Logger.h"
 
 @interface GestureTracker () <UIGestureRecognizerDelegate>
+
 @end
 
 @implementation GestureTracker
@@ -12,10 +13,28 @@
     static GestureTracker* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
-                  {
-                      _self = [[GestureTracker alloc] init];
-                  });
+    {
+        _self = [[GestureTracker alloc] init];
+    });
     return _self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(keyboardTouched:)
+//                                                     name:UITextFieldTextDidChangeNotification
+//                                                   object:nil];
+//        
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(keyboardTouched:)
+//                                                     name:UITextViewTextDidChangeNotification
+//                                                   object:nil];
+    }
+    return self;
 }
 
 - (void)trackWindowGestures:(UIWindow*)window

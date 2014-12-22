@@ -1,5 +1,6 @@
 #import "GestureDetails.h"
 #import "UISwipeGestureRecognizer+DirectionString.h"
+#import "GestureTrackerHelpers.h"
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
@@ -65,7 +66,10 @@
     }
     
     self.timestamp = [NSDate new];
-    self.position = [self.gestureRecognizer locationInView:[UIApplication sharedApplication].keyWindow];
+    UIViewController* topVC = [GestureTrackerHelpers topViewController];
+    self.position = [self.gestureRecognizer locationInView:topVC.view];
+    self.triggerViewID = [GestureTrackerHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
+    self.triggerViewControllerID = [GestureTrackerHelpers topViewControllerClassName];
 }
 
 #pragma mark - LogInfo protocol

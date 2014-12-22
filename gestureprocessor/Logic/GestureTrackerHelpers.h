@@ -4,5 +4,7 @@
 @interface GestureTrackerHelpers : NSObject
 
 + (NSString*)topViewControllerClassName;
++ (UIViewController*)topViewController;
++ (NSString*)subviewClassNameAtPosition:(CGPoint)position ofView:(UIView*)rootView;
 
 @end

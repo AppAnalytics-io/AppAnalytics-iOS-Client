@@ -77,14 +77,14 @@ static NSUInteger gIndex = 0;
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
-    NSLog(@"Order ID %lu", actionDetails.index);
-    NSLog(@"Type %@", actionDetails.typeTextName);
-    NSLog(@"Time %@", actionDetails.timestamp);
-    NSLog(@"Position X %.3f", actionDetails.position.x);
-    NSLog(@"Position Y %.3f", actionDetails.position.y);
-    NSLog(@"Param1 %@", actionDetails.info);
-    NSLog(@"Triggered View Controller ID %@", actionDetails.triggerViewControllerID);
-    NSLog(@"Triggered Element ID %@", actionDetails.triggerViewID);
+//    NSLog(@"Order ID [%lu]", actionDetails.index);
+    NSLog(@"Type [%@]", actionDetails.typeTextName);
+//    NSLog(@"Time [%@]", actionDetails.timestamp);
+//    NSLog(@"Position X [%.3f]", actionDetails.position.x);
+//    NSLog(@"Position Y [%.3f]", actionDetails.position.y);
+//    NSLog(@"Param1 [%@]", actionDetails.info);
+    NSLog(@"Triggered View Controller ID [%@]", actionDetails.triggerViewControllerID);
+    NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
 }
 
 @end
