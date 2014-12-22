@@ -11,27 +11,14 @@
 {
     [super viewDidLoad];
     
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+    CGFloat hue = ( arc4random() % 256 / 256.0 );
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
     UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
     
     self.view.backgroundColor = color;
     
     self.indexLabel.text = [NSString stringWithFormat:@"index: %lu", self.index];
-    
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                    style:UIBarButtonItemStyleDone target:nil action:nil];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
-    [self.navigationController setToolbarHidden:NO];
-    [self.navigationController.toolbar setBarStyle:UIBarStyleBlackOpaque];
-
-    UIBarButtonItem* button1 = [[UIBarButtonItem alloc] initWithTitle:@"Button Text"
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:nil];
-    [self setToolbarItems:[NSArray arrayWithObjects:button1, nil]];
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender
