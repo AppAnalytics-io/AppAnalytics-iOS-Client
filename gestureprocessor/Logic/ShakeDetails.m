@@ -30,6 +30,11 @@
     return self;
 }
 
+- (NSString*)typeName
+{
+    return NSStringWithActionType(self.type);
+}
+
 - (NSString*)info
 {
     return nil;

@@ -19,6 +19,8 @@
     self.view.backgroundColor = color;
     
     self.indexLabel.text = [NSString stringWithFormat:@"index: %lu", self.index];
+    
+    self.view.multipleTouchEnabled = YES;
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender

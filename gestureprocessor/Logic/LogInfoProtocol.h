@@ -19,6 +19,7 @@ extern NSString* NSStringWithActionType(ActionType input);
 @protocol LogInfo <NSObject>
 
 - (NSString*)info;
+- (NSString*)typeName;
 
 @property (nonatomic, readonly) NSUInteger index;
 @property (nonatomic, readonly) ActionType type;

@@ -93,6 +93,12 @@
 
 #pragma mark - LogInfo protocol
 
+- (NSString*)typeName
+{
+    return [NSString stringWithFormat:@"%@With%luFinger", NSStringWithActionType(self.type),
+            (unsigned long)self.gestureRecognizer.numberOfTouches];
+}
+
 - (NSString*)info
 {
     NSString* info = nil;

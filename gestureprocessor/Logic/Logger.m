@@ -27,6 +27,7 @@
 @interface Logger ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray* actions; // of id<LogInfo>
+@property (nonatomic) NSUInteger index;
 
 @end
 
@@ -57,11 +58,9 @@
 
 #pragma mark - Logging
 
-static NSUInteger gIndex = 0;
-
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
-    GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:gIndex++];
+    GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:self.index++];
     [self addAction:details];
 }
 
@@ -72,7 +71,7 @@ static NSUInteger gIndex = 0;
     GestureDetails* details = [[GestureDetails alloc] initWithType:type
                                                    triggerPosition:position
                                                      triggerViewID:viewID
-                                                             index:gIndex++];
+                                                             index:self.index++];
     [self addAction:details];
 }
 
@@ -90,14 +89,15 @@ static NSUInteger gIndex = 0;
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
-//    NSLog(@"Order ID [%lu]", actionDetails.index);
-    NSLog(@"Type [%@]", NSStringWithActionType(actionDetails.type));
-//    NSLog(@"Time [%@]", actionDetails.timestamp);
+    NSLog(@"Order ID [%lu]", actionDetails.index);
+    NSLog(@"Type [%@]", actionDetails.typeName);
+    NSLog(@"Time [%@]", actionDetails.timestamp);
     NSLog(@"Position X [%.3f]", actionDetails.position.x);
     NSLog(@"Position Y [%.3f]", actionDetails.position.y);
-//    NSLog(@"Param1 [%@]", actionDetails.info);
+    NSLog(@"Param1 [%@]", actionDetails.info);
     NSLog(@"Triggered VC ID [%@]", actionDetails.triggerViewControllerID);
     NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
+    NSLog(@"------------------------------------");
 }
 
 @end

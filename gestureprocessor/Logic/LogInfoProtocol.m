@@ -4,10 +4,10 @@ NSString* NSStringWithActionType(ActionType input)
 {
     NSArray *arr = @[
                      @"Unknown",
-                     @"Single Tap",
-                     @"Double Tap",
-                     @"Triple Tap",
-                     @"Long Tap",
+                     @"SingleTap",
+                     @"DoubleTap",
+                     @"TripleTap",
+                     @"LongTap",
                      @"Pinch",
                      @"Rotate",
                      @"Swipe",
