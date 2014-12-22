@@ -73,6 +73,40 @@
     return NO;
 }
 
++ (BOOL)isNavigationBarPressed:(CGPoint)touchPosition
+{
+    UIViewController* topVC = [self topViewController];
+    UIViewController* parentVC = topVC.parentViewController;
+    
+    if ([parentVC isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController* navController = (UINavigationController*) parentVC;
+        CGRect navBarFrame = navController.navigationBar.frame;
+        if (CGRectContainsPoint(navBarFrame, touchPosition))
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
++ (BOOL)isToolBarPressed:(CGPoint)touchPosition
+{
+    UIViewController* topVC = [self topViewController];
+    UIViewController* parentVC = topVC.parentViewController;
+    
+    if ([parentVC isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController* navController = (UINavigationController*) parentVC;
+        CGRect toolBarFrame = navController.toolbar.frame;
+        if (CGRectContainsPoint(toolBarFrame, touchPosition))
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 + (NSString*)subviewClassNameAtPosition:(CGPoint)position ofView:(UIView*)rootView
 {
     if ([self isKeyboardPressed:position])
@@ -83,8 +117,16 @@
     {
         return @"TabBarItem";
     }
+    else if ([self isNavigationBarPressed:position])
+    {
+        return @"Navigation Bar";
+    }
+    else if ([self isToolBarPressed:position])
+    {
+        return @"Tool Bar";
+    }
     
-    UIView* targetView = nil;
+    UIView* targetView = rootView;
     for (UIView* view in rootView.subviews)
     {
         if (CGRectContainsPoint(view.frame, position))

@@ -19,6 +19,19 @@
     self.view.backgroundColor = color;
     
     self.indexLabel.text = [NSString stringWithFormat:@"index: %lu", self.index];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                    style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController.toolbar setBarStyle:UIBarStyleBlackOpaque];
+
+    UIBarButtonItem* button1 = [[UIBarButtonItem alloc] initWithTitle:@"Button Text"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:nil];
+    [self setToolbarItems:[NSArray arrayWithObjects:button1, nil]];
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender
@@ -34,7 +47,6 @@
         viewCon.index = ++self.index;
     
         UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
-    
         [self presentViewController:navController animated:YES completion:nil];
     }
     else
