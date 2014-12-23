@@ -39,7 +39,7 @@
     UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc]
                                            initWithTarget:self action:@selector(onGestureRecognized:)];
     
-    [pinch requireGestureRecognizerToFail:rotate];
+//    [pinch requireGestureRecognizerToFail:rotate];
     
     [gestures addObjectsFromArray:@[pinch, rotate]];
     
@@ -50,11 +50,11 @@
         tap.numberOfTapsRequired = 1;
         tap.numberOfTouchesRequired = touches;
         
-        if (touches > 1)
-        {
-            [tap requireGestureRecognizerToFail:pinch];
-            [tap requireGestureRecognizerToFail:rotate];
-        }
+//        if (touches > 1)
+//        {
+//            [tap requireGestureRecognizerToFail:pinch];
+//            [tap requireGestureRecognizerToFail:rotate];
+//        }
         
         UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc]
                                              initWithTarget:self action:@selector(onGestureRecognized:)];
@@ -70,7 +70,7 @@
         
         UILongPressGestureRecognizer* longTap = [[UILongPressGestureRecognizer alloc]
                                                  initWithTarget:self action:@selector(onGestureRecognized:)];
-        longTap.minimumPressDuration = kLongTapDuration;
+//        longTap.minimumPressDuration = kLongTapDuration;
         longTap.numberOfTouchesRequired = touches;
         
         UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc]
@@ -93,13 +93,13 @@
         downSwipe.direction =  UISwipeGestureRecognizerDirectionDown;
         downSwipe.numberOfTouchesRequired = touches;
         
-        if (touches > 2)
-        {
-            [pinch requireGestureRecognizerToFail:rightSwipe];
-            [pinch requireGestureRecognizerToFail:leftSwipe];
-            [pinch requireGestureRecognizerToFail:upSwipe];
-            [pinch requireGestureRecognizerToFail:downSwipe];
-        }
+//        if (touches > 2)
+//        {
+//            [pinch requireGestureRecognizerToFail:rightSwipe];
+//            [pinch requireGestureRecognizerToFail:leftSwipe];
+//            [pinch requireGestureRecognizerToFail:upSwipe];
+//            [pinch requireGestureRecognizerToFail:downSwipe];
+//        }
         
         [gestures addObjectsFromArray:@[tap, doubleTap, tripleTap, longTap, leftSwipe, rightSwipe, upSwipe, downSwipe]];
     }

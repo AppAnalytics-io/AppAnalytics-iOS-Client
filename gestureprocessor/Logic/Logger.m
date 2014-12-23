@@ -1,6 +1,7 @@
 #import "Logger.h"
 #import "GestureDetails.h"
 #import "ShakeDetails.h"
+#import "ManifestBuilder.h"
 
 @interface GestureDetails (Tracking)
 
@@ -84,7 +85,8 @@
 - (void)addAction:(id<LogInfo>)actionDetails
 {
     [self.actions addObject:actionDetails];
-    [self printDebugInfo:actionDetails];
+    [[ManifestBuilder instance] buildDataPackage:actionDetails];
+//    [self printDebugInfo:actionDetails];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails

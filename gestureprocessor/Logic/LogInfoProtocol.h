@@ -1,7 +1,7 @@
 #pragma once
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, ActionType)
+typedef NS_ENUM(u_int8_t, ActionType)
 {
     ActionType_Unknown = 0,
     ActionType_SingleTap,
@@ -18,7 +18,7 @@ extern NSString* NSStringWithActionType(ActionType input);
 
 @protocol LogInfo <NSObject>
 
-- (NSString*)info;
+- (float)info;
 - (NSString*)typeName;
 
 @property (nonatomic, readonly) NSUInteger index;

@@ -100,23 +100,27 @@
             (unsigned long)self.numberOfTouches];
 }
 
-- (NSString*)info
+- (float)info
 {
-    NSString* info = nil;
+//    NSString* info = nil;
+    float info = 0;
     if (self.gestureRecognizer.isPinch)
     {
         UIPinchGestureRecognizer* pinch = (UIPinchGestureRecognizer*) self.gestureRecognizer;
-        info = [NSString stringWithFormat:@"%.3f", pinch.scale];
+        info = pinch.scale;
+//        info = [NSString stringWithFormat:@"%.3f", pinch.scale];
     }
     else if (self.gestureRecognizer.isRotate)
     {
         UIRotationGestureRecognizer* rotate = (UIRotationGestureRecognizer*) self.gestureRecognizer;
-        info = [NSString stringWithFormat:@"%.3f", RADIANS_TO_DEGREES(rotate.rotation)];
+        info = RADIANS_TO_DEGREES(rotate.rotation);
+//        info = [NSString stringWithFormat:@"%.3f", RADIANS_TO_DEGREES(rotate.rotation)];
     }
     else if (self.gestureRecognizer.isSwipe)
     {
         UISwipeGestureRecognizer* swipe = (UISwipeGestureRecognizer*) self.gestureRecognizer;
-        info = [NSString stringWithFormat:@"%@", swipe.directionText];
+        info = swipe.direction;
+//        info = [NSString stringWithFormat:@"%@", swipe.directionText];
     }
     return info;
 }

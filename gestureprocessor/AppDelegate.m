@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "OpenUDID.h"
+#import "ManifestBuilder.h"
 
 @interface AppDelegate ()
 
@@ -10,6 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[ManifestBuilder instance] buildHeader];
     return YES;
 }
 

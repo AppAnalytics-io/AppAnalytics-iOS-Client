@@ -35,9 +35,9 @@
     return NSStringWithActionType(self.type);
 }
 
-- (NSString*)info
+- (float)info
 {
-    return nil;
+    return 0;
 }
 
 @end
