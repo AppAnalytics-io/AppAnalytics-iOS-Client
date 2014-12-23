@@ -14,8 +14,8 @@
 		7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4EC1A3F0648003A4C3D /* ViewController.m */; };
 		7227C4F11A3F06BC003A4C3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4F01A3F06BC003A4C3D /* Images.xcassets */; };
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
-		7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C5011A3F1A8C003A4C3D /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
+		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -47,10 +47,10 @@
 		7227C4F01A3F06BC003A4C3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Tracking.h"; sourceTree = "<group>"; };
 		7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Tracking.m"; sourceTree = "<group>"; };
-		7227C5001A3F1A8C003A4C3D /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
-		7227C5011A3F1A8C003A4C3D /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
 		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
+		72672F241A4988C4001FDC80 /* ManifestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestBuilder.h; sourceTree = "<group>"; };
+		72672F251A4988C4001FDC80 /* ManifestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestBuilder.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
 		7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConfig.h; sourceTree = "<group>"; };
@@ -148,7 +148,6 @@
 		7227C4DF1A3F060A003A4C3D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				7227C4FF1A3F1A8C003A4C3D /* OpenUDID */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -185,26 +184,27 @@
 			children = (
 				7289A96E1A44475900CF5CF6 /* Categories */,
 				7289A9721A44477D00CF5CF6 /* Data Types */,
+				72672F231A49889B001FDC80 /* Helpers */,
 				7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */,
 				7289A9641A44401300CF5CF6 /* GestureTracker.h */,
 				7289A9651A44401300CF5CF6 /* GestureTracker.m */,
 				7289A96B1A44471E00CF5CF6 /* Logger.h */,
 				7289A96C1A44471E00CF5CF6 /* Logger.m */,
+				72672F241A4988C4001FDC80 /* ManifestBuilder.h */,
+				72672F251A4988C4001FDC80 /* ManifestBuilder.m */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		72672F231A49889B001FDC80 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				72922ED91A48155700CEC369 /* GestureTrackerHelpers.h */,
 				72922EDA1A48155700CEC369 /* GestureTrackerHelpers.m */,
 				72922EFD1A48339100CEC369 /* KeyboardWatcher.h */,
 				72922EFE1A48339100CEC369 /* KeyboardWatcher.m */,
 			);
-			path = Logic;
-			sourceTree = "<group>";
-		};
-		7227C4FF1A3F1A8C003A4C3D /* OpenUDID */ = {
-			isa = PBXGroup;
-			children = (
-				7227C5001A3F1A8C003A4C3D /* OpenUDID.h */,
-				7227C5011A3F1A8C003A4C3D /* OpenUDID.m */,
-			);
-			path = OpenUDID;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		7289A96E1A44475900CF5CF6 /* Categories */ = {
@@ -326,7 +326,6 @@
 				7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
-				7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
@@ -334,6 +333,7 @@
 				72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */,
 				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
+				72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */,
 				72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */,
