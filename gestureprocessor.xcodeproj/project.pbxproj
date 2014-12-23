@@ -15,6 +15,7 @@
 		7227C4F11A3F06BC003A4C3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4F01A3F06BC003A4C3D /* Images.xcassets */; };
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
 		7227C5021A3F1A8C003A4C3D /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C5011A3F1A8C003A4C3D /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -48,6 +49,8 @@
 		7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Tracking.m"; sourceTree = "<group>"; };
 		7227C5001A3F1A8C003A4C3D /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		7227C5011A3F1A8C003A4C3D /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
+		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
 		7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConfig.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */,
 				7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */,
 				7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */,
+				72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */,
+				72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
+				72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */,
 				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,

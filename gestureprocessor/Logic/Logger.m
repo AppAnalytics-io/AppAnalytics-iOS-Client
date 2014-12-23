@@ -89,7 +89,7 @@
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
-    NSLog(@"Order ID [%lu]", actionDetails.index);
+    NSLog(@"Order ID [%lu]", (unsigned long)actionDetails.index);
     NSLog(@"Type [%@]", actionDetails.typeName);
     NSLog(@"Time [%@]", actionDetails.timestamp);
     NSLog(@"Position X [%.3f]", actionDetails.position.x);
@@ -97,7 +97,7 @@
     NSLog(@"Param1 [%@]", actionDetails.info);
     NSLog(@"Triggered VC ID [%@]", actionDetails.triggerViewControllerID);
     NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
-    NSLog(@"------------------------------------");
+    NSLog(@"-----------------------------");
 }
 
 @end

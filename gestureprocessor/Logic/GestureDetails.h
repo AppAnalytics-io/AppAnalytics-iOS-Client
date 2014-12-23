@@ -11,13 +11,4 @@
                triggerViewID:(NSString*)viewID
                        index:(NSUInteger)index;
 
-- (BOOL)isTap;
-- (BOOL)isSingleTap;
-- (BOOL)isDoubleTap;
-- (BOOL)isTripleTap;
-- (BOOL)isLongTap;
-- (BOOL)isPinch;
-- (BOOL)isRotate;
-- (BOOL)isSwipe;
-
 @end
