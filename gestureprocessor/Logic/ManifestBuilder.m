@@ -3,6 +3,7 @@
 #import "GestureTrackerConstants.h"
 #import "GestureTracker.h"
 #import "GestureTrackerHelpers.h"
+#import "OpenUDID.h"
 
 @interface GestureTracker (AppKey)
 
@@ -14,7 +15,10 @@
 @interface ManifestBuilder ()
 @property (nonatomic, strong) NSUUID* uuid;
 @property (nonatomic, strong) NSDate* sessionStartDate;
+@property (nonatomic, strong) NSString* udid;
 @end
+
+static NSString* const kUDIDKey = @"NHzZ36186S";
 
 @implementation ManifestBuilder
 
@@ -36,6 +40,13 @@
     {
         self.uuid = [NSUUID UUID];
         self.sessionStartDate = [NSDate new];
+        self.udid = [[NSUserDefaults standardUserDefaults] objectForKey:kUDIDKey];
+        if (!self.udid)
+        {
+            self.udid = [[OpenUDID value] substringToIndex:32];
+            [[NSUserDefaults standardUserDefaults] setObject:self.udid forKey:kUDIDKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     }
     return self;
 }
@@ -115,7 +126,7 @@
     [manifestData appendBytes:self.uuid.UUIDString.UTF8String length:self.uuid.UUIDString.length];
     [manifestData appendBytes:&sessionStartInterval length:sizeof(sessionStartInterval)];
     [manifestData appendBytes:&sessionEndInterval length:sizeof(sessionEndInterval)];
-#warning add UDID here
+    [manifestData appendBytes:self.udid.UTF8String length:self.udid.length];
     [manifestData appendBytes:&screenWidth length:sizeof(screenWidth)];
     [manifestData appendBytes:&screenHeight length:sizeof(screenHeight)];
     [manifestData appendBytes:&kGestureTrackerApiVersion length:sizeof(kGestureTrackerApiVersion)];

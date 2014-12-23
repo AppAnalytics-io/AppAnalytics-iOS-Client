@@ -16,6 +16,7 @@
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
+		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -51,6 +52,8 @@
 		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
 		72672F241A4988C4001FDC80 /* ManifestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestBuilder.h; sourceTree = "<group>"; };
 		72672F251A4988C4001FDC80 /* ManifestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestBuilder.m; sourceTree = "<group>"; };
+		72672F281A49BF7E001FDC80 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		72672F291A49BF7E001FDC80 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
 		7289A96A1A44432B00CF5CF6 /* GestureTrackerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConstants.h; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 		7227C4DF1A3F060A003A4C3D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				72672F271A49BF7E001FDC80 /* OpenUDID */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -205,6 +209,15 @@
 				72922EFE1A48339100CEC369 /* KeyboardWatcher.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		72672F271A49BF7E001FDC80 /* OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				72672F281A49BF7E001FDC80 /* OpenUDID.h */,
+				72672F291A49BF7E001FDC80 /* OpenUDID.m */,
+			);
+			path = OpenUDID;
 			sourceTree = "<group>";
 		};
 		7289A96E1A44475900CF5CF6 /* Categories */ = {
@@ -324,6 +337,7 @@
 			files = (
 				7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */,
 				7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */,
+				72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
