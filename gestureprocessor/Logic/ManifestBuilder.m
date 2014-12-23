@@ -53,13 +53,8 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 - (void)buildHeader
 {
-//    int headerLength = 39;
     char fileSignature[2] = {'H', 'A'};
-    
-//    char* buffer = malloc(sizeof(char) * headerLength);
-//    sprintf(buffer, "%s%d%s", fileSignature, fileVersion, uuid.UUIDString.UTF8String);
-//    free(buffer);
-    
+
     NSMutableData* headerData = [NSMutableData data];
     [headerData appendBytes:&fileSignature length:sizeof(fileSignature)];
     [headerData appendBytes:&kDataPackageFileVersion length:sizeof(kDataPackageFileVersion)];
@@ -75,7 +70,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 - (void)buildDataPackage:(id<LogInfo>)actionDetails
 {
     char beginMarker = '<';
-    char endMarker = '<';
+    char endMarker = '>';
     u_int64_t index = actionDetails.index;
     u_int8_t type = actionDetails.type;
     NSTimeInterval timestamp = actionDetails.timestamp.timeIntervalSince1970;
@@ -100,17 +95,16 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     [packageData appendBytes:actionDetails.triggerViewID.UTF8String length:elementIDLength];
     [packageData appendBytes:&endMarker length:sizeof(endMarker)];
     
-    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"action"];
-    [packageData writeToFile:path atomically:YES];
+    [packageData writeToFile:[self actionPackagePath:(NSInteger)index] atomically:YES];
     
     NSLog(@"Reading packageData");
-    [self readFileAtPath:path];
+    [self readFileAtPath:[self actionPackagePath:(NSInteger)index]];
 }
 
 - (void)builSessionManifest
 {
     char beginMarker = '<';
-    char endMarker = '<';
+    char endMarker = '>';
     NSTimeInterval sessionStartInterval = self.sessionStartDate.timeIntervalSince1970;
     NSTimeInterval sessionEndInterval = [NSDate new].timeIntervalSince1970;
     Version appVersion = [GestureTrackerHelpers appVersion];
@@ -145,11 +139,20 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     [manifestData appendBytes:systemLocale.UTF8String length:systemLocale.length];
     [manifestData appendBytes:&endMarker length:sizeof(endMarker)];
     
-    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"manifest"];
-    [manifestData writeToFile:path atomically:YES];
+    [manifestData writeToFile:[self manifestPath] atomically:YES];
     
     NSLog(@"Reading manifestData");
-    [self readFileAtPath:path];
+    [self readFileAtPath:[self manifestPath]];
+}
+
+- (NSString*)actionPackagePath:(NSInteger)index
+{
+    return [NSString stringWithFormat:@"%@%@%d", [self saveDirectoryPath], self.uuid.UUIDString, index];
+}
+
+- (NSString*)manifestPath
+{
+    return [[self saveDirectoryPath] stringByAppendingPathComponent:@"manifest"];
 }
 
 - (NSString*)saveDirectoryPath
