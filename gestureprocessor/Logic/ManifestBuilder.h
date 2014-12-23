@@ -7,5 +7,6 @@
 + (instancetype)instance;
 - (void)buildHeader;
 - (void)buildDataPackage:(id<LogInfo>)actionDetails;
+- (void)builSessionManifest;
 
 @end

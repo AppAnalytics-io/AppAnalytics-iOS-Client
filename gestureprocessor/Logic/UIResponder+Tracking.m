@@ -3,6 +3,13 @@
 #import "GestureTracker.h"
 #import "NSObject+Swizzling.h"
 
+@interface GestureTracker (Shake)
+
++ (instancetype)instance;
+- (void)onShake;
+
+@end
+
 @implementation UIResponder (Tracking)
 
 + (void)load

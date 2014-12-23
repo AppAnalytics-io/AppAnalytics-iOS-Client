@@ -138,6 +138,42 @@
     return NSStringFromClass([targetView class]);
 }
 
++ (Version)appVersion
+{
+    NSString *majorAndMinorVersions = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *buildVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    NSArray* versionComponents = [majorAndMinorVersions componentsSeparatedByString:@"."];
+    
+    Version version;
+    version.major = (versionComponents.count > 0) ? [versionComponents.firstObject integerValue] : 0;
+    version.minor = (versionComponents.count > 1) ? [versionComponents.lastObject integerValue] : 0;
+    version.build = (buildVersion != nil) ? [buildVersion integerValue] : 0;
+    version.revision = 0;
+    
+    return version;
+}
+
++ (Version)OSVersion
+{
+    NSArray *versionComponents = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+    
+    Version version;
+    
+    version.major =     (versionComponents.count > 0) ? [versionComponents[0] integerValue] : 0;
+    version.minor =     (versionComponents.count > 1) ? [versionComponents[1] integerValue] : 0;
+    version.build =     (versionComponents.count > 2) ? [versionComponents[2] integerValue] : 0;
+    version.revision =  (versionComponents.count > 3) ? [versionComponents[3] integerValue] : 0;
+    
+    return version;
+}
+
++ (CGSize)screenSizeInPixels
+{
+    return CGSizeMake([UIScreen mainScreen].scale * [UIScreen mainScreen].bounds.size.width,
+                      [UIScreen mainScreen].scale * [UIScreen mainScreen].bounds.size.height);
+}
+
 #if 0 // get the most underlying subview. not required yet
 + (UIView*)subviewAtPosition:(CGPoint)position ofView:(UIView*)rootView
 {

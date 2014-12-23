@@ -1,5 +1,20 @@
 #import "ManifestBuilder.h"
 #import "Logger.h"
+#import "GestureTrackerConstants.h"
+#import "GestureTracker.h"
+#import "GestureTrackerHelpers.h"
+
+@interface GestureTracker (AppKey)
+
++ (instancetype)instance;
+@property (nonatomic, strong) NSString* appKey;
+
+@end
+
+@interface ManifestBuilder ()
+@property (nonatomic, strong) NSUUID* uuid;
+@property (nonatomic, strong) NSDate* sessionStartDate;
+@end
 
 @implementation ManifestBuilder
 
@@ -14,12 +29,21 @@
     return _self;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.uuid = [NSUUID UUID];
+        self.sessionStartDate = [NSDate new];
+    }
+    return self;
+}
+
 - (void)buildHeader
 {
 //    int headerLength = 39;
     char fileSignature[2] = {'H', 'A'};
-    u_int8_t fileVersion = 1;
-    NSUUID* uuid = [NSUUID UUID];
     
 //    char* buffer = malloc(sizeof(char) * headerLength);
 //    sprintf(buffer, "%s%d%s", fileSignature, fileVersion, uuid.UUIDString.UTF8String);
@@ -27,8 +51,8 @@
     
     NSMutableData* headerData = [NSMutableData data];
     [headerData appendBytes:&fileSignature length:sizeof(fileSignature)];
-    [headerData appendBytes:&fileVersion length:sizeof(fileVersion)];
-    [headerData appendBytes:uuid.UUIDString.UTF8String length:uuid.UUIDString.length];
+    [headerData appendBytes:&kDataPackageFileVersion length:sizeof(kDataPackageFileVersion)];
+    [headerData appendBytes:self.uuid.UUIDString.UTF8String length:self.uuid.UUIDString.length];
     
     NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"header"];
     [headerData writeToFile:path atomically:YES];
@@ -69,6 +93,51 @@
     [packageData writeToFile:path atomically:YES];
     
     NSLog(@"Reading packageData");
+    [self readFileAtPath:path];
+}
+
+- (void)builSessionManifest
+{
+    char beginMarker = '<';
+    char endMarker = '<';
+    NSTimeInterval sessionStartInterval = self.sessionStartDate.timeIntervalSince1970;
+    NSTimeInterval sessionEndInterval = [NSDate new].timeIntervalSince1970;
+    Version appVersion = [GestureTrackerHelpers appVersion];
+    Version osVersion = [GestureTrackerHelpers OSVersion];
+    double screenWidth = [GestureTrackerHelpers screenSizeInPixels].width;
+    double screenHeight = [GestureTrackerHelpers screenSizeInPixels].height;
+    NSString* systemLocale = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+    
+    NSMutableData* manifestData = [NSMutableData data];
+    
+    [manifestData appendBytes:&beginMarker length:sizeof(beginMarker)];
+    [manifestData appendBytes:&kSessionManifestFileVersion length:sizeof(kSessionManifestFileVersion)];
+    [manifestData appendBytes:self.uuid.UUIDString.UTF8String length:self.uuid.UUIDString.length];
+    [manifestData appendBytes:&sessionStartInterval length:sizeof(sessionStartInterval)];
+    [manifestData appendBytes:&sessionEndInterval length:sizeof(sessionEndInterval)];
+#warning add UDID here
+    [manifestData appendBytes:&screenWidth length:sizeof(screenWidth)];
+    [manifestData appendBytes:&screenHeight length:sizeof(screenHeight)];
+    [manifestData appendBytes:&kGestureTrackerApiVersion length:sizeof(kGestureTrackerApiVersion)];
+    [manifestData appendBytes:[GestureTracker instance].appKey.UTF8String length:[GestureTracker instance].appKey.length];
+    
+    [manifestData appendBytes:&appVersion.major length:sizeof(appVersion.major)];
+    [manifestData appendBytes:&appVersion.minor length:sizeof(appVersion.minor)];
+    [manifestData appendBytes:&appVersion.build length:sizeof(appVersion.build)];
+    [manifestData appendBytes:&appVersion.revision length:sizeof(appVersion.revision)];
+    
+    [manifestData appendBytes:&osVersion.major length:sizeof(osVersion.major)];
+    [manifestData appendBytes:&osVersion.minor length:sizeof(osVersion.minor)];
+    [manifestData appendBytes:&osVersion.build length:sizeof(osVersion.build)];
+    [manifestData appendBytes:&osVersion.revision length:sizeof(osVersion.revision)];
+
+    [manifestData appendBytes:systemLocale.UTF8String length:systemLocale.length];
+    [manifestData appendBytes:&endMarker length:sizeof(endMarker)];
+    
+    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"manifest"];
+    [manifestData writeToFile:path atomically:YES];
+    
+    NSLog(@"Reading manifestData");
     [self readFileAtPath:path];
 }
 

@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "ManifestBuilder.h"
+#import "GestureTracker.h"
 
 @interface AppDelegate ()
 
@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[ManifestBuilder instance] buildHeader];
+    [GestureTracker initWithAppKey:@"12345678123456781234567812345678"];
     return YES;
 }
 

@@ -3,8 +3,6 @@
 
 @interface GestureTracker : NSObject
 
-+ (instancetype)instance;
-- (void)trackWindowGestures:(UIWindow*)window;
-- (void)onShake;
++ (void)initWithAppKey:(NSString*)appKey;
 
 @end

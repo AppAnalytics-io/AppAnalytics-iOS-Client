@@ -53,7 +53,7 @@
 		72672F251A4988C4001FDC80 /* ManifestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestBuilder.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
-		7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConfig.h; sourceTree = "<group>"; };
+		7289A96A1A44432B00CF5CF6 /* GestureTrackerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConstants.h; sourceTree = "<group>"; };
 		7289A96B1A44471E00CF5CF6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		7289A96C1A44471E00CF5CF6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		7289A96F1A44477800CF5CF6 /* GestureDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDetails.h; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				7289A96E1A44475900CF5CF6 /* Categories */,
 				7289A9721A44477D00CF5CF6 /* Data Types */,
 				72672F231A49889B001FDC80 /* Helpers */,
-				7289A96A1A44432B00CF5CF6 /* GestureTrackerConfig.h */,
+				7289A96A1A44432B00CF5CF6 /* GestureTrackerConstants.h */,
 				7289A9641A44401300CF5CF6 /* GestureTracker.h */,
 				7289A9651A44401300CF5CF6 /* GestureTracker.m */,
 				7289A96B1A44471E00CF5CF6 /* Logger.h */,

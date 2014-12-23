@@ -1,13 +1,28 @@
 #import "GestureTracker.h"
-#import "GestureTrackerConfig.h"
+#import "GestureTrackerConstants.h"
 #import "Logger.h"
 #import "UIGestureRecognizer+Type.h"
+#import "KeyboardWatcher.h"
+#import "ManifestBuilder.h"
 
 @interface GestureTracker () <UIGestureRecognizerDelegate>
+
++ (instancetype)instance;
+- (void)trackWindowGestures:(UIWindow*)window;
+- (void)onShake;
+
+@property (nonatomic, strong) NSString* appKey;
 
 @end
 
 @implementation GestureTracker
+
++ (void)initWithAppKey:(NSString *)appKey
+{
+    [GestureTracker instance].appKey = appKey;
+    [KeyboardWatcher instance];
+    [[ManifestBuilder instance] builSessionManifest];
+}
 
 + (instancetype)instance
 {
@@ -18,15 +33,6 @@
         _self = [[GestureTracker alloc] init];
     });
     return _self;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self)
-    {
-    }
-    return self;
 }
 
 - (void)trackWindowGestures:(UIWindow*)window

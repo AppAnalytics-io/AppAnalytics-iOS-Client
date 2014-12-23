@@ -2,7 +2,13 @@
 #import <objc/runtime.h>
 #import "GestureTracker.h"
 #import "NSObject+Swizzling.h"
-#import "KeyboardWatcher.h"
+
+@interface GestureTracker (Tracking)
+
++ (instancetype)instance;
+- (void)trackWindowGestures:(UIWindow*)window;
+
+@end
 
 @implementation UIWindow (Tracking)
 
@@ -25,7 +31,6 @@
     if (self)
     {
         [[GestureTracker instance] trackWindowGestures:self];
-        [KeyboardWatcher instance];
     }
     return self;
 }
@@ -36,7 +41,6 @@
     if (self)
     {
         [[GestureTracker instance] trackWindowGestures:self];
-        [KeyboardWatcher instance];
     }
     return self;
 }
