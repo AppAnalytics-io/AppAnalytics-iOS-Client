@@ -1,24 +1,23 @@
 #import "ManifestBuilder.h"
 #import "Logger.h"
-#import "GestureTrackerConstants.h"
+#import "GTConstants.h"
 #import "GestureTracker.h"
 #import "GestureTrackerHelpers.h"
-#import "OpenUDID.h"
 
-@interface GestureTracker (AppKey)
+@interface GestureTracker (ManifestBuilder)
 
 + (instancetype)instance;
 @property (nonatomic, strong) NSString* appKey;
+@property (nonatomic, strong) NSUUID* sessionUUID;
+@property (nonatomic, strong) NSString* udid;
 
 @end
 
 @interface ManifestBuilder ()
-@property (nonatomic, strong) NSUUID* uuid;
 @property (nonatomic, strong) NSDate* sessionStartDate;
-@property (nonatomic, strong) NSString* udid;
+@property (nonatomic, strong) NSData* headerData;
 @end
 
-static NSString* const kUDIDKey = @"NHzZ36186S";
 
 @implementation ManifestBuilder
 
@@ -38,36 +37,40 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     self = [super init];
     if (self)
     {
-        self.uuid = [NSUUID UUID];
         self.sessionStartDate = [NSDate new];
-        self.udid = [[NSUserDefaults standardUserDefaults] objectForKey:kUDIDKey];
-        if (!self.udid)
-        {
-            self.udid = [[OpenUDID value] substringToIndex:32];
-            [[NSUserDefaults standardUserDefaults] setObject:self.udid forKey:kUDIDKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
     }
     return self;
 }
 
-- (void)buildHeader
+- (NSData*)headerData
+{
+    if (!_headerData)
+    {
+        _headerData = [self buildHeader];
+    }
+    return _headerData;
+}
+
+- (NSData*)buildHeader
 {
     char fileSignature[2] = {'H', 'A'};
 
     NSMutableData* headerData = [NSMutableData data];
     [headerData appendBytes:&fileSignature length:sizeof(fileSignature)];
     [headerData appendBytes:&kDataPackageFileVersion length:sizeof(kDataPackageFileVersion)];
-    [headerData appendBytes:self.uuid.UUIDString.UTF8String length:self.uuid.UUIDString.length];
+    [headerData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String
+                     length:[GestureTracker instance].sessionUUID.UUIDString.length];
     
-    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"header"];
-    [headerData writeToFile:path atomically:YES];
+//    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"header"];
+//    [headerData writeToFile:path atomically:YES];
+//    
+//    NSLog(@"Reading header");
+//    [self readFileAtPath:path];
     
-    NSLog(@"Reading header");
-    [self readFileAtPath:path];
+    return self.headerData.copy;
 }
 
-- (void)buildDataPackage:(id<LogInfo>)actionDetails
+- (NSData*)buildDataPackage:(id<LogInfo>)actionDetails
 {
     char beginMarker = '<';
     char endMarker = '>';
@@ -82,6 +85,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
     NSMutableData* packageData = [NSMutableData data];
     
+    [packageData appendData:self.headerData];
     [packageData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [packageData appendBytes:&index length:sizeof(index)];
     [packageData appendBytes:&type length:sizeof(type)];
@@ -95,13 +99,15 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     [packageData appendBytes:actionDetails.triggerViewID.UTF8String length:elementIDLength];
     [packageData appendBytes:&endMarker length:sizeof(endMarker)];
     
-    [packageData writeToFile:[self actionPackagePath:(NSInteger)index] atomically:YES];
+//    [packageData writeToFile:[self actionPackagePath:(NSInteger)index] atomically:YES];
+//    
+//    NSLog(@"Reading packageData");
+//    [self readFileAtPath:[self actionPackagePath:(NSInteger)index]];
     
-    NSLog(@"Reading packageData");
-    [self readFileAtPath:[self actionPackagePath:(NSInteger)index]];
+    return packageData;
 }
 
-- (void)builSessionManifest
+- (NSData*)builSessionManifest
 {
     char beginMarker = '<';
     char endMarker = '>';
@@ -114,13 +120,15 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     NSString* systemLocale = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
     
     NSMutableData* manifestData = [NSMutableData data];
-    
+    [manifestData appendData:self.headerData];
     [manifestData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [manifestData appendBytes:&kSessionManifestFileVersion length:sizeof(kSessionManifestFileVersion)];
-    [manifestData appendBytes:self.uuid.UUIDString.UTF8String length:self.uuid.UUIDString.length];
+    [manifestData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String
+                       length:[GestureTracker instance].sessionUUID.UUIDString.length];
     [manifestData appendBytes:&sessionStartInterval length:sizeof(sessionStartInterval)];
     [manifestData appendBytes:&sessionEndInterval length:sizeof(sessionEndInterval)];
-    [manifestData appendBytes:self.udid.UTF8String length:self.udid.length];
+    [manifestData appendBytes:[GestureTracker instance].udid.UTF8String
+                       length:[GestureTracker instance].udid.length];
     [manifestData appendBytes:&screenWidth length:sizeof(screenWidth)];
     [manifestData appendBytes:&screenHeight length:sizeof(screenHeight)];
     [manifestData appendBytes:&kGestureTrackerApiVersion length:sizeof(kGestureTrackerApiVersion)];
@@ -139,15 +147,17 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     [manifestData appendBytes:systemLocale.UTF8String length:systemLocale.length];
     [manifestData appendBytes:&endMarker length:sizeof(endMarker)];
     
-    [manifestData writeToFile:[self manifestPath] atomically:YES];
+//    [manifestData writeToFile:[self manifestPath] atomically:YES];
+//    NSLog(@"Reading manifestData");
+//    [self readFileAtPath:[self manifestPath]];
     
-    NSLog(@"Reading manifestData");
-    [self readFileAtPath:[self manifestPath]];
+    return manifestData;
 }
 
 - (NSString*)actionPackagePath:(NSInteger)index
 {
-    return [NSString stringWithFormat:@"%@%@%d", [self saveDirectoryPath], self.uuid.UUIDString, index];
+    return [NSString stringWithFormat:@"%@%@%d",
+            [self saveDirectoryPath], [GestureTracker instance].sessionUUID.UUIDString, index];
 }
 
 - (NSString*)manifestPath

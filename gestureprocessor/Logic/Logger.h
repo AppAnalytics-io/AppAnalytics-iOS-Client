@@ -8,6 +8,8 @@
 
 + (instancetype)instance;
 
+- (void)createSessionManifest;
+
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer;
 
 - (void)gestureRecognized:(ActionType)type
@@ -17,7 +19,5 @@
 - (void)navigationRecognizedWithViewControllerID:(NSString*)viewControllerID;
 
 - (void)shakeRecognized;
-
-@property (nonatomic, strong, readonly) NSMutableArray* actions;
 
 @end

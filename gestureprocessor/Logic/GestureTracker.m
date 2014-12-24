@@ -1,9 +1,9 @@
 #import "GestureTracker.h"
-#import "GestureTrackerConstants.h"
+#import "GTConstants.h"
 #import "Logger.h"
 #import "UIGestureRecognizer+Type.h"
 #import "KeyboardWatcher.h"
-#import "ManifestBuilder.h"
+#import "OpenUDID.h"
 
 @interface GestureTracker () <UIGestureRecognizerDelegate>
 
@@ -12,8 +12,12 @@
 - (void)onShake;
 
 @property (nonatomic, strong) NSString* appKey;
+@property (nonatomic, strong) NSUUID* sessionUUID;
+@property (nonatomic, strong) NSString* udid;
 
 @end
+
+static NSString* const kUDIDKey = @"NHzZ36186S";
 
 @implementation GestureTracker
 
@@ -21,7 +25,7 @@
 {
     [GestureTracker instance].appKey = appKey;
     [KeyboardWatcher instance];
-    [[ManifestBuilder instance] builSessionManifest];
+    [[Logger instance] createSessionManifest];
 }
 
 + (instancetype)instance
@@ -33,6 +37,23 @@
         _self = [[GestureTracker alloc] init];
     });
     return _self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.sessionUUID = [NSUUID UUID];
+        self.udid = [[NSUserDefaults standardUserDefaults] objectForKey:kUDIDKey];
+        if (!self.udid)
+        {
+            self.udid = [[OpenUDID value] substringToIndex:32];
+            [[NSUserDefaults standardUserDefaults] setObject:self.udid forKey:kUDIDKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
+    return self;
 }
 
 - (void)trackWindowGestures:(UIWindow*)window

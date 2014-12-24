@@ -3,6 +3,8 @@
 #import "ShakeDetails.h"
 #import "NavigationDetails.h"
 #import "ManifestBuilder.h"
+#import "ConnectionManager.h"
+#import "GestureTracker.h"
 
 @interface GestureDetails (Tracking)
 
@@ -26,10 +28,20 @@
 
 @end
 
+@interface GestureTracker (Logger)
+
++ (instancetype)instance;
+@property (nonatomic, strong) NSString* appKey;
+@property (nonatomic, strong) NSUUID* sessionUUID;
+@property (nonatomic, strong) NSString* udid;
+
+@end
+
 @interface Logger ()
 
-@property (nonatomic, strong, readwrite) NSMutableArray* actions; // of id<LogInfo>
 @property (nonatomic) NSUInteger index;
+@property (nonatomic, strong) NSDictionary* manifests; // { sessionId : manifestData }
+@property (nonatomic, strong) NSDictionary* actions; // { sessionId : array of packages }
 
 @end
 
@@ -53,9 +65,22 @@
     self = [super init];
     if (self)
     {
-        self.actions = [NSMutableArray array];
+        self.manifests = [NSDictionary dictionary];
+        self.actions = [NSDictionary dictionary];
     }
     return self;
+}
+
+#pragma mark - Sending Data
+
+- (void)scheduleManifest
+{
+    
+}
+
+- (void)schedulePackages
+{
+    
 }
 
 #pragma mark - Logging
@@ -90,11 +115,27 @@
     [self addAction:details];
 }
 
+- (void)createSessionManifest
+{
+    NSData* manifest = [[ManifestBuilder instance] builSessionManifest];
+    NSMutableDictionary* manifests = self.manifests.mutableCopy;
+    manifests[[GestureTracker instance].sessionUUID.UUIDString] = manifest;
+    self.manifests = manifests.copy;
+}
+
 - (void)addAction:(id<LogInfo>)actionDetails
 {
-    [self.actions addObject:actionDetails];
-//    [[ManifestBuilder instance] buildDataPackage:actionDetails];
-    [self printDebugInfo:actionDetails];
+    NSData* actionData = [[ManifestBuilder instance] buildDataPackage:actionDetails];
+    NSMutableDictionary* actions = self.actions.mutableCopy;
+    NSMutableArray* sessionActions = actions[[GestureTracker instance].sessionUUID.UUIDString];
+    if (!sessionActions)
+    {
+        sessionActions = [NSMutableArray array];
+    }
+    [sessionActions addObject:actionData];
+    actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
+    self.actions = actions.copy;
+//    [self printDebugInfo:actionDetails];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
