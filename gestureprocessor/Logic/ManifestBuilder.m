@@ -15,7 +15,7 @@
 
 @interface ManifestBuilder ()
 @property (nonatomic, strong) NSDate* sessionStartDate;
-@property (nonatomic, strong) NSData* headerData;
+@property (nonatomic, strong, readwrite) NSData* headerData;
 @end
 
 
@@ -85,7 +85,6 @@
 
     NSMutableData* packageData = [NSMutableData data];
     
-    [packageData appendData:self.headerData];
     [packageData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [packageData appendBytes:&index length:sizeof(index)];
     [packageData appendBytes:&type length:sizeof(type)];
@@ -120,7 +119,7 @@
     NSString* systemLocale = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
     
     NSMutableData* manifestData = [NSMutableData data];
-    [manifestData appendData:self.headerData];
+    
     [manifestData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [manifestData appendBytes:&kSessionManifestFileVersion length:sizeof(kSessionManifestFileVersion)];
     [manifestData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String

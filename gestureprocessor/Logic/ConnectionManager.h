@@ -5,8 +5,4 @@
 
 + (instancetype)instance;
 
-- (void)putManifest:(NSData*)manifest
-            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-
 @end

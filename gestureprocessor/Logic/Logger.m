@@ -3,9 +3,10 @@
 #import "ShakeDetails.h"
 #import "NavigationDetails.h"
 #import "ManifestBuilder.h"
-#import "ConnectionManager.h"
 #import "GestureTracker.h"
 #import "GTConstants.h"
+#import "UNIRest.h"
+#import "ConnectionManager.h"
 
 @interface GestureDetails (Tracking)
 
@@ -44,6 +45,7 @@
 @property (nonatomic, strong) NSDictionary* manifests; // { sessionId : manifestData }
 @property (nonatomic, strong) NSDictionary* actions; // { sessionId : array of packages }
 @property (nonatomic, strong) NSTimer* serializationTimer;
+@property (nonatomic, strong) NSTimer* sendingDataTimer;
 
 @end
 
@@ -72,6 +74,9 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         self.manifests = [NSDictionary dictionary];
         self.actions = [NSDictionary dictionary];
+//        [UNIRest defaultHeader:@"Header1" value:@""];
+//        NSString* header = [[NSString alloc] initWithData:[ManifestBuilder instance].headerData
+//                                                 encoding:NSASCIIStringEncoding];
         [self scheduleTimers];
     }
     return self;
@@ -92,11 +97,19 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
                                selector:@selector(serialize)
                                userInfo:nil
                                repeats:YES];
+    
+//    self.sendingDataTimer = [NSTimer
+//                             scheduledTimerWithTimeInterval:kGTSendingDataInterval
+//                             target:self
+//                             selector:@selector(sendData)
+//                             userInfo:nil
+//                             repeats:YES];
 }
 
 - (void)invalidateTimers
 {
     [self.serializationTimer invalidate];
+    [self.sendingDataTimer invalidate];
 }
 
 - (void)serialize
@@ -104,6 +117,121 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [[NSUserDefaults standardUserDefaults] setObject:self.manifests forKey:kManifestsSerializationKey];
     [[NSUserDefaults standardUserDefaults] setObject:self.actions forKey:kActionsSerializationKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)sendActions
+{
+    if (![self allSamples].count)
+    {
+        return;
+    }
+    
+    NSDictionary* headers = @{@"accept"     : @"application/json"};
+    NSDictionary* parameters = @{@"UDID"    : [GestureTracker instance].sessionUUID.UUIDString,
+                                 @"Sample"  : [self allSamples].lastObject};
+    
+    [[UNIRest put:^(UNISimpleRequest* request)
+    {
+        [request setUrl:[NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTSamplesURL]];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error)
+    {
+        NSInteger* code = [response code];
+        NSDictionary* responseHeaders = [response headers];
+        UNIJsonNode* body = [response body];
+        NSData* rawBody = [response rawBody];
+    }];
+}
+
+- (void)sendManifests
+{
+    if (![self allManifests].count)
+    {
+        return;
+    }
+    
+    NSDictionary* headers = @{@"accept" : @"text/html"};
+    NSDictionary* parameters = @{@"UDID" : [GestureTracker instance].sessionUUID.UUIDString,
+                                 @"Manifest" : @"" };
+    
+    [[ConnectionManager instance]
+     PUT:kGTManifestsURL
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error)
+    {
+        
+    }];
+    
+//    [[UNIRest put:^(UNISimpleRequest* request)
+//      {
+//          [request setUrl:[NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTManifestsURL]];
+//          [request setHeaders:headers];
+//          [request setParameters:parameters];
+//      }] asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error)
+//    {
+//         NSInteger* code = [response code];
+//         NSDictionary* responseHeaders = [response headers];
+//         UNIJsonNode* body = [response body];
+//         NSData* rawBody = [response rawBody];
+//     }];
+}
+
+//- (void)post:(NSString*)endpointURL parameters:(NSDictionary*)parameters completion:(NSDictionary)
+//{
+//    NSString* url = [NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTManifestsURL];
+//    url = [url stringByAppendingString:[NSString stringWithFormat:@"?url=%@", [GestureTracker instance].sessionUUID.UUIDString]];
+//    
+//    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+//    [urlRequest setTimeoutInterval:10.0f];
+//    [urlRequest setHTTPMethod:@"PUT"];
+//    
+//    NSString* body = @"12345";
+//    [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+//    
+//    [NSURLConnection
+//     sendAsynchronousRequest:urlRequest
+//     queue:queue
+//     completionHandler:^(NSURLResponse* response,
+//                         NSData* data,
+//                         NSError* error)
+//    {
+//         if (data.length && !error)
+//         {
+//             NSString *html = [[NSString alloc] initWithData:data
+//                                                    encoding:NSUTF8StringEncoding];
+//             NSLog(@"HTML = %@", html);
+//         }
+//     }];
+//}
+
+- (NSArray*)allSamples
+{
+    NSMutableArray* allSamples = [NSMutableArray array];
+    
+    for (NSString* sessionId in self.actions.allKeys)
+    {
+        [allSamples addObjectsFromArray:self.actions[sessionId]];
+    }
+    
+    return allSamples.copy;
+}
+
+- (NSArray*)allManifests
+{
+    NSMutableArray* allManifests = [NSMutableArray array];
+    
+    for (NSString* sessionId in self.manifests.allKeys)
+    {
+        [allManifests addObject:self.manifests[sessionId]];
+    }
+    
+    return allManifests.copy;
 }
 
 #pragma mark - Logging
@@ -144,6 +272,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     NSMutableDictionary* manifests = self.manifests.mutableCopy;
     manifests[[GestureTracker instance].sessionUUID.UUIDString] = manifest;
     self.manifests = manifests.copy;
+    [self sendManifests];
 }
 
 - (void)addAction:(id<LogInfo>)actionDetails

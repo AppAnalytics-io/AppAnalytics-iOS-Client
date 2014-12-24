@@ -8,4 +8,6 @@
 - (NSData*)buildDataPackage:(id<LogInfo>)actionDetails;
 - (NSData*)builSessionManifest;
 
+@property (nonatomic, strong, readonly) NSData* headerData;
+
 @end

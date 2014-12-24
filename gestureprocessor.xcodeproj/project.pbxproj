@@ -19,7 +19,6 @@
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
 		727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */; };
 		727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
-		727E6AAD1A4ACC5600822C51 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AAC1A4ACC5600822C51 /* ConnectionManager.m */; };
 		727E6AC21A4ACCDD00822C51 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
 		727E6AC31A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB21A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m */; };
 		727E6AC41A4ACCDD00822C51 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB41A4ACCDD00822C51 /* AFHTTPSessionManager.m */; };
@@ -32,6 +31,21 @@
 		727E6ACF1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
 		727E6AD01A4ACE7800822C51 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACE1A4ACE7800822C51 /* README.md */; };
 		727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
+		727E6AF41A4AF63500822C51 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD61A4AF63500822C51 /* Base64.m */; };
+		727E6AF51A4AF63500822C51 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD91A4AF63500822C51 /* UNIBaseRequest.m */; };
+		727E6AF61A4AF63500822C51 /* UNIBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ADB1A4AF63500822C51 /* UNIBodyRequest.m */; };
+		727E6AF71A4AF63500822C51 /* UNISimpleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ADD1A4AF63500822C51 /* UNISimpleRequest.m */; };
+		727E6AF81A4AF63500822C51 /* UNIHTTPBinaryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AE01A4AF63500822C51 /* UNIHTTPBinaryResponse.m */; };
+		727E6AF91A4AF63500822C51 /* UNIHTTPJsonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AE21A4AF63500822C51 /* UNIHTTPJsonResponse.m */; };
+		727E6AFA1A4AF63500822C51 /* UNIHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AE41A4AF63500822C51 /* UNIHTTPResponse.m */; };
+		727E6AFB1A4AF63500822C51 /* UNIHTTPStringResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AE61A4AF63500822C51 /* UNIHTTPStringResponse.m */; };
+		727E6AFC1A4AF63500822C51 /* UNIJsonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AE81A4AF63500822C51 /* UNIJsonNode.m */; };
+		727E6AFD1A4AF63500822C51 /* UNIHTTPClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AEA1A4AF63500822C51 /* UNIHTTPClientHelper.m */; };
+		727E6AFE1A4AF63500822C51 /* UNIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AEC1A4AF63500822C51 /* UNIHTTPRequest.m */; };
+		727E6AFF1A4AF63500822C51 /* UNIHTTPRequestWithBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AEE1A4AF63500822C51 /* UNIHTTPRequestWithBody.m */; };
+		727E6B001A4AF63500822C51 /* UNIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AF11A4AF63500822C51 /* UNIRest.m */; };
+		727E6B011A4AF63500822C51 /* UNIUrlConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AF31A4AF63500822C51 /* UNIUrlConnection.m */; };
+		727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -73,8 +87,6 @@
 		727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tracking.m"; sourceTree = "<group>"; };
 		727E6AA81A4AB71700822C51 /* NavigationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationDetails.h; sourceTree = "<group>"; };
 		727E6AA91A4AB71700822C51 /* NavigationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationDetails.m; sourceTree = "<group>"; };
-		727E6AAB1A4ACC5600822C51 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
-		727E6AAC1A4ACC5600822C51 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		727E6AAF1A4ACCDD00822C51 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		727E6AB11A4ACCDD00822C51 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -99,6 +111,37 @@
 		727E6ACE1A4ACE7800822C51 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		727E6AD11A4ACF1800822C51 /* GTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTConstants.h; sourceTree = "<group>"; };
 		727E6AD21A4ACF1800822C51 /* GTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTConstants.m; sourceTree = "<group>"; };
+		727E6AD51A4AF63500822C51 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		727E6AD61A4AF63500822C51 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		727E6AD81A4AF63500822C51 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
+		727E6AD91A4AF63500822C51 /* UNIBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBaseRequest.m; sourceTree = "<group>"; };
+		727E6ADA1A4AF63500822C51 /* UNIBodyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBodyRequest.h; sourceTree = "<group>"; };
+		727E6ADB1A4AF63500822C51 /* UNIBodyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBodyRequest.m; sourceTree = "<group>"; };
+		727E6ADC1A4AF63500822C51 /* UNISimpleRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNISimpleRequest.h; sourceTree = "<group>"; };
+		727E6ADD1A4AF63500822C51 /* UNISimpleRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNISimpleRequest.m; sourceTree = "<group>"; };
+		727E6ADF1A4AF63500822C51 /* UNIHTTPBinaryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPBinaryResponse.h; sourceTree = "<group>"; };
+		727E6AE01A4AF63500822C51 /* UNIHTTPBinaryResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPBinaryResponse.m; sourceTree = "<group>"; };
+		727E6AE11A4AF63500822C51 /* UNIHTTPJsonResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPJsonResponse.h; sourceTree = "<group>"; };
+		727E6AE21A4AF63500822C51 /* UNIHTTPJsonResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPJsonResponse.m; sourceTree = "<group>"; };
+		727E6AE31A4AF63500822C51 /* UNIHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPResponse.h; sourceTree = "<group>"; };
+		727E6AE41A4AF63500822C51 /* UNIHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPResponse.m; sourceTree = "<group>"; };
+		727E6AE51A4AF63500822C51 /* UNIHTTPStringResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPStringResponse.h; sourceTree = "<group>"; };
+		727E6AE61A4AF63500822C51 /* UNIHTTPStringResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPStringResponse.m; sourceTree = "<group>"; };
+		727E6AE71A4AF63500822C51 /* UNIJsonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIJsonNode.h; sourceTree = "<group>"; };
+		727E6AE81A4AF63500822C51 /* UNIJsonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIJsonNode.m; sourceTree = "<group>"; };
+		727E6AE91A4AF63500822C51 /* UNIHTTPClientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPClientHelper.h; sourceTree = "<group>"; };
+		727E6AEA1A4AF63500822C51 /* UNIHTTPClientHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPClientHelper.m; sourceTree = "<group>"; };
+		727E6AEB1A4AF63500822C51 /* UNIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPRequest.h; sourceTree = "<group>"; };
+		727E6AEC1A4AF63500822C51 /* UNIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPRequest.m; sourceTree = "<group>"; };
+		727E6AED1A4AF63500822C51 /* UNIHTTPRequestWithBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIHTTPRequestWithBody.h; sourceTree = "<group>"; };
+		727E6AEE1A4AF63500822C51 /* UNIHTTPRequestWithBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIHTTPRequestWithBody.m; sourceTree = "<group>"; };
+		727E6AEF1A4AF63500822C51 /* Unirest-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Unirest-Prefix.pch"; sourceTree = "<group>"; };
+		727E6AF01A4AF63500822C51 /* UNIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIRest.h; sourceTree = "<group>"; };
+		727E6AF11A4AF63500822C51 /* UNIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIRest.m; sourceTree = "<group>"; };
+		727E6AF21A4AF63500822C51 /* UNIUrlConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIUrlConnection.h; sourceTree = "<group>"; };
+		727E6AF31A4AF63500822C51 /* UNIUrlConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIUrlConnection.m; sourceTree = "<group>"; };
+		727E6B021A4B154D00822C51 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		727E6B031A4B154D00822C51 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
 		7289A96B1A44471E00CF5CF6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -195,6 +238,7 @@
 		7227C4DF1A3F060A003A4C3D /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				727E6AD41A4AF63500822C51 /* Unirest */,
 				727E6ACB1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData */,
 				727E6AAE1A4ACCDD00822C51 /* AFNetworking */,
 				72672F271A49BF7E001FDC80 /* OpenUDID */,
@@ -232,8 +276,6 @@
 		7227C4F81A3F14B2003A4C3D /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				727E6AAB1A4ACC5600822C51 /* ConnectionManager.h */,
-				727E6AAC1A4ACC5600822C51 /* ConnectionManager.m */,
 				7289A96E1A44475900CF5CF6 /* Categories */,
 				7289A9721A44477D00CF5CF6 /* Data Types */,
 				72672F231A49889B001FDC80 /* Helpers */,
@@ -243,6 +285,8 @@
 				7289A96C1A44471E00CF5CF6 /* Logger.m */,
 				72672F241A4988C4001FDC80 /* ManifestBuilder.h */,
 				72672F251A4988C4001FDC80 /* ManifestBuilder.m */,
+				727E6B021A4B154D00822C51 /* ConnectionManager.h */,
+				727E6B031A4B154D00822C51 /* ConnectionManager.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -303,6 +347,58 @@
 				727E6ACE1A4ACE7800822C51 /* README.md */,
 			);
 			path = HMFJSONResponseSerializerWithData;
+			sourceTree = "<group>";
+		};
+		727E6AD41A4AF63500822C51 /* Unirest */ = {
+			isa = PBXGroup;
+			children = (
+				727E6AD51A4AF63500822C51 /* Base64.h */,
+				727E6AD61A4AF63500822C51 /* Base64.m */,
+				727E6AD71A4AF63500822C51 /* HttpRequest */,
+				727E6ADE1A4AF63500822C51 /* HttpResponse */,
+				727E6AE91A4AF63500822C51 /* UNIHTTPClientHelper.h */,
+				727E6AEA1A4AF63500822C51 /* UNIHTTPClientHelper.m */,
+				727E6AEB1A4AF63500822C51 /* UNIHTTPRequest.h */,
+				727E6AEC1A4AF63500822C51 /* UNIHTTPRequest.m */,
+				727E6AED1A4AF63500822C51 /* UNIHTTPRequestWithBody.h */,
+				727E6AEE1A4AF63500822C51 /* UNIHTTPRequestWithBody.m */,
+				727E6AEF1A4AF63500822C51 /* Unirest-Prefix.pch */,
+				727E6AF01A4AF63500822C51 /* UNIRest.h */,
+				727E6AF11A4AF63500822C51 /* UNIRest.m */,
+				727E6AF21A4AF63500822C51 /* UNIUrlConnection.h */,
+				727E6AF31A4AF63500822C51 /* UNIUrlConnection.m */,
+			);
+			path = Unirest;
+			sourceTree = "<group>";
+		};
+		727E6AD71A4AF63500822C51 /* HttpRequest */ = {
+			isa = PBXGroup;
+			children = (
+				727E6AD81A4AF63500822C51 /* UNIBaseRequest.h */,
+				727E6AD91A4AF63500822C51 /* UNIBaseRequest.m */,
+				727E6ADA1A4AF63500822C51 /* UNIBodyRequest.h */,
+				727E6ADB1A4AF63500822C51 /* UNIBodyRequest.m */,
+				727E6ADC1A4AF63500822C51 /* UNISimpleRequest.h */,
+				727E6ADD1A4AF63500822C51 /* UNISimpleRequest.m */,
+			);
+			path = HttpRequest;
+			sourceTree = "<group>";
+		};
+		727E6ADE1A4AF63500822C51 /* HttpResponse */ = {
+			isa = PBXGroup;
+			children = (
+				727E6ADF1A4AF63500822C51 /* UNIHTTPBinaryResponse.h */,
+				727E6AE01A4AF63500822C51 /* UNIHTTPBinaryResponse.m */,
+				727E6AE11A4AF63500822C51 /* UNIHTTPJsonResponse.h */,
+				727E6AE21A4AF63500822C51 /* UNIHTTPJsonResponse.m */,
+				727E6AE31A4AF63500822C51 /* UNIHTTPResponse.h */,
+				727E6AE41A4AF63500822C51 /* UNIHTTPResponse.m */,
+				727E6AE51A4AF63500822C51 /* UNIHTTPStringResponse.h */,
+				727E6AE61A4AF63500822C51 /* UNIHTTPStringResponse.m */,
+				727E6AE71A4AF63500822C51 /* UNIJsonNode.h */,
+				727E6AE81A4AF63500822C51 /* UNIJsonNode.m */,
+			);
+			path = HttpResponse;
 			sourceTree = "<group>";
 		};
 		7289A96E1A44475900CF5CF6 /* Categories */ = {
@@ -426,38 +522,52 @@
 			files = (
 				727E6AC71A4ACCDD00822C51 /* AFURLConnectionOperation.m in Sources */,
 				7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */,
+				727E6AF71A4AF63500822C51 /* UNISimpleRequest.m in Sources */,
 				727E6ACF1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m in Sources */,
 				7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */,
 				727E6AC21A4ACCDD00822C51 /* AFHTTPRequestOperation.m in Sources */,
 				727E6AC91A4ACCDD00822C51 /* AFURLResponseSerialization.m in Sources */,
 				72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
+				727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
+				727E6AFF1A4AF63500822C51 /* UNIHTTPRequestWithBody.m in Sources */,
 				727E6AD01A4ACE7800822C51 /* README.md in Sources */,
 				727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */,
+				727E6AFC1A4AF63500822C51 /* UNIJsonNode.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
+				727E6AF81A4AF63500822C51 /* UNIHTTPBinaryResponse.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
 				727E6AC61A4ACCDD00822C51 /* AFSecurityPolicy.m in Sources */,
 				727E6ACA1A4ACCDD00822C51 /* AFURLSessionManager.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
 				72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */,
+				727E6B001A4AF63500822C51 /* UNIRest.m in Sources */,
 				727E6AC41A4ACCDD00822C51 /* AFHTTPSessionManager.m in Sources */,
+				727E6AF61A4AF63500822C51 /* UNIBodyRequest.m in Sources */,
 				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				727E6AC51A4ACCDD00822C51 /* AFNetworkReachabilityManager.m in Sources */,
-				727E6AAD1A4ACC5600822C51 /* ConnectionManager.m in Sources */,
+				727E6AF41A4AF63500822C51 /* Base64.m in Sources */,
+				727E6B011A4AF63500822C51 /* UNIUrlConnection.m in Sources */,
 				727E6AC31A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m in Sources */,
 				727E6AC81A4ACCDD00822C51 /* AFURLRequestSerialization.m in Sources */,
 				7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */,
+				727E6AF91A4AF63500822C51 /* UNIHTTPJsonResponse.m in Sources */,
+				727E6AFB1A4AF63500822C51 /* UNIHTTPStringResponse.m in Sources */,
 				72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */,
+				727E6AFE1A4AF63500822C51 /* UNIHTTPRequest.m in Sources */,
 				727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */,
+				727E6AFA1A4AF63500822C51 /* UNIHTTPResponse.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */,
 				72922F041A4849AA00CEC369 /* LogInfo.m in Sources */,
 				727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */,
+				727E6AFD1A4AF63500822C51 /* UNIHTTPClientHelper.m in Sources */,
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
 				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,
+				727E6AF51A4AF63500822C51 /* UNIBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

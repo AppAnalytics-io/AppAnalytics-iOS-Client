@@ -1,41 +1,45 @@
 #import "ConnectionManager.h"
-#import "HMFJSONResponseSerializerWithData.h"
 #import "GTConstants.h"
+#import "AFHTTPRequestOperation.h"
 
 @implementation ConnectionManager
 
-#pragma mark - Life Cycle
 + (instancetype)instance
 {
     static ConnectionManager *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        NSURL *baseURL = [NSURL URLWithString:kGTBaseURL];
-        NSURL *relativeURL = [NSURL URLWithString:kGTRelativeURL relativeToURL:baseURL];
-        _sharedClient = [[ConnectionManager alloc] initWithBaseURL:relativeURL];
-        AFJSONResponseSerializer *responseSerializer = [HMFJSONResponseSerializerWithData
-                                                        serializerWithReadingOptions:NSJSONReadingAllowFragments];
-        [_sharedClient setResponseSerializer:responseSerializer];
-        [_sharedClient setRequestSerializer:AFJSONRequestSerializer.serializer];
-        
-        NSMutableSet *contentTypes = [NSMutableSet setWithSet:_sharedClient.responseSerializer.acceptableContentTypes];
-        [contentTypes addObject:@"text/html"];
-        [contentTypes addObject:@"text/plain"];
-        _sharedClient.responseSerializer.acceptableContentTypes = contentTypes;
+        _sharedClient = [[ConnectionManager alloc] initWithBaseURL:[NSURL URLWithString:kGTBaseURL]];
+        _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     });
     
     return _sharedClient;
 }
 
-- (void)putManifest:(NSData*)manifest
-            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+- (void)putPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+           data:(NSData*)data
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 {
-    NSString *request = kGTManifestsURL;
-//    NSDictionary *params = @{@"rating": rating,
-//                             @"tip" : tip};
-    [self PUT:request parameters:manifest success:success failure:failure];
+    NSURLRequest *request = [self requestWithMethod:@"PUT" path:path parameters:parameters data:data];
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
+    [self enqueueHTTPRequestOperation:operation];
+}
+
+-(NSMutableURLRequest*)requestWithMethod:(NSString *)method
+                                    path:(NSString *)path
+                              parameters:(NSDictionary *)parameters
+                                    data:(NSData*)data;
+{
+    NSMutableURLRequest* request = [super requestWithMethod:method
+                                                       path:path
+                                                 parameters:parameters];
+    
+    [request setHTTPBody:data];
+    
+    return request;
 }
 
 @end
