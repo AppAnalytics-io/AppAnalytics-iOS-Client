@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "LogInfoProtocol.h"
+#import "LogInfo.h"
 
-@interface NavigationDetails : NSObject <LogInfo>
+@interface NavigationDetails : LogObject
 
 - (instancetype)initWithIndex:(NSUInteger)index triggerViewControllerID:(NSString*)triggerVcID;
 

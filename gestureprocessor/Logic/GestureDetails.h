@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "LogInfoProtocol.h"
+#import "LogInfo.h"
 
-@interface GestureDetails : NSObject <LogInfo>
+@interface GestureDetails : LogObject
 
 - (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
                                     index:(NSUInteger)index;

@@ -5,6 +5,7 @@
 #import "ManifestBuilder.h"
 #import "ConnectionManager.h"
 #import "GestureTracker.h"
+#import "GTConstants.h"
 
 @interface GestureDetails (Tracking)
 
@@ -42,8 +43,12 @@
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, strong) NSDictionary* manifests; // { sessionId : manifestData }
 @property (nonatomic, strong) NSDictionary* actions; // { sessionId : array of packages }
+@property (nonatomic, strong) NSTimer* serializationTimer;
 
 @end
+
+static NSString* const kManifestsSerializationKey   = @"uwDYiXJN1R";
+static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 @implementation Logger
 
@@ -67,18 +72,24 @@
     {
         self.manifests = [NSDictionary dictionary];
         self.actions = [NSDictionary dictionary];
+        
     }
     return self;
 }
 
-#pragma mark - Sending Data
+#pragma mark - Working with Data
 
-- (void)scheduleManifest
+- (void)scheduleTimers
 {
-    
+    self.serializationTimer = [NSTimer
+                               scheduledTimerWithTimeInterval:kGTSerializationInterval
+                               target:self
+                               selector:@selector(serialize)
+                               userInfo:nil
+                               repeats:YES];
 }
 
-- (void)schedulePackages
+- (void)serialize
 {
     
 }

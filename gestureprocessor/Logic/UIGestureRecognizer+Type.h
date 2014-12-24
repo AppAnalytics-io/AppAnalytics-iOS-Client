@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "LogInfoProtocol.h"
+#import "LogInfo.h"
 
 @interface UIGestureRecognizer (Type)
 

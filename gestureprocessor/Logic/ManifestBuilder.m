@@ -67,7 +67,7 @@
 //    NSLog(@"Reading header");
 //    [self readFileAtPath:path];
     
-    return self.headerData.copy;
+    return _headerData.copy;
 }
 
 - (NSData*)buildDataPackage:(id<LogInfo>)actionDetails

@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "LogInfoProtocol.h"
+#import "LogInfo.h"
 
-@interface ShakeDetails : NSObject <LogInfo>
+@interface ShakeDetails : LogObject
 
 - (instancetype)initWithIndex:(NSUInteger)index;
 

@@ -5,9 +5,7 @@
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
-@interface GestureDetails ()
-
-@property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
+@interface LogObject (GestureDetails)
 
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) ActionType type;
@@ -15,6 +13,12 @@
 @property (nonatomic, readwrite) CGPoint position;
 @property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
 @property (nonatomic, strong, readwrite) NSString* triggerViewID;
+
+@end
+
+@interface GestureDetails ()
+
+@property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
 
 @end
 
@@ -84,6 +88,24 @@
     }
 #endif
     return info;
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:self.gestureRecognizer forKey:@"gestureRecognizer"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self)
+    {
+        self.gestureRecognizer = [decoder decodeObjectForKey:@"gestureRecognizer"];
+    }
+    return self;
 }
 
 @end

@@ -1,4 +1,3 @@
-#pragma once
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(u_int8_t, ActionType)
@@ -54,5 +53,9 @@ extern NSString* NSStringWithActionType(ActionType input);
 @property (nonatomic, readonly) CGPoint position;
 @property (nonatomic, strong, readonly) NSString* triggerViewControllerID;
 @property (nonatomic, strong, readonly) NSString* triggerViewID;
+
+@end
+
+@interface LogObject : NSObject <LogInfo, NSCoding>
 
 @end

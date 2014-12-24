@@ -1,6 +1,8 @@
 #import "NavigationDetails.h"
 
-@interface NavigationDetails ()
+@interface LogObject (NavigationDetails)
+
+@property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
 
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) ActionType type;
@@ -27,11 +29,6 @@
         self.index = index;
     }
     return self;
-}
-
-- (float)info
-{
-    return 0;
 }
 
 @end

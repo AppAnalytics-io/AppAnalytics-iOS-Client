@@ -42,7 +42,7 @@
 		72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */; };
 		72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
 		72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F011A483D7000CEC369 /* UIControl+Tracking.m */; };
-		72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfoProtocol.m */; };
+		72922F041A4849AA00CEC369 /* LogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfo.m */; };
 		72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */; };
 		72922F0C1A4861D500CEC369 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0B1A4861D500CEC369 /* GLKit.framework */; };
 		72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0D1A4861D800CEC369 /* AdSupport.framework */; };
@@ -107,7 +107,7 @@
 		7289A9701A44477800CF5CF6 /* GestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDetails.m; sourceTree = "<group>"; };
 		7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwipeGestureRecognizer+DirectionString.h"; sourceTree = "<group>"; };
 		7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwipeGestureRecognizer+DirectionString.m"; sourceTree = "<group>"; };
-		7289A9761A4468AC00CF5CF6 /* LogInfoProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInfoProtocol.h; sourceTree = "<group>"; };
+		7289A9761A4468AC00CF5CF6 /* LogInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInfo.h; sourceTree = "<group>"; };
 		7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeDetails.h; sourceTree = "<group>"; };
 		7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeDetails.m; sourceTree = "<group>"; };
 		7289A97A1A447FEE00CF5CF6 /* UIResponder+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Tracking.h"; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		72922EFE1A48339100CEC369 /* KeyboardWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardWatcher.m; sourceTree = "<group>"; };
 		72922F001A483D7000CEC369 /* UIControl+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+Tracking.h"; sourceTree = "<group>"; };
 		72922F011A483D7000CEC369 /* UIControl+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Tracking.m"; sourceTree = "<group>"; };
-		72922F031A4849AA00CEC369 /* LogInfoProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfoProtocol.m; sourceTree = "<group>"; };
+		72922F031A4849AA00CEC369 /* LogInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfo.m; sourceTree = "<group>"; };
 		72922F051A48572C00CEC369 /* UISegmentedControl+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+Tracking.h"; sourceTree = "<group>"; };
 		72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+Tracking.m"; sourceTree = "<group>"; };
 		72922F0B1A4861D500CEC369 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -331,8 +331,8 @@
 		7289A9721A44477D00CF5CF6 /* Data Types */ = {
 			isa = PBXGroup;
 			children = (
-				7289A9761A4468AC00CF5CF6 /* LogInfoProtocol.h */,
-				72922F031A4849AA00CEC369 /* LogInfoProtocol.m */,
+				7289A9761A4468AC00CF5CF6 /* LogInfo.h */,
+				72922F031A4849AA00CEC369 /* LogInfo.m */,
 				7289A96F1A44477800CF5CF6 /* GestureDetails.h */,
 				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
 				7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */,
@@ -453,7 +453,7 @@
 				727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */,
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */,
-				72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */,
+				72922F041A4849AA00CEC369 /* LogInfo.m in Sources */,
 				727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */,
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,

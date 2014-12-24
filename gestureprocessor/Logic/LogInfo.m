@@ -1,4 +1,4 @@
-#import "LogInfoProtocol.h"
+#import "LogInfo.h"
 
 static NSDictionary* typeNames;
 NSString* NSStringWithActionType(ActionType action)
@@ -41,56 +41,54 @@ NSString* NSStringWithActionType(ActionType action)
                   @(ActionType_SwipeUpWith4Finger)      : @"SwipeUpWith4Finger=47",
                   @(ActionType_Shake)                   : @"Shake=52",
                   @(ActionType_Navigation)              : @"Navigation=53"
-             };
+                  };
     return (NSString *) typeNames[@(action)];
 }
 
-#if 0
-static u_int8_t allTypes[] = {
-    ActionType_Unknown,
-    ActionType_SingleTapWith1Finger,
-    ActionType_DoubleTapWith1Finger,
-    ActionType_TripleTapWith1Finger,
-    ActionType_SingleTapWith2Finger,
-    ActionType_DoubleTapWith2Finger,
-    ActionType_TripleTapWith2Finger,
-    ActionType_SingleTapWith3Finger,
-    ActionType_DoubleTapWith3Finger,
-    ActionType_TripleTapWith3Finger,
-    ActionType_SingleTapWith4Finger,
-    ActionType_DoubleTapWith4Finger,
-    ActionType_TripleTapWith4Finger,
-    ActionType_LongPressWith1Finger,
-    ActionType_LongPressWith2Finger,
-    ActionType_LongPressWith3Finger,
-    ActionType_LongPressWith4Finger,
-    ActionType_PinchWith2Finger,
-    ActionType_RotateWith2Finger,
-    ActionType_SwipeRightWith1Finger,
-    ActionType_SwipeLeftWith1Finger,
-    ActionType_SwipeDownWith1Finger,
-    ActionType_SwipeUpWith1Finger,
-    ActionType_SwipeRightWith2Finger,
-    ActionType_SwipeLeftWith2Finger,
-    ActionType_SwipeDownWith2Finger,
-    ActionType_SwipeUpWith2Finger,
-    ActionType_SwipeRightWith3Finger,
-    ActionType_SwipeLeftWith3Finger,
-    ActionType_SwipeDownWith3Finger,
-    ActionType_SwipeUpWith3Finger,
-    ActionType_SwipeRightWith4Finger,
-    ActionType_SwipeLeftWith4Finger,
-    ActionType_SwipeDownWith4Finger,
-    ActionType_SwipeUpWith4Finger,
-    ActionType_Shake,
-    ActionType_Navigation
-};
+@interface LogObject ()
 
-void debugPrintAllTypes()
-{  
-    for (int i = 0; i < 37; i++)
-    {
-        NSLog(@"%d", allTypes[i]);
-    }
+@property (nonatomic, readwrite) NSUInteger index;
+@property (nonatomic, readwrite) ActionType type;
+@property (nonatomic, strong, readwrite) NSDate* timestamp;
+@property (nonatomic, readwrite) CGPoint position;
+@property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
+@property (nonatomic, strong, readwrite) NSString* triggerViewID;
+
+@end
+
+@implementation LogObject
+
+- (float)info
+{
+    return 0;
 }
-#endif
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:@(self.index) forKey:@"index"];
+    [encoder encodeObject:@(self.type) forKey:@"type"];
+    [encoder encodeObject:[NSValue valueWithCGPoint:self.position] forKey:@"position"];
+    [encoder encodeObject:self.timestamp forKey:@"timestamp"];
+    [encoder encodeObject:self.triggerViewControllerID forKey:@"triggerViewControllerID"];
+    [encoder encodeObject:self.triggerViewID forKey:@"triggerViewID"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self)
+    {
+        self.index = [[decoder decodeObjectForKey:@"index"] unsignedIntegerValue];
+        self.type = [[decoder decodeObjectForKey:@"type"] unsignedCharValue];
+        self.position = [[decoder decodeObjectForKey:@"position"] CGPointValue];
+        self.timestamp = [decoder decodeObjectForKey:@"timestamp"];
+        self.triggerViewControllerID = [decoder decodeObjectForKey:@"triggerViewControllerID"];
+        self.triggerViewID = [decoder decodeObjectForKey:@"triggerViewID"];
+    }
+    return self;
+}
+
+@end
+
