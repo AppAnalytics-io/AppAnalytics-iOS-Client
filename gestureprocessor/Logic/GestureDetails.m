@@ -52,38 +52,7 @@
 
 - (void)configure
 {
-    if (self.gestureRecognizer.isSingleTap)
-    {
-        self.type = ActionType_SingleTap;
-    }
-    else if (self.gestureRecognizer.isDoubleTap)
-    {
-        self.type = ActionType_DoubleTap;
-    }
-    else if (self.gestureRecognizer.isTripleTap)
-    {
-        self.type = ActionType_TripleTap;
-    }
-    else if (self.gestureRecognizer.isLongTap)
-    {
-        self.type = ActionType_LongTap;
-    }
-    else if (self.gestureRecognizer.isPinch)
-    {
-        self.type = ActionType_Pinch;
-    }
-    else if (self.gestureRecognizer.isRotate)
-    {
-        self.type = ActionType_Rotate;
-    }
-    else if (self.gestureRecognizer.isSwipe)
-    {
-        self.type = ActionType_Swipe;
-    }
-    else
-    {
-        self.type = ActionType_Unknown;
-    }
+    self.type = [self.gestureRecognizer actionType];
     
     self.timestamp = [NSDate new];
     UIViewController* topVC = [GestureTrackerHelpers topViewController];
@@ -94,47 +63,27 @@
 
 #pragma mark - LogInfo protocol
 
-- (NSString*)typeName
-{
-    return [NSString stringWithFormat:@"%@With%luFinger", NSStringWithActionType(self.type),
-            (unsigned long)self.numberOfTouches];
-}
-
 - (float)info
 {
-//    NSString* info = nil;
     float info = 0;
     if (self.gestureRecognizer.isPinch)
     {
         UIPinchGestureRecognizer* pinch = (UIPinchGestureRecognizer*) self.gestureRecognizer;
         info = pinch.scale;
-//        info = [NSString stringWithFormat:@"%.3f", pinch.scale];
     }
     else if (self.gestureRecognizer.isRotate)
     {
         UIRotationGestureRecognizer* rotate = (UIRotationGestureRecognizer*) self.gestureRecognizer;
         info = RADIANS_TO_DEGREES(rotate.rotation);
-//        info = [NSString stringWithFormat:@"%.3f", RADIANS_TO_DEGREES(rotate.rotation)];
     }
+#if 0
     else if (self.gestureRecognizer.isSwipe)
     {
         UISwipeGestureRecognizer* swipe = (UISwipeGestureRecognizer*) self.gestureRecognizer;
         info = swipe.direction;
-//        info = [NSString stringWithFormat:@"%@", swipe.directionText];
     }
+#endif
     return info;
-}
-
-- (NSUInteger)numberOfTouches
-{
-    if (self.gestureRecognizer.isPinch || self.gestureRecognizer.isRotate)
-    {
-        return 2;
-    }
-    else
-    {
-        return self.gestureRecognizer.numberOfTouches;
-    }
 }
 
 @end

@@ -93,14 +93,14 @@
 - (void)addAction:(id<LogInfo>)actionDetails
 {
     [self.actions addObject:actionDetails];
-    [[ManifestBuilder instance] buildDataPackage:actionDetails];
-//    [self printDebugInfo:actionDetails];
+//    [[ManifestBuilder instance] buildDataPackage:actionDetails];
+    [self printDebugInfo:actionDetails];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
     NSLog(@"Order ID [%lu]", (unsigned long)actionDetails.index);
-    NSLog(@"Type [%@]", actionDetails.typeName);
+    NSLog(@"Type [%@ -> %d]", NSStringWithActionType(actionDetails.type), actionDetails.type);
     NSLog(@"Time [%@]", actionDetails.timestamp);
     NSLog(@"Position X [%.3f]", actionDetails.position.x);
     NSLog(@"Position Y [%.3f]", actionDetails.position.y);

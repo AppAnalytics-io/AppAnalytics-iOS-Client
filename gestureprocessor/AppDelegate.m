@@ -11,6 +11,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GestureTracker initWithAppKey:@"12345678123456781234567812345678"];
+    
     return YES;
 }
 

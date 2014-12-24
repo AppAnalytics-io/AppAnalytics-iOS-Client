@@ -29,11 +29,6 @@
     return self;
 }
 
-- (NSString*)typeName
-{
-    return NSStringWithActionType(self.type);
-}
-
 - (float)info
 {
     return 0;
