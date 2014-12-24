@@ -63,8 +63,9 @@ NSString* NSStringWithActionType(ActionType action)
     return 0;
 }
 
-#pragma mark - NSCoding
+#if 0
 
+#pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:@(self.index) forKey:@"index"];
@@ -89,6 +90,6 @@ NSString* NSStringWithActionType(ActionType action)
     }
     return self;
 }
-
+#endif
 @end
 

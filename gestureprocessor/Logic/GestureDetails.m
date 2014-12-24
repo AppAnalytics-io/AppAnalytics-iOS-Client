@@ -90,8 +90,9 @@
     return info;
 }
 
-#pragma mark - NSCoding
+#if 0
 
+#pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [super encodeWithCoder:encoder];
@@ -107,5 +108,6 @@
     }
     return self;
 }
+#endif
 
 @end

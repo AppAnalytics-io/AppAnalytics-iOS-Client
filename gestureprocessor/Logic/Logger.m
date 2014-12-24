@@ -72,9 +72,14 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         self.manifests = [NSDictionary dictionary];
         self.actions = [NSDictionary dictionary];
-        
+        [self scheduleTimers];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [self invalidateTimers];
 }
 
 #pragma mark - Working with Data
@@ -89,9 +94,16 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
                                repeats:YES];
 }
 
+- (void)invalidateTimers
+{
+    [self.serializationTimer invalidate];
+}
+
 - (void)serialize
 {
-    
+    [[NSUserDefaults standardUserDefaults] setObject:self.manifests forKey:kManifestsSerializationKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.actions forKey:kActionsSerializationKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Logging
@@ -146,6 +158,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
+    
+    [self serialize];
 //    [self printDebugInfo:actionDetails];
 }
 

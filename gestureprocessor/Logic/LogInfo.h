@@ -56,6 +56,6 @@ extern NSString* NSStringWithActionType(ActionType input);
 
 @end
 
-@interface LogObject : NSObject <LogInfo, NSCoding>
+@interface LogObject : NSObject <LogInfo>
 
 @end
