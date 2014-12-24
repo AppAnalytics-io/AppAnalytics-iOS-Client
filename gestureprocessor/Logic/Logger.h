@@ -14,6 +14,8 @@
           triggerPosition:(CGPoint)position
             triggerViewID:(NSString*)viewID;
 
+- (void)navigationRecognizedWithViewControllerID:(NSString*)viewControllerID;
+
 - (void)shakeRecognized;
 
 @property (nonatomic, strong, readonly) NSMutableArray* actions;

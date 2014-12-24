@@ -1,6 +1,7 @@
 #import "Logger.h"
 #import "GestureDetails.h"
 #import "ShakeDetails.h"
+#import "NavigationDetails.h"
 #import "ManifestBuilder.h"
 
 @interface GestureDetails (Tracking)
@@ -76,6 +77,13 @@
     [self addAction:details];
 }
 
+- (void)navigationRecognizedWithViewControllerID:(NSString *)viewControllerID
+{
+    NavigationDetails* details = [[NavigationDetails alloc] initWithIndex:self.index++
+                                                  triggerViewControllerID:viewControllerID];
+    [self addAction:details];
+}
+
 - (void)shakeRecognized
 {
     ShakeDetails* details = [[ShakeDetails alloc] init];
@@ -96,7 +104,7 @@
     NSLog(@"Time [%@]", actionDetails.timestamp);
     NSLog(@"Position X [%.3f]", actionDetails.position.x);
     NSLog(@"Position Y [%.3f]", actionDetails.position.y);
-    NSLog(@"Param1 [%@]", actionDetails.info);
+    NSLog(@"Param1 [%f]", actionDetails.info);
     NSLog(@"Triggered VC ID [%@]", actionDetails.triggerViewControllerID);
     NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
     NSLog(@"-----------------------------");

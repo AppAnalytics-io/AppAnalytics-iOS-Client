@@ -11,7 +11,8 @@ NSString* NSStringWithActionType(ActionType input)
                      @"Pinch",
                      @"Rotate",
                      @"Swipe",
-                     @"Shake"
+                     @"Shake",
+                     @"Navigation"
                      ];
     return (NSString *) arr[input];
 }

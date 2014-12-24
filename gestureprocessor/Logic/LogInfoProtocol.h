@@ -11,7 +11,8 @@ typedef NS_ENUM(u_int8_t, ActionType)
     ActionType_Pinch,
     ActionType_Rotate,
     ActionType_Swipe,
-    ActionType_Shake
+    ActionType_Shake,
+    ActionType_Navigation
 };
 
 extern NSString* NSStringWithActionType(ActionType input);

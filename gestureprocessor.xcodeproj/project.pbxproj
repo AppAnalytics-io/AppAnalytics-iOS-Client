@@ -17,6 +17,8 @@
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
+		727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */; };
+		727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
 		7289A9661A44401300CF5CF6 /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -54,6 +56,10 @@
 		72672F251A4988C4001FDC80 /* ManifestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestBuilder.m; sourceTree = "<group>"; };
 		72672F281A49BF7E001FDC80 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		72672F291A49BF7E001FDC80 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		727E6AA51A4AB6C500822C51 /* UIViewController+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tracking.h"; sourceTree = "<group>"; };
+		727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tracking.m"; sourceTree = "<group>"; };
+		727E6AA81A4AB71700822C51 /* NavigationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationDetails.h; sourceTree = "<group>"; };
+		727E6AA91A4AB71700822C51 /* NavigationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationDetails.m; sourceTree = "<group>"; };
 		7289A9641A44401300CF5CF6 /* GestureTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTracker.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* GestureTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTracker.m; sourceTree = "<group>"; };
 		7289A96A1A44432B00CF5CF6 /* GestureTrackerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTrackerConstants.h; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 				72922F011A483D7000CEC369 /* UIControl+Tracking.m */,
 				7289A97A1A447FEE00CF5CF6 /* UIResponder+Tracking.h */,
 				7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */,
+				727E6AA51A4AB6C500822C51 /* UIViewController+Tracking.h */,
+				727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */,
 				72922F051A48572C00CEC369 /* UISegmentedControl+Tracking.h */,
 				72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */,
 				7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */,
@@ -250,6 +258,8 @@
 				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
 				7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */,
 				7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */,
+				727E6AA81A4AB71700822C51 /* NavigationDetails.h */,
+				727E6AA91A4AB71700822C51 /* NavigationDetails.m */,
 			);
 			name = "Data Types";
 			sourceTree = "<group>";
@@ -340,6 +350,7 @@
 				72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
+				727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
@@ -351,6 +362,7 @@
 				7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */,
 				72922EDB1A48155700CEC369 /* GestureTrackerHelpers.m in Sources */,
 				72922F041A4849AA00CEC369 /* LogInfoProtocol.m in Sources */,
+				727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */,
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
 				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,
