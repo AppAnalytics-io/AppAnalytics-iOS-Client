@@ -1,6 +1,8 @@
 #import "ConnectionManager.h"
 #import "GTConstants.h"
 #import "AFHTTPRequestOperation.h"
+#import "HMFJSONResponseSerializerWithData.h"
+#import "ManifestBuilder.h"
 
 @implementation ConnectionManager
 
@@ -12,34 +14,103 @@
     {
         _sharedClient = [[ConnectionManager alloc] initWithBaseURL:[NSURL URLWithString:kGTBaseURL]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        
+        AFJSONResponseSerializer *responseSerializer = [HMFJSONResponseSerializerWithData serializerWithReadingOptions:NSJSONReadingAllowFragments];
+        [_sharedClient setResponseSerializer:responseSerializer];
+        [_sharedClient setRequestSerializer:AFJSONRequestSerializer.serializer];
+        
+        NSMutableSet *contentTypes = [NSMutableSet setWithSet:_sharedClient.responseSerializer.acceptableContentTypes];
+        [contentTypes addObject:@"multipart/form-data"];
+        [contentTypes addObject:@"application/octet-stream"];
+        _sharedClient.responseSerializer.acceptableContentTypes = contentTypes;
     });
     
     return _sharedClient;
 }
 
-- (void)putPath:(NSString *)path
-     parameters:(NSDictionary *)parameters
-           data:(NSData*)data
-        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+- (void)putManifest:(NSData*)rawManifest UDID:(NSString*)udid success:(void (^)())success
 {
-    NSURLRequest *request = [self requestWithMethod:@"PUT" path:path parameters:parameters data:data];
-    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
-    [self enqueueHTTPRequestOperation:operation];
+    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", udid];
+
+    [self PUT:url
+   parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    {
+        [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+                                    name:@"header"
+                                fileName:@"DataPackageFileHeader.datapackage"
+                                mimeType:@"application/octet-stream"];
+         
+        [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+                                    name:@"Manifest"
+                                fileName:[udid stringByAppendingString:@".manifest"]
+                                mimeType:@"application/octet-stream"];
+     }
+      success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        if (success)
+        {
+            success();
+        }
+     }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"PUT Manifest error: %@", error);
+    }];
 }
 
--(NSMutableURLRequest*)requestWithMethod:(NSString *)method
-                                    path:(NSString *)path
-                              parameters:(NSDictionary *)parameters
-                                    data:(NSData*)data;
+- (AFHTTPRequestOperation *)PUT:(NSString *)URLString
+                      parameters:(id)parameters
+       constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSMutableURLRequest* request = [super requestWithMethod:method
-                                                       path:path
-                                                 parameters:parameters];
+    NSError *serializationError = nil;
+    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    if (serializationError) {
+        if (failure) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+            dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
+                failure(nil, serializationError);
+            });
+#pragma clang diagnostic pop
+        }
+        
+        return nil;
+    }
     
-    [request setHTTPBody:data];
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     
-    return request;
+    [self.operationQueue addOperation:operation];
+    
+    return operation;
 }
+
+#if 0
+NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+[request setURL:[NSURL URLWithString:url]];
+[request setHTTPMethod:@"PUT"];
+NSMutableData *body = [NSMutableData data];
+NSString *boundary = @"---------------------------14737809831466499882746641449";
+NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+
+[body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+[body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+[body appendData:[NSData dataWithData:self.manifests[udid]]];
+[body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+
+// close form
+[body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+// setting the body of the post to the reqeust
+[request setHTTPBody:body];
+
+NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableLeaves error:nil];
+NSLog(@"%@",dict);
+#endif
 
 @end

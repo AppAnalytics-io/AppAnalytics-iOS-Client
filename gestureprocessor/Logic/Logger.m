@@ -7,6 +7,7 @@
 #import "GTConstants.h"
 #import "UNIRest.h"
 #import "ConnectionManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface GestureDetails (Tracking)
 
@@ -72,14 +73,31 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     self = [super init];
     if (self)
     {
-        self.manifests = [NSDictionary dictionary];
-        self.actions = [NSDictionary dictionary];
-//        [UNIRest defaultHeader:@"Header1" value:@""];
-//        NSString* header = [[NSString alloc] initWithData:[ManifestBuilder instance].headerData
-//                                                 encoding:NSASCIIStringEncoding];
+        [self deserialize];
         [self scheduleTimers];
     }
     return self;
+}
+
+- (void)serialize
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.manifests forKey:kManifestsSerializationKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.actions forKey:kActionsSerializationKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)deserialize
+{
+    self.manifests = [[NSUserDefaults standardUserDefaults] objectForKey:kManifestsSerializationKey];
+    self.actions = [[NSUserDefaults standardUserDefaults] objectForKey:kActionsSerializationKey];
+    if (!self.manifests)
+    {
+        self.manifests = [NSDictionary dictionary];
+    }
+    if (!self.actions)
+    {
+        self.actions = [NSDictionary dictionary];
+    }
 }
 
 - (void)dealloc
@@ -98,12 +116,12 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
                                userInfo:nil
                                repeats:YES];
     
-//    self.sendingDataTimer = [NSTimer
-//                             scheduledTimerWithTimeInterval:kGTSendingDataInterval
-//                             target:self
-//                             selector:@selector(sendData)
-//                             userInfo:nil
-//                             repeats:YES];
+    self.sendingDataTimer = [NSTimer
+                             scheduledTimerWithTimeInterval:kGTSendingDataInterval
+                             target:self
+                             selector:@selector(sendData)
+                             userInfo:nil
+                             repeats:YES];
 }
 
 - (void)invalidateTimers
@@ -112,105 +130,42 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self.sendingDataTimer invalidate];
 }
 
-- (void)serialize
+- (void)sendData
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.manifests forKey:kManifestsSerializationKey];
-    [[NSUserDefaults standardUserDefaults] setObject:self.actions forKey:kActionsSerializationKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self sendActions];
+    [self sendManifests];
 }
 
 - (void)sendActions
 {
-    if (![self allSamples].count)
-    {
-        return;
-    }
-    
-    NSDictionary* headers = @{@"accept"     : @"application/json"};
-    NSDictionary* parameters = @{@"UDID"    : [GestureTracker instance].sessionUUID.UUIDString,
-                                 @"Sample"  : [self allSamples].lastObject};
-    
-    [[UNIRest put:^(UNISimpleRequest* request)
-    {
-        [request setUrl:[NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTSamplesURL]];
-        [request setHeaders:headers];
-        [request setParameters:parameters];
-    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error)
-    {
-        NSInteger* code = [response code];
-        NSDictionary* responseHeaders = [response headers];
-        UNIJsonNode* body = [response body];
-        NSData* rawBody = [response rawBody];
-    }];
+
 }
 
 - (void)sendManifests
 {
-    if (![self allManifests].count)
+    if (!self.manifests.allKeys.count)
     {
         return;
     }
     
-    NSDictionary* headers = @{@"accept" : @"text/html"};
-    NSDictionary* parameters = @{@"UDID" : [GestureTracker instance].sessionUUID.UUIDString,
-                                 @"Manifest" : @"" };
+    NSString* udid = [GestureTracker instance].udid;
+//    __weak Logger* weakSelf = self;
     
-    [[ConnectionManager instance]
-     PUT:kGTManifestsURL
-     parameters:parameters
-     success:^(NSURLSessionDataTask *task, id responseObject)
+    [[ConnectionManager instance] putManifest:self.manifests[udid] UDID:udid success:^
     {
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error)
-    {
-        
+//        [self removeManifestsForSessionID:udid];
+//        [weakSelf serialize];
     }];
-    
-//    [[UNIRest put:^(UNISimpleRequest* request)
-//      {
-//          [request setUrl:[NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTManifestsURL]];
-//          [request setHeaders:headers];
-//          [request setParameters:parameters];
-//      }] asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error)
-//    {
-//         NSInteger* code = [response code];
-//         NSDictionary* responseHeaders = [response headers];
-//         UNIJsonNode* body = [response body];
-//         NSData* rawBody = [response rawBody];
-//     }];
 }
 
-//- (void)post:(NSString*)endpointURL parameters:(NSDictionary*)parameters completion:(NSDictionary)
-//{
-//    NSString* url = [NSString stringWithFormat:@"%@%@", kGTBaseURL, kGTManifestsURL];
-//    url = [url stringByAppendingString:[NSString stringWithFormat:@"?url=%@", [GestureTracker instance].sessionUUID.UUIDString]];
-//    
-//    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-//    [urlRequest setTimeoutInterval:10.0f];
-//    [urlRequest setHTTPMethod:@"PUT"];
-//    
-//    NSString* body = @"12345";
-//    [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-//    
-//    [NSURLConnection
-//     sendAsynchronousRequest:urlRequest
-//     queue:queue
-//     completionHandler:^(NSURLResponse* response,
-//                         NSData* data,
-//                         NSError* error)
-//    {
-//         if (data.length && !error)
-//         {
-//             NSString *html = [[NSString alloc] initWithData:data
-//                                                    encoding:NSUTF8StringEncoding];
-//             NSLog(@"HTML = %@", html);
-//         }
-//     }];
-//}
+- (void)removeManifestsForSessionID:(NSString*)sessionID
+{
+    NSMutableDictionary* manifests = self.manifests.mutableCopy;
+    [manifests removeObjectForKey:sessionID];
+    self.manifests = manifests.copy;
+}
 
-- (NSArray*)allSamples
+- (NSArray*)allSamplesData
 {
     NSMutableArray* allSamples = [NSMutableArray array];
     
@@ -220,18 +175,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     }
     
     return allSamples.copy;
-}
-
-- (NSArray*)allManifests
-{
-    NSMutableArray* allManifests = [NSMutableArray array];
-    
-    for (NSString* sessionId in self.manifests.allKeys)
-    {
-        [allManifests addObject:self.manifests[sessionId]];
-    }
-    
-    return allManifests.copy;
 }
 
 #pragma mark - Logging

@@ -7,8 +7,7 @@ u_int8_t const kGestureTrackerApiVersion        = 1;
 float const kGTSerializationInterval   = 15.0f;
 float const kGTSendingDataInterval     = 60.0f;
 
-NSString* const kGTBaseURL      = @"http://appanalytics.io/api/v1";
-NSString* const kGTRelativeURL  = @"/api/v1";
-NSString* const kGTManifestsURL = @"/manifests";
-NSString* const kGTSamplesURL   = @"/samples";
+NSString* const kGTBaseURL      = @"http://www.appanalytics.io/api/v1";
+NSString* const kGTManifestsURL = @"manifests";
+NSString* const kGTSamplesURL   = @"samples";
 

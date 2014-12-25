@@ -61,13 +61,7 @@
     [headerData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String
                      length:[GestureTracker instance].sessionUUID.UUIDString.length];
     
-//    NSString *path = [[self saveDirectoryPath] stringByAppendingPathComponent:@"header"];
-//    [headerData writeToFile:path atomically:YES];
-//    
-//    NSLog(@"Reading header");
-//    [self readFileAtPath:path];
-    
-    return _headerData.copy;
+    return headerData;
 }
 
 - (NSData*)buildDataPackage:(id<LogInfo>)actionDetails
