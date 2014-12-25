@@ -7,7 +7,7 @@
 + (instancetype)instance;
 
 - (void)putManifest:(NSData*)rawManifest
-               UDID:(NSString*)udid
+          sessionID:(NSString*)sessionID
             success:(void (^)())success;
 
 @end

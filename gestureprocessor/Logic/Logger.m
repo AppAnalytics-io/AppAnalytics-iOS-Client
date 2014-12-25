@@ -148,14 +148,16 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         return;
     }
     
-    NSString* udid = [GestureTracker instance].udid;
-//    __weak Logger* weakSelf = self;
-    
-    [[ConnectionManager instance] putManifest:self.manifests[udid] UDID:udid success:^
+    for (NSString* sessionID in self.manifests.allKeys)
     {
-//        [self removeManifestsForSessionID:udid];
-//        [weakSelf serialize];
-    }];
+        __weak Logger* weakSelf = self;
+        
+        [[ConnectionManager instance] putManifest:self.manifests[sessionID] sessionID:sessionID success:^
+        {
+            [self removeManifestsForSessionID:sessionID];
+            [weakSelf serialize];
+        }];
+    }
 }
 
 - (void)removeManifestsForSessionID:(NSString*)sessionID
@@ -230,8 +232,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
-    
-    [self serialize];
 //    [self printDebugInfo:actionDetails];
 }
 

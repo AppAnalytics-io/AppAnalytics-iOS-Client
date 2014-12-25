@@ -3,6 +3,12 @@
 #import "AFHTTPRequestOperation.h"
 #import "HMFJSONResponseSerializerWithData.h"
 #import "ManifestBuilder.h"
+#import "GestureTracker.h"
+
+@interface GestureTracker (Connection)
++ (instancetype)instance;
+@property (nonatomic, strong, readwrite) NSString* udid;
+@end
 
 @implementation ConnectionManager
 
@@ -28,9 +34,9 @@
     return _sharedClient;
 }
 
-- (void)putManifest:(NSData*)rawManifest UDID:(NSString*)udid success:(void (^)())success
+- (void)putManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
 {
-    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", udid];
+    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [GestureTracker instance].udid];
 
     [self PUT:url
    parameters:nil
@@ -43,7 +49,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
          
         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
                                     name:@"Manifest"
-                                fileName:[udid stringByAppendingString:@".manifest"]
+                                fileName:[sessionID stringByAppendingString:@".manifest"]
                                 mimeType:@"application/octet-stream"];
      }
       success:^(AFHTTPRequestOperation *operation, id responseObject)
