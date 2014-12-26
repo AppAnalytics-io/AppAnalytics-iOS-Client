@@ -44,7 +44,7 @@
 
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, strong) NSDictionary* manifests; // { sessionId : manifestData }
-@property (nonatomic, strong) NSDictionary* actions; // { sessionId : array of packages }
+@property (nonatomic, strong) NSDictionary* actions; // { sessionId : mutable array of packages }
 @property (nonatomic, strong) NSTimer* serializationTimer;
 @property (nonatomic, strong) NSTimer* sendingDataTimer;
 
@@ -132,13 +132,56 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)sendData
 {
-    [self sendActions];
+    [self sendSamples];
     [self sendManifests];
 }
 
-- (void)sendActions
+- (void)sendSamples
 {
+    if (!self.actions.allKeys.count)
+    {
+        return;
+    }
+    
+    NSMutableDictionary* actions = [NSMutableDictionary dictionary];
+    int sizeInBytes = 0;
+    for (NSString* sessionID in self.actions.allKeys)
+    {
+        BOOL exceedsMaxSize = NO;
+        NSArray* sessionsSamples = self.actions[sessionID];
+        for (NSData* sample in sessionsSamples)
+        {
+            sizeInBytes += sample.length;
+            if (sizeInBytes > kGTMaxSamplesSizeInBytes)
+            {
+                exceedsMaxSize = YES;
+                break;
+            }
+            NSMutableArray* sessionActions = actions[sessionID];
+            if (!sessionActions)
+            {
+                sessionActions = [NSMutableArray array];
+            }
+            [sessionActions addObject:sample];
+            actions[sessionID] = sessionActions;
+        }
+        if (exceedsMaxSize)
+        {
+            break;
+        }
+    }
+    
+    NSString* sessionID = [GestureTracker instance].sessionUUID.UUIDString;
+    __weak Logger* weakSelf = self;
 
+    [[ConnectionManager instance]
+     PUTsamples:[self allSamplesData:actions]
+     sessionID:sessionID
+     success:^
+    {
+        [self removeUploadedSamples:actions];
+        [weakSelf serialize];
+    }];
 }
 
 - (void)sendManifests
@@ -152,31 +195,53 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         __weak Logger* weakSelf = self;
         
-        [[ConnectionManager instance] putManifest:self.manifests[sessionID] sessionID:sessionID success:^
+        [[ConnectionManager instance] PUTManifest:self.manifests[sessionID] sessionID:sessionID success:^
         {
-            [self removeManifestsForSessionID:sessionID];
+            [self removeManifestForSessionID:sessionID];
             [weakSelf serialize];
         }];
     }
 }
 
-- (void)removeManifestsForSessionID:(NSString*)sessionID
+- (void)removeManifestForSessionID:(NSString*)sessionID
 {
     NSMutableDictionary* manifests = self.manifests.mutableCopy;
     [manifests removeObjectForKey:sessionID];
     self.manifests = manifests.copy;
 }
 
-- (NSArray*)allSamplesData
+- (void)removeUploadedSamples:(NSDictionary*)actionsToRemove
 {
-    NSMutableArray* allSamples = [NSMutableArray array];
-    
-    for (NSString* sessionId in self.actions.allKeys)
+    NSMutableDictionary* actions = self.actions.mutableCopy;
+    for (NSString* sessionID in actionsToRemove.allKeys)
     {
-        [allSamples addObjectsFromArray:self.actions[sessionId]];
+        NSArray* sessionSamplesToRemove = actionsToRemove[sessionID];
+        NSMutableArray* sessionSamples = actions[sessionID];
+        for (NSData* sample in sessionSamplesToRemove)
+        {
+            if ([sessionSamples containsObject:sample])
+            {
+                [sessionSamples removeObject:sessionSamples];
+            }
+        }
+        actions[sessionID] = sessionSamples;
+    }
+}
+
+- (NSData*)allSamplesData:(NSDictionary*)actionsDictionary
+{
+    NSMutableData* allSamplesData = [NSMutableData data];
+    
+    for (NSString* sessionID in self.actions.allKeys)
+    {
+        NSArray* sessionsSamples = self.actions[sessionID];
+        for (NSData* sample in sessionsSamples)
+        {
+            [allSamplesData appendData:sample];
+        }
     }
     
-    return allSamples.copy;
+    return allSamplesData.copy;
 }
 
 #pragma mark - Logging

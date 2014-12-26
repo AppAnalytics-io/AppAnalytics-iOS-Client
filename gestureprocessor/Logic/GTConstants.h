@@ -6,6 +6,7 @@ extern u_int8_t const kGestureTrackerApiVersion;
 
 extern float const kGTSerializationInterval;
 extern float const kGTSendingDataInterval;
+extern size_t const kGTMaxSamplesSizeInBytes;
 
 extern NSString* const kGTBaseURL;
 extern NSString* const kGTRelativeURL;

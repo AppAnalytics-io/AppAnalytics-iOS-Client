@@ -6,8 +6,12 @@
 
 + (instancetype)instance;
 
-- (void)putManifest:(NSData*)rawManifest
+- (void)PUTManifest:(NSData*)rawManifest
           sessionID:(NSString*)sessionID
             success:(void (^)())success;
+
+- (void)PUTsamples:(NSData*)rawSamples
+         sessionID:(NSString*)sessionID
+           success:(void (^)())success;
 
 @end

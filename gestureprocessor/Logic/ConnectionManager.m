@@ -34,7 +34,7 @@
     return _sharedClient;
 }
 
-- (void)putManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
+- (void)PUTManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
 {
     NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [GestureTracker instance].udid];
 
@@ -63,6 +63,40 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     {
         NSLog(@"PUT Manifest error: %@", error);
     }];
+}
+
+- (void)PUTsamples:(NSData*)rawSamples sessionID:(NSString*)sessionID success:(void (^)())success
+{
+    static int samplesPackageIndex;
+    
+    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [GestureTracker instance].udid];
+    NSString* filename = [NSString stringWithFormat:@"%@_%d.datapackage", sessionID, ++samplesPackageIndex];
+    
+    [self PUT:url
+   parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+     {
+         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+                                     name:@"header"
+                                 fileName:@"DataPackageFileHeader.datapackage"
+                                 mimeType:@"application/octet-stream"];
+         
+         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+                                     name:@"Samples"
+                                 fileName:filename
+                                 mimeType:@"application/octet-stream"];
+     }
+      success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         if (success)
+         {
+             success();
+         }
+     }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"PUT Manifest error: %@", error);
+     }];
 }
 
 - (AFHTTPRequestOperation *)PUT:(NSString *)URLString
