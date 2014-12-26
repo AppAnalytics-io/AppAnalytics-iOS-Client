@@ -5,9 +5,7 @@
 #import "ManifestBuilder.h"
 #import "GestureTracker.h"
 #import "GTConstants.h"
-#import "UNIRest.h"
 #import "ConnectionManager.h"
-#import "AFHTTPRequestOperationManager.h"
 
 @interface GestureDetails (Tracking)
 
@@ -304,7 +302,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
-//    [self printDebugInfo:actionDetails];
+    [self printDebugInfo:actionDetails];
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails

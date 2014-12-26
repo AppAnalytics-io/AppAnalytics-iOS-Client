@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		725AA66E1A4D8AD0006CAEBD /* UniversalLib */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 725AA6711A4D8AD0006CAEBD /* Build configuration list for PBXAggregateTarget "UniversalLib" */;
+			buildPhases = (
+				725AA6721A4D8AEE006CAEBD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = UniversalLib;
+			productName = UniversalLib;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7227C4BB1A3F037F003A4C3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BA1A3F037F003A4C3D /* main.m */; };
 		7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BD1A3F037F003A4C3D /* AppDelegate.m */; };
@@ -14,6 +28,37 @@
 		7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4EC1A3F0648003A4C3D /* ViewController.m */; };
 		7227C4F11A3F06BC003A4C3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4F01A3F06BC003A4C3D /* Images.xcassets */; };
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
+		725AA6451A4D84CE006CAEBD /* GestureTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureTracker.m */; };
+		725AA6471A4D84CE006CAEBD /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
+		725AA6491A4D84CE006CAEBD /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
+		725AA64B1A4D84CE006CAEBD /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
+		725AA64C1A4D84DD006CAEBD /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
+		725AA64D1A4D84DD006CAEBD /* GestureTrackerHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* GestureTrackerHelpers.m */; };
+		725AA64E1A4D84DD006CAEBD /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
+		725AA64F1A4D84E5006CAEBD /* LogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfo.m */; };
+		725AA6501A4D84E5006CAEBD /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
+		725AA6511A4D84E5006CAEBD /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
+		725AA6521A4D84E5006CAEBD /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
+		725AA6531A4D84F2006CAEBD /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */; };
+		725AA6541A4D84F2006CAEBD /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
+		725AA6551A4D84F2006CAEBD /* UIControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F011A483D7000CEC369 /* UIControl+Tracking.m */; };
+		725AA6561A4D84F2006CAEBD /* UIResponder+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */; };
+		725AA6571A4D84F2006CAEBD /* UIViewController+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */; };
+		725AA6581A4D84F2006CAEBD /* UISegmentedControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */; };
+		725AA6591A4D84F2006CAEBD /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
+		725AA65A1A4D84F2006CAEBD /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
+		725AA65B1A4D8500006CAEBD /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
+		725AA65C1A4D8509006CAEBD /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
+		725AA65D1A4D8509006CAEBD /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB21A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m */; };
+		725AA65E1A4D8509006CAEBD /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB41A4ACCDD00822C51 /* AFHTTPSessionManager.m */; };
+		725AA65F1A4D8509006CAEBD /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB71A4ACCDD00822C51 /* AFNetworkReachabilityManager.m */; };
+		725AA6601A4D8509006CAEBD /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB91A4ACCDD00822C51 /* AFSecurityPolicy.m */; };
+		725AA6611A4D8509006CAEBD /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABB1A4ACCDD00822C51 /* AFURLConnectionOperation.m */; };
+		725AA6621A4D8509006CAEBD /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABD1A4ACCDD00822C51 /* AFURLRequestSerialization.m */; };
+		725AA6631A4D8509006CAEBD /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABF1A4ACCDD00822C51 /* AFURLResponseSerialization.m */; };
+		725AA6641A4D8509006CAEBD /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AC11A4ACCDD00822C51 /* AFURLSessionManager.m */; };
+		725AA6651A4D850C006CAEBD /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
+		725AA6661A4D85B7006CAEBD /* GestureTracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* GestureTracker.h */; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
@@ -50,6 +95,19 @@
 		72922F131A48623300CEC369 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F121A48623300CEC369 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		725AA62B1A4D8463006CAEBD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				725AA6661A4D85B7006CAEBD /* GestureTracker.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7227C4B51A3F037F003A4C3D /* gestureprocessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gestureprocessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7227C4B91A3F037F003A4C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +121,7 @@
 		7227C4F01A3F06BC003A4C3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Tracking.h"; sourceTree = "<group>"; };
 		7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Tracking.m"; sourceTree = "<group>"; };
+		725AA62D1A4D8463006CAEBD /* libGestureProcessor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGestureProcessor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
 		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
 		72672F241A4988C4001FDC80 /* ManifestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestBuilder.h; sourceTree = "<group>"; };
@@ -141,6 +200,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		725AA62A1A4D8463006CAEBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -157,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				7227C4B51A3F037F003A4C3D /* gestureprocessor.app */,
+				725AA62D1A4D8463006CAEBD /* libGestureProcessor.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,6 +441,23 @@
 			productReference = 7227C4B51A3F037F003A4C3D /* gestureprocessor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		725AA62C1A4D8463006CAEBD /* GestureProcessor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 725AA63E1A4D8464006CAEBD /* Build configuration list for PBXNativeTarget "GestureProcessor" */;
+			buildPhases = (
+				725AA6291A4D8463006CAEBD /* Sources */,
+				725AA62A1A4D8463006CAEBD /* Frameworks */,
+				725AA62B1A4D8463006CAEBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GestureProcessor;
+			productName = GestureProcessor;
+			productReference = 725AA62D1A4D8463006CAEBD /* libGestureProcessor.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -384,6 +468,12 @@
 				ORGANIZATIONNAME = "Vadim Bulavin";
 				TargetAttributes = {
 					7227C4B41A3F037F003A4C3D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					725AA62C1A4D8463006CAEBD = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					725AA66E1A4D8AD0006CAEBD = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -402,6 +492,8 @@
 			projectRoot = "";
 			targets = (
 				7227C4B41A3F037F003A4C3D /* gestureprocessor */,
+				725AA62C1A4D8463006CAEBD /* GestureProcessor */,
+				725AA66E1A4D8AD0006CAEBD /* UniversalLib */,
 			);
 		};
 /* End PBXProject section */
@@ -418,6 +510,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		725AA6721A4D8AEE006CAEBD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target GestureProcessor ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target GestureProcessor -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7227C4B11A3F037F003A4C3D /* Sources */ = {
@@ -461,6 +569,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		725AA6291A4D8463006CAEBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				725AA6451A4D84CE006CAEBD /* GestureTracker.m in Sources */,
+				725AA64C1A4D84DD006CAEBD /* GTConstants.m in Sources */,
+				725AA64D1A4D84DD006CAEBD /* GestureTrackerHelpers.m in Sources */,
+				725AA6531A4D84F2006CAEBD /* NSObject+Swizzling.m in Sources */,
+				725AA6541A4D84F2006CAEBD /* UIWindow+Tracking.m in Sources */,
+				725AA6651A4D850C006CAEBD /* HMFJSONResponseSerializerWithData.m in Sources */,
+				725AA6551A4D84F2006CAEBD /* UIControl+Tracking.m in Sources */,
+				725AA6561A4D84F2006CAEBD /* UIResponder+Tracking.m in Sources */,
+				725AA6571A4D84F2006CAEBD /* UIViewController+Tracking.m in Sources */,
+				725AA65B1A4D8500006CAEBD /* OpenUDID.m in Sources */,
+				725AA6581A4D84F2006CAEBD /* UISegmentedControl+Tracking.m in Sources */,
+				725AA6591A4D84F2006CAEBD /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
+				725AA65A1A4D84F2006CAEBD /* UIGestureRecognizer+Type.m in Sources */,
+				725AA65C1A4D8509006CAEBD /* AFHTTPRequestOperation.m in Sources */,
+				725AA65D1A4D8509006CAEBD /* AFHTTPRequestOperationManager.m in Sources */,
+				725AA65E1A4D8509006CAEBD /* AFHTTPSessionManager.m in Sources */,
+				725AA65F1A4D8509006CAEBD /* AFNetworkReachabilityManager.m in Sources */,
+				725AA6601A4D8509006CAEBD /* AFSecurityPolicy.m in Sources */,
+				725AA6611A4D8509006CAEBD /* AFURLConnectionOperation.m in Sources */,
+				725AA6621A4D8509006CAEBD /* AFURLRequestSerialization.m in Sources */,
+				725AA6631A4D8509006CAEBD /* AFURLResponseSerialization.m in Sources */,
+				725AA6641A4D8509006CAEBD /* AFURLSessionManager.m in Sources */,
+				725AA64F1A4D84E5006CAEBD /* LogInfo.m in Sources */,
+				725AA6501A4D84E5006CAEBD /* GestureDetails.m in Sources */,
+				725AA6511A4D84E5006CAEBD /* ShakeDetails.m in Sources */,
+				725AA6521A4D84E5006CAEBD /* NavigationDetails.m in Sources */,
+				725AA64E1A4D84DD006CAEBD /* KeyboardWatcher.m in Sources */,
+				725AA6471A4D84CE006CAEBD /* Logger.m in Sources */,
+				725AA6491A4D84CE006CAEBD /* ManifestBuilder.m in Sources */,
+				725AA64B1A4D84CE006CAEBD /* ConnectionManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -498,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -534,7 +679,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -564,6 +709,44 @@
 			};
 			name = Release;
 		};
+		725AA63F1A4D8464006CAEBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		725AA6401A4D8464006CAEBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		725AA66F1A4D8AD0006CAEBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		725AA6701A4D8AD0006CAEBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +767,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		725AA63E1A4D8464006CAEBD /* Build configuration list for PBXNativeTarget "GestureProcessor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				725AA63F1A4D8464006CAEBD /* Debug */,
+				725AA6401A4D8464006CAEBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		725AA6711A4D8AD0006CAEBD /* Build configuration list for PBXAggregateTarget "UniversalLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				725AA66F1A4D8AD0006CAEBD /* Debug */,
+				725AA6701A4D8AD0006CAEBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
