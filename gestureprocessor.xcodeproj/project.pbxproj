@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		72942EC61A4DBA7000974C79 /* UniversalLib */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 72942EC91A4DBA7100974C79 /* Build configuration list for PBXAggregateTarget "UniversalLib" */;
+			buildPhases = (
+				72942ECA1A4DBA7E00974C79 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = UniversalLib;
+			productName = UniversalLib;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7227C4BB1A3F037F003A4C3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BA1A3F037F003A4C3D /* main.m */; };
 		7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BD1A3F037F003A4C3D /* AppDelegate.m */; };
@@ -14,6 +28,37 @@
 		7227C4EF1A3F0648003A4C3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4EC1A3F0648003A4C3D /* ViewController.m */; };
 		7227C4F11A3F06BC003A4C3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4F01A3F06BC003A4C3D /* Images.xcassets */; };
 		7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
+		725795D11A4DA99D00D8572D /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
+		725795D21A4DA99D00D8572D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
+		725795D31A4DA99D00D8572D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB21A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m */; };
+		725795D41A4DA99D00D8572D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB41A4ACCDD00822C51 /* AFHTTPSessionManager.m */; };
+		725795D51A4DA99D00D8572D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB71A4ACCDD00822C51 /* AFNetworkReachabilityManager.m */; };
+		725795D61A4DA99D00D8572D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB91A4ACCDD00822C51 /* AFSecurityPolicy.m */; };
+		725795D71A4DA99D00D8572D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABB1A4ACCDD00822C51 /* AFURLConnectionOperation.m */; };
+		725795D81A4DA99D00D8572D /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABD1A4ACCDD00822C51 /* AFURLRequestSerialization.m */; };
+		725795D91A4DA99E00D8572D /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABF1A4ACCDD00822C51 /* AFURLResponseSerialization.m */; };
+		725795DA1A4DA99E00D8572D /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AC11A4ACCDD00822C51 /* AFURLSessionManager.m */; };
+		725795DB1A4DA99E00D8572D /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
+		725795DC1A4DA99E00D8572D /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */; };
+		725795DD1A4DA99E00D8572D /* UIWindow+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */; };
+		725795DE1A4DA99E00D8572D /* UIControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F011A483D7000CEC369 /* UIControl+Tracking.m */; };
+		725795DF1A4DA99E00D8572D /* UIResponder+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */; };
+		725795E01A4DA99E00D8572D /* UIViewController+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */; };
+		725795E11A4DA99E00D8572D /* UISegmentedControl+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F061A48572C00CEC369 /* UISegmentedControl+Tracking.m */; };
+		725795E21A4DA99E00D8572D /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
+		725795E31A4DA99E00D8572D /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
+		725795E41A4DA99E00D8572D /* LogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfo.m */; };
+		725795E51A4DA99E00D8572D /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
+		725795E61A4DA99E00D8572D /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
+		725795E71A4DA99E00D8572D /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
+		725795E81A4DA99E00D8572D /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
+		725795E91A4DA99E00D8572D /* GestureProcessorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* GestureProcessorHelpers.m */; };
+		725795EA1A4DA99E00D8572D /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
+		725795EB1A4DA99E00D8572D /* GestureProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureProcessor.m */; };
+		725795EC1A4DA99E00D8572D /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
+		725795ED1A4DA99E00D8572D /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
+		725795EE1A4DA99E00D8572D /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
+		725795EF1A4DA9B100D8572D /* GestureProcessor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* GestureProcessor.h */; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
@@ -29,7 +74,6 @@
 		727E6AC91A4ACCDD00822C51 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABF1A4ACCDD00822C51 /* AFURLResponseSerialization.m */; };
 		727E6ACA1A4ACCDD00822C51 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AC11A4ACCDD00822C51 /* AFURLSessionManager.m */; };
 		727E6ACF1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
-		727E6AD01A4ACE7800822C51 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACE1A4ACE7800822C51 /* README.md */; };
 		727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
 		727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
 		7289A9661A44401300CF5CF6 /* GestureProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* GestureProcessor.m */; };
@@ -50,6 +94,19 @@
 		72922F131A48623300CEC369 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F121A48623300CEC369 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		725795B81A4DA94E00D8572D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				725795EF1A4DA9B100D8572D /* GestureProcessor.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7227C4B51A3F037F003A4C3D /* gestureprocessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gestureprocessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7227C4B91A3F037F003A4C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +120,7 @@
 		7227C4F01A3F06BC003A4C3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7227C4F91A3F14BE003A4C3D /* UIWindow+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Tracking.h"; sourceTree = "<group>"; };
 		7227C4FA1A3F14BE003A4C3D /* UIWindow+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Tracking.m"; sourceTree = "<group>"; };
+		725795BA1A4DA94E00D8572D /* libgestureprocessor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgestureprocessor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
 		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
 		72672F241A4988C4001FDC80 /* ManifestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestBuilder.h; sourceTree = "<group>"; };
@@ -94,7 +152,6 @@
 		727E6AC11A4ACCDD00822C51 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		727E6ACC1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFJSONResponseSerializerWithData.h; sourceTree = "<group>"; };
 		727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFJSONResponseSerializerWithData.m; sourceTree = "<group>"; };
-		727E6ACE1A4ACE7800822C51 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		727E6AD11A4ACF1800822C51 /* GTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTConstants.h; sourceTree = "<group>"; };
 		727E6AD21A4ACF1800822C51 /* GTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTConstants.m; sourceTree = "<group>"; };
 		727E6B021A4B154D00822C51 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
@@ -141,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		725795B71A4DA94E00D8572D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -157,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				7227C4B51A3F037F003A4C3D /* gestureprocessor.app */,
+				725795BA1A4DA94E00D8572D /* libgestureprocessor.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -300,7 +365,6 @@
 			children = (
 				727E6ACC1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.h */,
 				727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */,
-				727E6ACE1A4ACE7800822C51 /* README.md */,
 			);
 			path = HMFJSONResponseSerializerWithData;
 			sourceTree = "<group>";
@@ -374,6 +438,23 @@
 			productReference = 7227C4B51A3F037F003A4C3D /* gestureprocessor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		725795B91A4DA94E00D8572D /* gestureprocessorlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 725795CB1A4DA94E00D8572D /* Build configuration list for PBXNativeTarget "gestureprocessorlib" */;
+			buildPhases = (
+				725795B61A4DA94E00D8572D /* Sources */,
+				725795B71A4DA94E00D8572D /* Frameworks */,
+				725795B81A4DA94E00D8572D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gestureprocessorlib;
+			productName = gestureprocessorlib;
+			productReference = 725795BA1A4DA94E00D8572D /* libgestureprocessor.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -384,6 +465,12 @@
 				ORGANIZATIONNAME = "Vadim Bulavin";
 				TargetAttributes = {
 					7227C4B41A3F037F003A4C3D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					725795B91A4DA94E00D8572D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					72942EC61A4DBA7000974C79 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -402,6 +489,8 @@
 			projectRoot = "";
 			targets = (
 				7227C4B41A3F037F003A4C3D /* gestureprocessor */,
+				725795B91A4DA94E00D8572D /* gestureprocessorlib */,
+				72942EC61A4DBA7000974C79 /* UniversalLib */,
 			);
 		};
 /* End PBXProject section */
@@ -419,6 +508,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		72942ECA1A4DBA7E00974C79 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -target gestureprocessorlib -configuration 'Release' -sdk 'iphoneos8.1' clean build ARCHS='armv7 armv7s' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-arm' BUILT_PRODUCTS_DIR='./build-arm'\n\nxcodebuild -target gestureprocessorlib -configuration 'Release' -sdk 'iphoneos8.1' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'\n\nxcodebuild -target gestureprocessorlib -configuration 'Release' -sdk 'iphonesimulator8.1' clean build ARCHS='i386' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-i386' BUILT_PRODUCTS_DIR='./build-i386'\n\nxcodebuild -target gestureprocessorlib -configuration 'Release' -sdk 'iphonesimulator8.1' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'\n\nlipo -create './build-arm/libgestureprocessor.a' './build-arm64/libgestureprocessor.a' './build-i386/libgestureprocessor.a' './build-x86_64/libgestureprocessor.a' -output 'libgestureprocessor.a'";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7227C4B11A3F037F003A4C3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -434,7 +539,6 @@
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
-				727E6AD01A4ACE7800822C51 /* README.md in Sources */,
 				727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
@@ -458,6 +562,43 @@
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
 				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		725795B61A4DA94E00D8572D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				725795D11A4DA99D00D8572D /* HMFJSONResponseSerializerWithData.m in Sources */,
+				725795D21A4DA99D00D8572D /* AFHTTPRequestOperation.m in Sources */,
+				725795D31A4DA99D00D8572D /* AFHTTPRequestOperationManager.m in Sources */,
+				725795D41A4DA99D00D8572D /* AFHTTPSessionManager.m in Sources */,
+				725795D51A4DA99D00D8572D /* AFNetworkReachabilityManager.m in Sources */,
+				725795D61A4DA99D00D8572D /* AFSecurityPolicy.m in Sources */,
+				725795D71A4DA99D00D8572D /* AFURLConnectionOperation.m in Sources */,
+				725795D81A4DA99D00D8572D /* AFURLRequestSerialization.m in Sources */,
+				725795D91A4DA99E00D8572D /* AFURLResponseSerialization.m in Sources */,
+				725795DA1A4DA99E00D8572D /* AFURLSessionManager.m in Sources */,
+				725795DB1A4DA99E00D8572D /* OpenUDID.m in Sources */,
+				725795DC1A4DA99E00D8572D /* NSObject+Swizzling.m in Sources */,
+				725795DD1A4DA99E00D8572D /* UIWindow+Tracking.m in Sources */,
+				725795DE1A4DA99E00D8572D /* UIControl+Tracking.m in Sources */,
+				725795DF1A4DA99E00D8572D /* UIResponder+Tracking.m in Sources */,
+				725795E01A4DA99E00D8572D /* UIViewController+Tracking.m in Sources */,
+				725795E11A4DA99E00D8572D /* UISegmentedControl+Tracking.m in Sources */,
+				725795E21A4DA99E00D8572D /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
+				725795E31A4DA99E00D8572D /* UIGestureRecognizer+Type.m in Sources */,
+				725795E41A4DA99E00D8572D /* LogInfo.m in Sources */,
+				725795E51A4DA99E00D8572D /* GestureDetails.m in Sources */,
+				725795E61A4DA99E00D8572D /* ShakeDetails.m in Sources */,
+				725795E71A4DA99E00D8572D /* NavigationDetails.m in Sources */,
+				725795E81A4DA99E00D8572D /* GTConstants.m in Sources */,
+				725795E91A4DA99E00D8572D /* GestureProcessorHelpers.m in Sources */,
+				725795EA1A4DA99E00D8572D /* KeyboardWatcher.m in Sources */,
+				725795EB1A4DA99E00D8572D /* GestureProcessor.m in Sources */,
+				725795EC1A4DA99E00D8572D /* Logger.m in Sources */,
+				725795ED1A4DA99E00D8572D /* ManifestBuilder.m in Sources */,
+				725795EE1A4DA99E00D8572D /* ConnectionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +705,48 @@
 			};
 			name = Release;
 		};
+		725795CC1A4DA94E00D8572D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = gestureprocessor;
+				PRODUCT_NAME = gestureprocessor;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		725795CD1A4DA94E00D8572D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = gestureprocessor;
+				PRODUCT_NAME = gestureprocessor;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		72942EC71A4DBA7100974C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		72942EC81A4DBA7100974C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +767,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		725795CB1A4DA94E00D8572D /* Build configuration list for PBXNativeTarget "gestureprocessorlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				725795CC1A4DA94E00D8572D /* Debug */,
+				725795CD1A4DA94E00D8572D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72942EC91A4DBA7100974C79 /* Build configuration list for PBXAggregateTarget "UniversalLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72942EC71A4DBA7100974C79 /* Debug */,
+				72942EC81A4DBA7100974C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
