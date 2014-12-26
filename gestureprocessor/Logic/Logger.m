@@ -179,7 +179,13 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
      sessionID:sessionID
      success:^
     {
-        [self removeUploadedSamples:actions];
+        if (![actions isEqual:weakSelf.actions])
+        {
+            [self removeUploadedSamples:actions];
+        }
+        {
+            self.actions = [NSDictionary dictionary];
+        }
         [weakSelf serialize];
     }];
 }
@@ -226,6 +232,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         }
         actions[sessionID] = sessionSamples;
     }
+    self.actions = actions.copy;
 }
 
 - (NSData*)allSamplesData:(NSDictionary*)actionsDictionary
@@ -297,6 +304,10 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
+    if (arc4random() % 10 == 0)
+    {
+        [self sendSamples];
+    }
 //    [self printDebugInfo:actionDetails];
 }
 
