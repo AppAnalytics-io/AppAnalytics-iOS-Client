@@ -2,7 +2,7 @@
 
 u_int8_t const kSessionManifestFileVersion      = 1;
 u_int8_t const kDataPackageFileVersion          = 1;
-u_int8_t const kGestureTrackerApiVersion        = 1;
+u_int8_t const kGestureProcessorApiVersion        = 1;
 
 size_t const kGTMaxSamplesSizeInBytes   = 500;
 float const kGTSerializationInterval    = 15.0f;

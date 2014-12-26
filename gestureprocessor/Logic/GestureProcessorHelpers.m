@@ -1,7 +1,7 @@
-#import "GestureTrackerHelpers.h"
+#import "GestureProcessorHelpers.h"
 #import "KeyboardWatcher.h"
 
-@implementation GestureTrackerHelpers
+@implementation GestureProcessorHelpers
 
 + (UIViewController*)topViewController
 {
@@ -146,9 +146,9 @@
     NSArray* versionComponents = [majorAndMinorVersions componentsSeparatedByString:@"."];
     
     Version version;
-    version.major = (versionComponents.count > 0) ? [versionComponents.firstObject integerValue] : 0;
-    version.minor = (versionComponents.count > 1) ? [versionComponents.lastObject integerValue] : 0;
-    version.build = (buildVersion != nil) ? [buildVersion integerValue] : 0;
+    version.major = (UInt32)((versionComponents.count > 0) ? [versionComponents.firstObject integerValue] : 0);
+    version.minor = (UInt32)((versionComponents.count > 1) ? [versionComponents.lastObject integerValue] : 0);
+    version.build = (UInt32)((buildVersion != nil) ? [buildVersion integerValue] : 0);
     version.revision = 0;
     
     return version;
@@ -160,10 +160,10 @@
     
     Version version;
     
-    version.major =     (versionComponents.count > 0) ? [versionComponents[0] integerValue] : 0;
-    version.minor =     (versionComponents.count > 1) ? [versionComponents[1] integerValue] : 0;
-    version.build =     (versionComponents.count > 2) ? [versionComponents[2] integerValue] : 0;
-    version.revision =  (versionComponents.count > 3) ? [versionComponents[3] integerValue] : 0;
+    version.major =     (UInt32)((versionComponents.count > 0) ? [versionComponents[0] integerValue] : 0);
+    version.minor =     (UInt32)((versionComponents.count > 1) ? [versionComponents[1] integerValue] : 0);
+    version.build =     (UInt32)((versionComponents.count > 2) ? [versionComponents[2] integerValue] : 0);
+    version.revision =  (UInt32)((versionComponents.count > 3) ? [versionComponents[3] integerValue] : 0);
     
     return version;
 }
@@ -173,28 +173,5 @@
     return CGSizeMake([UIScreen mainScreen].scale * [UIScreen mainScreen].bounds.size.width,
                       [UIScreen mainScreen].scale * [UIScreen mainScreen].bounds.size.height);
 }
-
-#if 0 // get the most underlying subview. not required yet
-+ (UIView*)subviewAtPosition:(CGPoint)position ofView:(UIView*)rootView
-{
-    UIView* targetView = nil;
-    for (UIView* view in rootView.subviews)
-    {
-        if (CGRectContainsPoint(view.frame, position))
-        {
-            targetView = view;
-            if (targetView.subviews)
-            {
-                [self subviewAtPosition:[targetView convertPoint:position fromView:rootView] ofView:targetView];
-            }
-            else
-            {
-                break;
-            }
-        }
-    }
-    return targetView;
-}
-#endif
 
 @end

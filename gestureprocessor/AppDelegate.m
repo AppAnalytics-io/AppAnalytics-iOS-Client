@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 
 @interface AppDelegate ()
 
@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GestureTracker initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
+    [GestureProcessor initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
     
     return YES;
 }

@@ -1,9 +1,9 @@
 #import "UIResponder+Tracking.h"
 #import <objc/runtime.h>
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 #import "NSObject+Swizzling.h"
 
-@interface GestureTracker (Shake)
+@interface GestureProcessor (Shake)
 
 + (instancetype)instance;
 - (void)onShake;
@@ -28,7 +28,7 @@
     
     if (motion == UIEventSubtypeMotionShake)
     {
-        [[GestureTracker instance] onShake];
+        [[GestureProcessor instance] onShake];
     }
 }
 

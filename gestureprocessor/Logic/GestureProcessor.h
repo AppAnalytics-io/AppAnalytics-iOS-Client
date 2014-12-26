@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface GestureTracker : NSObject
+@interface GestureProcessor : NSObject
 
 + (void)initWithAppKey:(NSString*)appKey;
 

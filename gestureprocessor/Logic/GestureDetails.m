@@ -1,6 +1,6 @@
 #import "GestureDetails.h"
 #import "UISwipeGestureRecognizer+DirectionString.h"
-#import "GestureTrackerHelpers.h"
+#import "GestureProcessorHelpers.h"
 #import "UIGestureRecognizer+Type.h"
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
@@ -46,7 +46,7 @@
     {
         self.type = type;
         self.timestamp = [NSDate new];
-        self.triggerViewControllerID = [GestureTrackerHelpers topViewControllerClassName];
+        self.triggerViewControllerID = [GestureProcessorHelpers topViewControllerClassName];
         self.position = position;
         self.triggerViewID = viewID;
         self.index = index;
@@ -59,10 +59,10 @@
     self.type = [self.gestureRecognizer actionType];
     
     self.timestamp = [NSDate new];
-    UIViewController* topVC = [GestureTrackerHelpers topViewController];
+    UIViewController* topVC = [GestureProcessorHelpers topViewController];
     self.position = [self.gestureRecognizer locationInView:topVC.view];
-    self.triggerViewID = [GestureTrackerHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
-    self.triggerViewControllerID = [GestureTrackerHelpers topViewControllerClassName];
+    self.triggerViewID = [GestureProcessorHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
+    self.triggerViewControllerID = [GestureProcessorHelpers topViewControllerClassName];
 }
 
 #pragma mark - LogInfo protocol
@@ -89,25 +89,5 @@
 #endif
     return info;
 }
-
-#if 0
-
-#pragma mark - NSCoding
-- (void)encodeWithCoder:(NSCoder *)encoder
-{
-    [super encodeWithCoder:encoder];
-    [encoder encodeObject:self.gestureRecognizer forKey:@"gestureRecognizer"];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self)
-    {
-        self.gestureRecognizer = [decoder decodeObjectForKey:@"gestureRecognizer"];
-    }
-    return self;
-}
-#endif
 
 @end

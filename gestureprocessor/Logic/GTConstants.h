@@ -2,7 +2,7 @@
 
 extern u_int8_t const kSessionManifestFileVersion;
 extern u_int8_t const kDataPackageFileVersion;
-extern u_int8_t const kGestureTrackerApiVersion;
+extern u_int8_t const kGestureProcessorApiVersion;
 
 extern float const kGTSerializationInterval;
 extern float const kGTSendingDataInterval;

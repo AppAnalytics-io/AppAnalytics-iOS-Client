@@ -3,9 +3,9 @@
 #import "AFHTTPRequestOperation.h"
 #import "HMFJSONResponseSerializerWithData.h"
 #import "ManifestBuilder.h"
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 
-@interface GestureTracker (Connection)
+@interface GestureProcessor (Connection)
 + (instancetype)instance;
 @property (nonatomic, strong, readwrite) NSString* udid;
 @end
@@ -36,7 +36,7 @@
 
 - (void)PUTManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
 {
-    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [GestureTracker instance].udid];
+    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [GestureProcessor instance].udid];
 
     [self PUT:url
    parameters:nil
@@ -69,7 +69,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
 {
     static int samplesPackageIndex;
     
-    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [GestureTracker instance].udid];
+    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [GestureProcessor instance].udid];
     NSString* filename = [NSString stringWithFormat:@"%@_%d.datapackage", sessionID, ++samplesPackageIndex];
     
     [self PUT:url
@@ -126,31 +126,5 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     
     return operation;
 }
-
-#if 0
-NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-[request setURL:[NSURL URLWithString:url]];
-[request setHTTPMethod:@"PUT"];
-NSMutableData *body = [NSMutableData data];
-NSString *boundary = @"---------------------------14737809831466499882746641449";
-NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-
-[body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-[body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-[body appendData:[NSData dataWithData:self.manifests[udid]]];
-[body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-
-// close form
-[body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-
-// setting the body of the post to the reqeust
-[request setHTTPBody:body];
-
-NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableLeaves error:nil];
-NSLog(@"%@",dict);
-#endif
 
 @end

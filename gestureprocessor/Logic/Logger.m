@@ -3,7 +3,7 @@
 #import "ShakeDetails.h"
 #import "NavigationDetails.h"
 #import "ManifestBuilder.h"
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 #import "GTConstants.h"
 #import "ConnectionManager.h"
 
@@ -29,7 +29,7 @@
 
 @end
 
-@interface GestureTracker (Logger)
+@interface GestureProcessor (Logger)
 
 + (instancetype)instance;
 @property (nonatomic, strong) NSString* appKey;
@@ -169,7 +169,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         }
     }
     
-    NSString* sessionID = [GestureTracker instance].sessionUUID.UUIDString;
+    NSString* sessionID = [GestureProcessor instance].sessionUUID.UUIDString;
     __weak Logger* weakSelf = self;
 
     [[ConnectionManager instance]
@@ -285,7 +285,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 {
     NSData* manifest = [[ManifestBuilder instance] builSessionManifest];
     NSMutableDictionary* manifests = self.manifests.mutableCopy;
-    manifests[[GestureTracker instance].sessionUUID.UUIDString] = manifest;
+    manifests[[GestureProcessor instance].sessionUUID.UUIDString] = manifest;
     self.manifests = manifests.copy;
     [self sendManifests];
 }
@@ -294,13 +294,13 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 {
     NSData* actionData = [[ManifestBuilder instance] buildDataPackage:actionDetails];
     NSMutableDictionary* actions = self.actions.mutableCopy;
-    NSMutableArray* sessionActions = actions[[GestureTracker instance].sessionUUID.UUIDString];
+    NSMutableArray* sessionActions = actions[[GestureProcessor instance].sessionUUID.UUIDString];
     if (!sessionActions)
     {
         sessionActions = [NSMutableArray array];
     }
     [sessionActions addObject:actionData];
-    actions[[GestureTracker instance].sessionUUID.UUIDString] = sessionActions;
+    actions[[GestureProcessor instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
     [self printDebugInfo:actionDetails];
 }

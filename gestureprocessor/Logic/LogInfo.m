@@ -63,33 +63,5 @@ NSString* NSStringWithActionType(ActionType action)
     return 0;
 }
 
-#if 0
-
-#pragma mark - NSCoding
-- (void)encodeWithCoder:(NSCoder *)encoder
-{
-    [encoder encodeObject:@(self.index) forKey:@"index"];
-    [encoder encodeObject:@(self.type) forKey:@"type"];
-    [encoder encodeObject:[NSValue valueWithCGPoint:self.position] forKey:@"position"];
-    [encoder encodeObject:self.timestamp forKey:@"timestamp"];
-    [encoder encodeObject:self.triggerViewControllerID forKey:@"triggerViewControllerID"];
-    [encoder encodeObject:self.triggerViewID forKey:@"triggerViewID"];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super init];
-    if (self)
-    {
-        self.index = [[decoder decodeObjectForKey:@"index"] unsignedIntegerValue];
-        self.type = [[decoder decodeObjectForKey:@"type"] unsignedCharValue];
-        self.position = [[decoder decodeObjectForKey:@"position"] CGPointValue];
-        self.timestamp = [decoder decodeObjectForKey:@"timestamp"];
-        self.triggerViewControllerID = [decoder decodeObjectForKey:@"triggerViewControllerID"];
-        self.triggerViewID = [decoder decodeObjectForKey:@"triggerViewID"];
-    }
-    return self;
-}
-#endif
 @end
 

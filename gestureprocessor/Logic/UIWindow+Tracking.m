@@ -1,9 +1,9 @@
 #import "UIWindow+Tracking.h"
 #import <objc/runtime.h>
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 #import "NSObject+Swizzling.h"
 
-@interface GestureTracker (Tracking)
+@interface GestureProcessor (Tracking)
 
 + (instancetype)instance;
 - (void)trackWindowGestures:(UIWindow*)window;
@@ -30,7 +30,7 @@
     self = [self initWithFrameSwizzled:frame];
     if (self)
     {
-        [[GestureTracker instance] trackWindowGestures:self];
+        [[GestureProcessor instance] trackWindowGestures:self];
     }
     return self;
 }
@@ -40,7 +40,7 @@
     self = [self initSwizzled];
     if (self)
     {
-        [[GestureTracker instance] trackWindowGestures:self];
+        [[GestureProcessor instance] trackWindowGestures:self];
     }
     return self;
 }

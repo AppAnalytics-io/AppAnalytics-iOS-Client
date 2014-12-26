@@ -1,11 +1,11 @@
-#import "GestureTracker.h"
+#import "GestureProcessor.h"
 #import "GTConstants.h"
 #import "Logger.h"
 #import "UIGestureRecognizer+Type.h"
 #import "KeyboardWatcher.h"
 #import "OpenUDID.h"
 
-@interface GestureTracker () <UIGestureRecognizerDelegate>
+@interface GestureProcessor () <UIGestureRecognizerDelegate>
 
 + (instancetype)instance;
 - (void)trackWindowGestures:(UIWindow*)window;
@@ -19,22 +19,22 @@
 
 static NSString* const kUDIDKey = @"NHzZ36186S";
 
-@implementation GestureTracker
+@implementation GestureProcessor
 
 + (void)initWithAppKey:(NSString *)appKey
 {
-    [GestureTracker instance].appKey = appKey;
+    [GestureProcessor instance].appKey = appKey;
     [KeyboardWatcher instance];
     [[Logger instance] createSessionManifest];
 }
 
 + (instancetype)instance
 {
-    static GestureTracker* _self;
+    static GestureProcessor* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[GestureTracker alloc] init];
+        _self = [[GestureProcessor alloc] init];
     });
     return _self;
 }
@@ -177,18 +177,6 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-//    if (gestureRecognizer.isSwipe && otherGestureRecognizer.isSwipe)
-//    {
-//        return NO;
-//    }
-//    else if (gestureRecognizer.isRotate && otherGestureRecognizer.isRotate)
-//    {
-//        return NO;
-//    }
-//    else if (gestureRecognizer.isPinch && otherGestureRecognizer.isPinch)
-//    {
-//        return NO;
-//    }
     return YES;
 }
 

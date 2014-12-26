@@ -1,10 +1,10 @@
 #import "ManifestBuilder.h"
 #import "Logger.h"
 #import "GTConstants.h"
-#import "GestureTracker.h"
-#import "GestureTrackerHelpers.h"
+#import "GestureProcessor.h"
+#import "GestureProcessorHelpers.h"
 
-@interface GestureTracker (ManifestBuilder)
+@interface GestureProcessor (ManifestBuilder)
 
 + (instancetype)instance;
 @property (nonatomic, strong) NSString* appKey;
@@ -58,8 +58,8 @@
     NSMutableData* headerData = [NSMutableData data];
     [headerData appendBytes:&fileSignature length:sizeof(fileSignature)];
     [headerData appendBytes:&kDataPackageFileVersion length:sizeof(kDataPackageFileVersion)];
-    [headerData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String
-                     length:[GestureTracker instance].sessionUUID.UUIDString.length];
+    [headerData appendBytes:[GestureProcessor instance].sessionUUID.UUIDString.UTF8String
+                     length:[GestureProcessor instance].sessionUUID.UUIDString.length];
     
     return headerData;
 }
@@ -106,26 +106,26 @@
     char endMarker = '>';
     NSTimeInterval sessionStartInterval = self.sessionStartDate.timeIntervalSince1970;
     NSTimeInterval sessionEndInterval = [NSDate new].timeIntervalSince1970;
-    Version appVersion = [GestureTrackerHelpers appVersion];
-    Version osVersion = [GestureTrackerHelpers OSVersion];
-    double screenWidth = [GestureTrackerHelpers screenSizeInPixels].width;
-    double screenHeight = [GestureTrackerHelpers screenSizeInPixels].height;
+    Version appVersion = [GestureProcessorHelpers appVersion];
+    Version osVersion = [GestureProcessorHelpers OSVersion];
+    double screenWidth = [GestureProcessorHelpers screenSizeInPixels].width;
+    double screenHeight = [GestureProcessorHelpers screenSizeInPixels].height;
     NSString* systemLocale = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
     
     NSMutableData* manifestData = [NSMutableData data];
     
     [manifestData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [manifestData appendBytes:&kSessionManifestFileVersion length:sizeof(kSessionManifestFileVersion)];
-    [manifestData appendBytes:[GestureTracker instance].sessionUUID.UUIDString.UTF8String
-                       length:[GestureTracker instance].sessionUUID.UUIDString.length];
+    [manifestData appendBytes:[GestureProcessor instance].sessionUUID.UUIDString.UTF8String
+                       length:[GestureProcessor instance].sessionUUID.UUIDString.length];
     [manifestData appendBytes:&sessionStartInterval length:sizeof(sessionStartInterval)];
     [manifestData appendBytes:&sessionEndInterval length:sizeof(sessionEndInterval)];
-    [manifestData appendBytes:[GestureTracker instance].udid.UTF8String
-                       length:[GestureTracker instance].udid.length];
+    [manifestData appendBytes:[GestureProcessor instance].udid.UTF8String
+                       length:[GestureProcessor instance].udid.length];
     [manifestData appendBytes:&screenWidth length:sizeof(screenWidth)];
     [manifestData appendBytes:&screenHeight length:sizeof(screenHeight)];
-    [manifestData appendBytes:&kGestureTrackerApiVersion length:sizeof(kGestureTrackerApiVersion)];
-    [manifestData appendBytes:[GestureTracker instance].appKey.UTF8String length:[GestureTracker instance].appKey.length];
+    [manifestData appendBytes:&kGestureProcessorApiVersion length:sizeof(kGestureProcessorApiVersion)];
+    [manifestData appendBytes:[GestureProcessor instance].appKey.UTF8String length:[GestureProcessor instance].appKey.length];
     
     [manifestData appendBytes:&appVersion.major length:sizeof(appVersion.major)];
     [manifestData appendBytes:&appVersion.minor length:sizeof(appVersion.minor)];
@@ -140,17 +140,13 @@
     [manifestData appendBytes:systemLocale.UTF8String length:systemLocale.length];
     [manifestData appendBytes:&endMarker length:sizeof(endMarker)];
     
-//    [manifestData writeToFile:[self manifestPath] atomically:YES];
-//    NSLog(@"Reading manifestData");
-//    [self readFileAtPath:[self manifestPath]];
-    
     return manifestData;
 }
 
 - (NSString*)actionPackagePath:(NSInteger)index
 {
     return [NSString stringWithFormat:@"%@%@%d",
-            [self saveDirectoryPath], [GestureTracker instance].sessionUUID.UUIDString, index];
+            [self saveDirectoryPath], [GestureProcessor instance].sessionUUID.UUIDString, (int)index];
 }
 
 - (NSString*)manifestPath
@@ -163,21 +159,4 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [paths objectAtIndex:0];
 }
-
-- (void)readFileAtPath:(NSString*)path
-{
-    NSData *fileData = [NSData dataWithContentsOfFile:path];
-    NSUInteger length = [fileData length];
-    NSLog(@"Read Success: %d bytes read", length);
-#if 0
-    char *fileBytes = (char *)[fileData bytes];
-    NSUInteger index;
-    
-    for (index = 0; index<length; index++)
-    {
-        char aByte = fileBytes[index];
-    }
-#endif
-}
-
 @end
