@@ -105,7 +105,8 @@
     Version osVersion = [GestureProcessorHelpers OSVersion];
     double screenWidth = [GestureProcessorHelpers screenSizeInPixels].width;
     double screenHeight = [GestureProcessorHelpers screenSizeInPixels].height;
-    NSString* systemLocale = [NSString stringWithFormat:@" %@", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
+    NSString* systemLocale = [[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+                              stringByPaddingToLength:3 withString:@" " startingAtIndex:0];
     
     NSMutableData* manifestData = [NSMutableData data];
     
