@@ -42,11 +42,11 @@
    parameters:nil
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     {
-        [formData appendPartWithFileData:[ManifestBuilder instance].headerData
-                                    name:@"header"
-                                fileName:@"DataPackageFileHeader.datapackage"
-                                mimeType:@"application/octet-stream"];
-         
+//        [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+//                                    name:@"header"
+//                                fileName:@"DataPackageFileHeader.datapackage"
+//                                mimeType:@"application/octet-stream"];
+        
         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
                                     name:@"Manifest"
                                 fileName:[sessionID stringByAppendingString:@".manifest"]
@@ -76,10 +76,10 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
    parameters:nil
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
-         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
-                                     name:@"header"
-                                 fileName:@"DataPackageFileHeader.datapackage"
-                                 mimeType:@"application/octet-stream"];
+//         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+//                                     name:@"header"
+//                                 fileName:@"DataPackageFileHeader.datapackage"
+//                                 mimeType:@"application/octet-stream"];
          
          [formData appendPartWithFileData:[ManifestBuilder instance].headerData
                                      name:@"Samples"

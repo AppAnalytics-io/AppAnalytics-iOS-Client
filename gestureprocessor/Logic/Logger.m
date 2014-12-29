@@ -235,7 +235,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (NSData*)allSamplesData:(NSDictionary*)actionsDictionary
 {
-    NSMutableData* allSamplesData = [NSMutableData data];
+    NSMutableData* allSamplesData = [[NSMutableData alloc] initWithData:[ManifestBuilder instance].headerData];
     
     for (NSString* sessionID in self.actions.allKeys)
     {
