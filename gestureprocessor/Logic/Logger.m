@@ -181,6 +181,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         {
             [self removeUploadedSamples:actions];
         }
+        else
         {
             self.actions = [NSDictionary dictionary];
         }
