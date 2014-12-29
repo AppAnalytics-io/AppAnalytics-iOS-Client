@@ -196,6 +196,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         return;
     }
     
+    NSLog(@"Manifest sent");
+    
     for (NSString* sessionID in self.manifests.allKeys)
     {
         __weak Logger* weakSelf = self;
