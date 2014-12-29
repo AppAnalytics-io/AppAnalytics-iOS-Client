@@ -17,5 +17,6 @@ typedef struct _Version
 + (Version)appVersion;
 + (Version)OSVersion;
 + (CGSize)screenSizeInPixels;
++ (void)checkAppKey:(NSString*)appKey;
 
 @end

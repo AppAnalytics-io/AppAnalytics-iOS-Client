@@ -174,4 +174,15 @@
                       [UIScreen mainScreen].scale * [UIScreen mainScreen].bounds.size.height);
 }
 
++ (void)checkAppKey:(NSString *)appKey
+{
+    if (!appKey || !appKey.length)
+    {
+        [[NSException exceptionWithName:@"Gesture Processor Exception"
+                                 reason:@"Incorrect App Key"
+                               userInfo:nil]
+         raise];
+    }
+}
+
 @end

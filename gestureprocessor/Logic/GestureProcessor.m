@@ -4,6 +4,7 @@
 #import "UIGestureRecognizer+Type.h"
 #import "KeyboardWatcher.h"
 #import "OpenUDID.h"
+#import "GestureProcessorHelpers.h"
 
 @interface GestureProcessor () <UIGestureRecognizerDelegate>
 
@@ -23,6 +24,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 + (void)initWithAppKey:(NSString *)appKey
 {
+    [GestureProcessorHelpers checkAppKey:appKey];
     [GestureProcessor instance].appKey = appKey;
     [KeyboardWatcher instance];
     [[Logger instance] createSessionManifest];
