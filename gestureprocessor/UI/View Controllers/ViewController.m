@@ -18,7 +18,7 @@
     
     self.view.backgroundColor = color;
     
-    self.indexLabel.text = [NSString stringWithFormat:@"index: %lu", self.index];
+    self.indexLabel.text = [NSString stringWithFormat:@"index: %d", (int)self.index];
     
     self.view.multipleTouchEnabled = YES;
 }

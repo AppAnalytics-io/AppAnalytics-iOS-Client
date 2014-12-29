@@ -271,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				7227C4EA1A3F0648003A4C3D /* View Controllers */,
-				7227C4ED1A3F0648003A4C3D /* Views */,
 				7227C4E91A3F0648003A4C3D /* Main.storyboard */,
 				7227C4E21A3F060A003A4C3D /* LaunchScreen.xib */,
 			);
@@ -285,13 +284,6 @@
 				7227C4EC1A3F0648003A4C3D /* ViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		7227C4ED1A3F0648003A4C3D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		7227C4F81A3F14B2003A4C3D /* Logic */ = {
@@ -784,6 +776,7 @@
 				72942EC81A4DBA7100974C79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
