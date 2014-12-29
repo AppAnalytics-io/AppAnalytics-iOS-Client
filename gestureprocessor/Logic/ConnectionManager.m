@@ -47,7 +47,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
 //                                fileName:@"DataPackageFileHeader.datapackage"
 //                                mimeType:@"application/octet-stream"];
         
-        [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+        [formData appendPartWithFileData:rawManifest
                                     name:@"Manifest"
                                 fileName:[sessionID stringByAppendingString:@".manifest"]
                                 mimeType:@"application/octet-stream"];
@@ -81,7 +81,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
 //                                 fileName:@"DataPackageFileHeader.datapackage"
 //                                 mimeType:@"application/octet-stream"];
          
-         [formData appendPartWithFileData:[ManifestBuilder instance].headerData
+         [formData appendPartWithFileData:rawSamples
                                      name:@"Samples"
                                  fileName:filename
                                  mimeType:@"application/octet-stream"];

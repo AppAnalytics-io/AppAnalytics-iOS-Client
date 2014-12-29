@@ -92,11 +92,6 @@
     [packageData appendBytes:actionDetails.triggerViewID.UTF8String length:elementIDLength];
     [packageData appendBytes:&endMarker length:sizeof(endMarker)];
     
-//    [packageData writeToFile:[self actionPackagePath:(NSInteger)index] atomically:YES];
-//    
-//    NSLog(@"Reading packageData");
-//    [self readFileAtPath:[self actionPackagePath:(NSInteger)index]];
-    
     return packageData;
 }
 
@@ -143,20 +138,4 @@
     return manifestData;
 }
 
-- (NSString*)actionPackagePath:(NSInteger)index
-{
-    return [NSString stringWithFormat:@"%@%@%d",
-            [self saveDirectoryPath], [GestureProcessor instance].sessionUUID.UUIDString, (int)index];
-}
-
-- (NSString*)manifestPath
-{
-    return [[self saveDirectoryPath] stringByAppendingPathComponent:@"manifest"];
-}
-
-- (NSString*)saveDirectoryPath
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [paths objectAtIndex:0];
-}
 @end
