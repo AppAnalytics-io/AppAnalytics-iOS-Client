@@ -25,6 +25,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 + (void)initWithAppKey:(NSString *)appKey
 {
     [GestureProcessorHelpers checkAppKey:appKey];
+    
     [GestureProcessor instance].appKey = appKey;
     [KeyboardWatcher instance];
     [[Logger instance] createSessionManifest];
@@ -60,6 +61,11 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 - (void)trackWindowGestures:(UIWindow*)window
 {
+    if (![NSStringFromClass(window.class) isEqual:@"UITextEffectsWindow"])
+    {
+        return;
+    }
+    
     NSMutableArray* gestures = [NSMutableArray array];
     
     UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]
