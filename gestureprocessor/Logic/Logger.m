@@ -135,9 +135,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 }
 
 - (void)sendSamples
-{
-    NSLog(@"Samples sent");
-    
+{    
     if (!self.actions.allKeys.count)
     {
         return;
