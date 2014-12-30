@@ -141,14 +141,13 @@
 + (Version)appVersion
 {
     NSString *majorAndMinorVersions = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *buildVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
     NSArray* versionComponents = [majorAndMinorVersions componentsSeparatedByString:@"."];
     
     Version version;
     version.major = (UInt32)((versionComponents.count > 0) ? [versionComponents.firstObject integerValue] : 0);
     version.minor = (UInt32)((versionComponents.count > 1) ? [versionComponents.lastObject integerValue] : 0);
-    version.build = (UInt32)((buildVersion != nil) ? [buildVersion integerValue] : 0);
+    version.build = 0;
     version.revision = 0;
     
     return version;

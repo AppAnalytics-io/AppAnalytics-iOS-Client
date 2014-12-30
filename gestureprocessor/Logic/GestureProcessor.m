@@ -67,9 +67,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     
     UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc]
                                            initWithTarget:self action:@selector(onGestureRecognized:)];
-    
-//    [pinch requireGestureRecognizerToFail:rotate];
-    
+        
     [gestures addObjectsFromArray:@[pinch, rotate]];
     
     for (int touches = 1; touches <= 4; ++touches)
@@ -78,12 +76,6 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
                                        initWithTarget:self action:@selector(onGestureRecognized:)];
         tap.numberOfTapsRequired = 1;
         tap.numberOfTouchesRequired = touches;
-        
-//        if (touches > 1)
-//        {
-//            [tap requireGestureRecognizerToFail:pinch];
-//            [tap requireGestureRecognizerToFail:rotate];
-//        }
         
         UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc]
                                              initWithTarget:self action:@selector(onGestureRecognized:)];
@@ -99,7 +91,6 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
         
         UILongPressGestureRecognizer* longTap = [[UILongPressGestureRecognizer alloc]
                                                  initWithTarget:self action:@selector(onGestureRecognized:)];
-//        longTap.minimumPressDuration = kLongTapDuration;
         longTap.numberOfTouchesRequired = touches;
         
         UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc]
@@ -121,14 +112,6 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
                                                initWithTarget:self action:@selector(onGestureRecognized:)];
         downSwipe.direction =  UISwipeGestureRecognizerDirectionDown;
         downSwipe.numberOfTouchesRequired = touches;
-        
-//        if (touches > 2)
-//        {
-//            [pinch requireGestureRecognizerToFail:rightSwipe];
-//            [pinch requireGestureRecognizerToFail:leftSwipe];
-//            [pinch requireGestureRecognizerToFail:upSwipe];
-//            [pinch requireGestureRecognizerToFail:downSwipe];
-//        }
         
         [gestures addObjectsFromArray:@[tap, doubleTap, tripleTap, longTap, leftSwipe, rightSwipe, upSwipe, downSwipe]];
     }
@@ -157,22 +140,6 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-#if 0
-    NSArray* classes = @[@"UITextView", @"UITextField", @"ADDimmerView", @"UIWebBrowserView"];
-    
-    if ([classes containsObject:NSStringFromClass([touch.view class])] &&
-        [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]])
-    {
-        UITapGestureRecognizer* tap = (UITapGestureRecognizer*) gestureRecognizer;
-        if (tap.numberOfTapsRequired == 1)
-        {
-            [[Logger instance] gestureRecognized:ActionType_SingleTap
-                                 triggerPosition:[touch locationInView:nil]
-                                   triggerViewID:NSStringFromClass([touch.view class])];
-
-        }
-    }
-#endif
     return YES;
 }
 

@@ -136,6 +136,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)sendSamples
 {
+    NSLog(@"Samples sent");
+    
     if (!self.actions.allKeys.count)
     {
         return;
@@ -196,8 +198,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         return;
     }
     
-    NSLog(@"Manifest sent");
-    
     for (NSString* sessionID in self.manifests.allKeys)
     {
         __weak Logger* weakSelf = self;
@@ -224,13 +224,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         NSArray* sessionSamplesToRemove = actionsToRemove[sessionID];
         NSMutableArray* sessionSamples = actions[sessionID];
-        for (NSData* sample in sessionSamplesToRemove)
-        {
-            if ([sessionSamples containsObject:sample])
-            {
-                [sessionSamples removeObject:sessionSamples];
-            }
-        }
+        [sessionSamples removeObjectsInArray:sessionSamplesToRemove];
         actions[sessionID] = sessionSamples;
     }
     self.actions = actions.copy;
@@ -252,7 +246,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     return allSamplesData.copy;
 }
 
-#pragma mark - Logging
+#pragma mark - Adding Actions
 
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
@@ -305,7 +299,23 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureProcessor instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
-    [self printDebugInfo:actionDetails];
+//    [self printDebugInfo:actionDetails];
+}
+
+#pragma mark - Debug Helpers
+
+- (int)bytesInSamples:(NSDictionary*)samples
+{
+    int bytes = 0;
+    for (NSString* sessionId in samples.allKeys)
+    {
+        NSArray* sessionSamples = samples[sessionId];
+        for (NSData* sample in sessionSamples)
+        {
+            bytes += sample.length;
+        }
+    }
+    return bytes;
 }
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails

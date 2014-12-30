@@ -80,13 +80,6 @@
         UIRotationGestureRecognizer* rotate = (UIRotationGestureRecognizer*) self.gestureRecognizer;
         info = RADIANS_TO_DEGREES(rotate.rotation);
     }
-#if 0
-    else if (self.gestureRecognizer.isSwipe)
-    {
-        UISwipeGestureRecognizer* swipe = (UISwipeGestureRecognizer*) self.gestureRecognizer;
-        info = swipe.direction;
-    }
-#endif
     return info;
 }
 
