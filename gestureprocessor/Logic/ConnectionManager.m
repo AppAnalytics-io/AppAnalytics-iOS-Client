@@ -72,7 +72,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
          [formData appendPartWithFileData:rawSamples
-                                     name:@"Samples"
+                                     name:@"Sample"
                                  fileName:filename
                                  mimeType:@"application/octet-stream"];
      }
