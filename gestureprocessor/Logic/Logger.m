@@ -297,7 +297,9 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[GestureProcessor instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
-//    [self printDebugInfo:actionDetails];
+#ifdef DEBUG
+    [self printDebugInfo:actionDetails];
+#endif
 }
 
 #pragma mark - Debug Helpers

@@ -61,7 +61,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 - (void)trackWindowGestures:(UIWindow*)window
 {
-    if (![NSStringFromClass(window.class) isEqual:@"UITextEffectsWindow"])
+    if (![NSStringFromClass(window.class) isEqual:@"UIWindow"])
     {
         return;
     }
