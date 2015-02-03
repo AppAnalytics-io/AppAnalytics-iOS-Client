@@ -125,6 +125,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     for (UIGestureRecognizer* gesture in gestures)
     {
         gesture.delegate = self;
+        gesture.cancelsTouchesInView = NO;
         [window addGestureRecognizer:gesture];
     }
 }
