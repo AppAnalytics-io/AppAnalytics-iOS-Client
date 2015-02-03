@@ -103,8 +103,8 @@
     NSTimeInterval sessionEndInterval = [NSDate new].timeIntervalSince1970;
     Version appVersion = [AppAnalyticsHelpers appVersion];
     Version osVersion = [AppAnalyticsHelpers OSVersion];
-    double screenWidth = [AppAnalyticsHelpers screenSizeInPixels].width;
-    double screenHeight = [AppAnalyticsHelpers screenSizeInPixels].height;
+    double screenWidth = [AppAnalyticsHelpers screenSizeInPixels].width / [UIScreen mainScreen].scale;
+    double screenHeight = [AppAnalyticsHelpers screenSizeInPixels].height / [UIScreen mainScreen].scale;
     NSString* systemLocale = [[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
                               stringByPaddingToLength:3 withString:@" " startingAtIndex:0];
     
