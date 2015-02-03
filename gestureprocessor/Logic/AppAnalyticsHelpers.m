@@ -1,7 +1,7 @@
-#import "GestureProcessorHelpers.h"
+#import "AppAnalyticsHelpers.h"
 #import "KeyboardWatcher.h"
 
-@implementation GestureProcessorHelpers
+@implementation AppAnalyticsHelpers
 
 + (UIViewController*)topViewController
 {

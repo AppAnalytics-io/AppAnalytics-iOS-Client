@@ -3,7 +3,7 @@
 #import "ShakeDetails.h"
 #import "NavigationDetails.h"
 #import "ManifestBuilder.h"
-#import "GestureProcessor.h"
+#import "AppAnalytics.h"
 #import "GTConstants.h"
 #import "ConnectionManager.h"
 
@@ -29,7 +29,7 @@
 
 @end
 
-@interface GestureProcessor (Logger)
+@interface AppAnalytics (Logger)
 
 + (instancetype)instance;
 @property (nonatomic, strong) NSString* appKey;
@@ -169,7 +169,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         }
     }
     
-    NSString* sessionID = [GestureProcessor instance].sessionUUID.UUIDString;
+    NSString* sessionID = [AppAnalytics instance].sessionUUID.UUIDString;
     __weak Logger* weakSelf = self;
 
     [[ConnectionManager instance]
@@ -195,7 +195,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         return;
     }
-    
     for (NSString* sessionID in self.manifests.allKeys)
     {
         __weak Logger* weakSelf = self;
@@ -280,7 +279,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 {
     NSData* manifest = [[ManifestBuilder instance] builSessionManifest];
     NSMutableDictionary* manifests = self.manifests.mutableCopy;
-    manifests[[GestureProcessor instance].sessionUUID.UUIDString] = manifest;
+    manifests[[AppAnalytics instance].sessionUUID.UUIDString] = manifest;
     self.manifests = manifests.copy;
     [self sendManifests];
 }
@@ -289,13 +288,13 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 {
     NSData* actionData = [[ManifestBuilder instance] buildDataPackage:actionDetails];
     NSMutableDictionary* actions = self.actions.mutableCopy;
-    NSMutableArray* sessionActions = actions[[GestureProcessor instance].sessionUUID.UUIDString];
+    NSMutableArray* sessionActions = actions[[AppAnalytics instance].sessionUUID.UUIDString];
     if (!sessionActions)
     {
         sessionActions = [NSMutableArray array];
     }
     [sessionActions addObject:actionData];
-    actions[[GestureProcessor instance].sessionUUID.UUIDString] = sessionActions;
+    actions[[AppAnalytics instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
 #ifdef DEBUG
     [self printDebugInfo:actionDetails];

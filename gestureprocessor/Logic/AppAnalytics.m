@@ -1,12 +1,12 @@
-#import "GestureProcessor.h"
+#import "AppAnalytics.h"
 #import "GTConstants.h"
 #import "Logger.h"
 #import "UIGestureRecognizer+Type.h"
 #import "KeyboardWatcher.h"
 #import "OpenUDID.h"
-#import "GestureProcessorHelpers.h"
+#import "AppAnalyticsHelpers.h"
 
-@interface GestureProcessor () <UIGestureRecognizerDelegate>
+@interface AppAnalytics () <UIGestureRecognizerDelegate>
 
 + (instancetype)instance;
 - (void)trackWindowGestures:(UIWindow*)window;
@@ -20,24 +20,24 @@
 
 static NSString* const kUDIDKey = @"NHzZ36186S";
 
-@implementation GestureProcessor
+@implementation AppAnalytics
 
 + (void)initWithAppKey:(NSString *)appKey
 {
-    [GestureProcessorHelpers checkAppKey:appKey];
+    [AppAnalyticsHelpers checkAppKey:appKey];
     
-    [GestureProcessor instance].appKey = appKey;
+    [AppAnalytics instance].appKey = appKey;
     [KeyboardWatcher instance];
     [[Logger instance] createSessionManifest];
 }
 
 + (instancetype)instance
 {
-    static GestureProcessor* _self;
+    static AppAnalytics* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[GestureProcessor alloc] init];
+        _self = [[AppAnalytics alloc] init];
     });
     return _self;
 }

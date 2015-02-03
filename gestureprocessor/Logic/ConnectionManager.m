@@ -3,9 +3,9 @@
 #import "AFHTTPRequestOperation.h"
 #import "HMFJSONResponseSerializerWithData.h"
 #import "ManifestBuilder.h"
-#import "GestureProcessor.h"
+#import "AppAnalytics.h"
 
-@interface GestureProcessor (Connection)
+@interface AppAnalytics (Connection)
 + (instancetype)instance;
 @property (nonatomic, strong, readwrite) NSString* udid;
 @end
@@ -36,8 +36,7 @@
 
 - (void)PUTManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
 {
-    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [GestureProcessor instance].udid];
-
+    NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [AppAnalytics instance].udid];
     [self PUT:url
    parameters:nil
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
@@ -64,7 +63,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
 {
     static int samplesPackageIndex;
     
-    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [GestureProcessor instance].udid];
+    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [AppAnalytics instance].udid];
     NSString* filename = [NSString stringWithFormat:@"%@_%d.datapackage", sessionID, ++samplesPackageIndex];
     
     [self PUT:url

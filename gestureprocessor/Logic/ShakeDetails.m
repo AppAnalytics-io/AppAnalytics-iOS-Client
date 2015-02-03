@@ -1,5 +1,5 @@
 #import "ShakeDetails.h"
-#import "GestureProcessorHelpers.h"
+#import "AppAnalyticsHelpers.h"
 
 @interface LogObject (ShakeDetails)
 
@@ -26,7 +26,7 @@
         self.type = ActionType_Shake;
         self.timestamp = [NSDate new];
         self.position = CGPointZero;
-        self.triggerViewControllerID = [GestureProcessorHelpers topViewControllerClassName];
+        self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
         self.index = index;
     }
     return self;

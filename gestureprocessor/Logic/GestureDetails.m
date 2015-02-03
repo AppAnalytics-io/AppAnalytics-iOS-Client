@@ -1,6 +1,6 @@
 #import "GestureDetails.h"
 #import "UISwipeGestureRecognizer+DirectionString.h"
-#import "GestureProcessorHelpers.h"
+#import "AppAnalyticsHelpers.h"
 #import "UIGestureRecognizer+Type.h"
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
@@ -46,7 +46,7 @@
     {
         self.type = type;
         self.timestamp = [NSDate new];
-        self.triggerViewControllerID = [GestureProcessorHelpers topViewControllerClassName];
+        self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
         self.position = position;
         self.triggerViewID = viewID;
         self.index = index;
@@ -59,10 +59,10 @@
     self.type = [self.gestureRecognizer actionType];
     
     self.timestamp = [NSDate new];
-    UIViewController* topVC = [GestureProcessorHelpers topViewController];
+    UIViewController* topVC = [AppAnalyticsHelpers topViewController];
     self.position = [self.gestureRecognizer locationInView:topVC.view];
-    self.triggerViewID = [GestureProcessorHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
-    self.triggerViewControllerID = [GestureProcessorHelpers topViewControllerClassName];
+    self.triggerViewID = [AppAnalyticsHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
+    self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
 }
 
 #pragma mark - LogInfo protocol

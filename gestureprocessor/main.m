@@ -1,6 +1,6 @@
 //
 //  main.m
-//  gestureprocessor
+//  AppAnalytics
 //
 //  Created by Vadim Bulavin on 15/12/14.
 //  Copyright (c) 2014 Vadim Bulavin. All rights reserved.

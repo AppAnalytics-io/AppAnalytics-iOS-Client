@@ -1,10 +1,10 @@
 #import "ManifestBuilder.h"
 #import "Logger.h"
 #import "GTConstants.h"
-#import "GestureProcessor.h"
-#import "GestureProcessorHelpers.h"
+#import "AppAnalytics.h"
+#import "AppAnalyticsHelpers.h"
 
-@interface GestureProcessor (ManifestBuilder)
+@interface AppAnalytics (ManifestBuilder)
 
 + (instancetype)instance;
 @property (nonatomic, strong) NSString* appKey;
@@ -58,8 +58,8 @@
     NSMutableData* headerData = [NSMutableData data];
     [headerData appendBytes:&fileSignature length:sizeof(fileSignature)];
     [headerData appendBytes:&kDataPackageFileVersion length:sizeof(kDataPackageFileVersion)];
-    [headerData appendBytes:[GestureProcessor instance].sessionUUID.UUIDString.UTF8String
-                     length:[GestureProcessor instance].sessionUUID.UUIDString.length];
+    [headerData appendBytes:[AppAnalytics instance].sessionUUID.UUIDString.UTF8String
+                     length:[AppAnalytics instance].sessionUUID.UUIDString.length];
     
     return headerData;
 }
@@ -101,10 +101,10 @@
     char endMarker = '>';
     NSTimeInterval sessionStartInterval = self.sessionStartDate.timeIntervalSince1970;
     NSTimeInterval sessionEndInterval = [NSDate new].timeIntervalSince1970;
-    Version appVersion = [GestureProcessorHelpers appVersion];
-    Version osVersion = [GestureProcessorHelpers OSVersion];
-    double screenWidth = [GestureProcessorHelpers screenSizeInPixels].width;
-    double screenHeight = [GestureProcessorHelpers screenSizeInPixels].height;
+    Version appVersion = [AppAnalyticsHelpers appVersion];
+    Version osVersion = [AppAnalyticsHelpers OSVersion];
+    double screenWidth = [AppAnalyticsHelpers screenSizeInPixels].width;
+    double screenHeight = [AppAnalyticsHelpers screenSizeInPixels].height;
     NSString* systemLocale = [[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
                               stringByPaddingToLength:3 withString:@" " startingAtIndex:0];
     
@@ -112,16 +112,16 @@
     
     [manifestData appendBytes:&beginMarker length:sizeof(beginMarker)];
     [manifestData appendBytes:&kSessionManifestFileVersion length:sizeof(kSessionManifestFileVersion)];
-    [manifestData appendBytes:[GestureProcessor instance].sessionUUID.UUIDString.UTF8String
-                       length:[GestureProcessor instance].sessionUUID.UUIDString.length];
+    [manifestData appendBytes:[AppAnalytics instance].sessionUUID.UUIDString.UTF8String
+                       length:[AppAnalytics instance].sessionUUID.UUIDString.length];
     [manifestData appendBytes:&sessionStartInterval length:sizeof(sessionStartInterval)];
     [manifestData appendBytes:&sessionEndInterval length:sizeof(sessionEndInterval)];
-    [manifestData appendBytes:[GestureProcessor instance].udid.UTF8String
-                       length:[GestureProcessor instance].udid.length];
+    [manifestData appendBytes:[AppAnalytics instance].udid.UTF8String
+                       length:[AppAnalytics instance].udid.length];
     [manifestData appendBytes:&screenWidth length:sizeof(screenWidth)];
     [manifestData appendBytes:&screenHeight length:sizeof(screenHeight)];
-    [manifestData appendBytes:&kGestureProcessorApiVersion length:sizeof(kGestureProcessorApiVersion)];
-    [manifestData appendBytes:[GestureProcessor instance].appKey.UTF8String length:[GestureProcessor instance].appKey.length];
+    [manifestData appendBytes:&kAppAnalyticsApiVersion length:sizeof(kAppAnalyticsApiVersion)];
+    [manifestData appendBytes:[AppAnalytics instance].appKey.UTF8String length:[AppAnalytics instance].appKey.length];
     
     [manifestData appendBytes:&appVersion.major length:sizeof(appVersion.major)];
     [manifestData appendBytes:&appVersion.minor length:sizeof(appVersion.minor)];

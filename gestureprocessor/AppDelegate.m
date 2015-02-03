@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "GestureProcessor.h"
+#import "AppAnalytics.h"
 
 @interface AppDelegate ()
 
@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GestureProcessor initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
+    [AppAnalytics initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
     
     return YES;
 }

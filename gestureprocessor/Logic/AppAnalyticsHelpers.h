@@ -9,7 +9,7 @@ typedef struct _Version
     UInt32 revision;
 } Version;
 
-@interface GestureProcessorHelpers : NSObject
+@interface AppAnalyticsHelpers : NSObject
 
 + (NSString*)topViewControllerClassName;
 + (UIViewController*)topViewController;
