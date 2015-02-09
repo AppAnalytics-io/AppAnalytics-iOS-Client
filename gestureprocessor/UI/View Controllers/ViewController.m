@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "TestViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
@@ -21,6 +22,20 @@
     self.indexLabel.text = [NSString stringWithFormat:@"index: %d", (int)self.index];
     
     self.view.multipleTouchEnabled = YES;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^
+    {
+        TestViewController* vc = [[TestViewController alloc] init];
+        vc.view.frame = [UIScreen mainScreen].bounds;
+        vc.view.backgroundColor = [UIColor yellowColor];
+        [self.navigationController pushViewController:vc animated:NO];
+        
+        ViewController *viewCon = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
+                                   instantiateViewControllerWithIdentifier:@"ViewController"];
+        viewCon.index = self.index;
+        [self.navigationController pushViewController:viewCon animated:NO];
+    });
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender

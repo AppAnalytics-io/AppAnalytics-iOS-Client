@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		720FF31F1A88F62B00C29E42 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720FF31E1A88F62B00C29E42 /* TestViewController.m */; };
 		7227C4BB1A3F037F003A4C3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BA1A3F037F003A4C3D /* main.m */; };
 		7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BD1A3F037F003A4C3D /* AppDelegate.m */; };
 		7227C4E61A3F060A003A4C3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4E21A3F060A003A4C3D /* LaunchScreen.xib */; };
@@ -108,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		720FF31D1A88F62B00C29E42 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		720FF31E1A88F62B00C29E42 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		7227C4B51A3F037F003A4C3D /* gestureprocessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gestureprocessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7227C4B91A3F037F003A4C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7227C4BA1A3F037F003A4C3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 		7227C4EA1A3F0648003A4C3D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				720FF31D1A88F62B00C29E42 /* TestViewController.h */,
+				720FF31E1A88F62B00C29E42 /* TestViewController.m */,
 				7227C4EB1A3F0648003A4C3D /* ViewController.h */,
 				7227C4EC1A3F0648003A4C3D /* ViewController.m */,
 			);
@@ -533,6 +538,7 @@
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
 				727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */,
 				72922F071A48572C00CEC369 /* UISegmentedControl+Tracking.m in Sources */,
+				720FF31F1A88F62B00C29E42 /* TestViewController.m in Sources */,
 				72922F021A483D7000CEC369 /* UIControl+Tracking.m in Sources */,
 				72922EFF1A48339100CEC369 /* KeyboardWatcher.m in Sources */,
 				727E6AC61A4ACCDD00822C51 /* AFSecurityPolicy.m in Sources */,
