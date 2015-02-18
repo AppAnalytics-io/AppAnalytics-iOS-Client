@@ -1,0 +1,6 @@
+#ifndef gestureprocessor_gestureprocessor_Prefix_pch
+#define gestureprocessor_gestureprocessor_Prefix_pch
+
+#import "NamespacedDependencies.h"
+
+#endif
