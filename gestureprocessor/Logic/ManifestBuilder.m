@@ -3,6 +3,7 @@
 #import "GTConstants.h"
 #import "AppAnalytics.h"
 #import "AppAnalyticsHelpers.h"
+#import "Event.h"
 
 @interface AppAnalytics (ManifestBuilder)
 
@@ -137,6 +138,34 @@
     [manifestData appendBytes:&endMarker length:sizeof(endMarker)];
     
     return manifestData;
+}
+
+static NSString* const kIndicesKey    = @"ActionOrder";
+static NSString* const kTimeStampsKey = @"ActionTime";
+static NSString* const kEventNameKey  = @"EventName";
+static NSString* const kEventParametersKey  = @"EventParameters";
+
+- (NSDictionary*)buildEventJSONDict:(Event*)event
+{
+    NSMutableDictionary* JSONDict = [NSMutableDictionary dictionary];
+    
+    if (event.indices)
+        JSONDict[kIndicesKey] = event.indices;
+    
+    if (event.timestamps)
+        JSONDict[kTimeStampsKey] = event.timestamps;
+    
+    JSONDict[kEventNameKey] = event.descriptionText ? event.descriptionText : kEventDescriptionPlaceholder;
+    
+    if (event.parameters)
+        JSONDict[kEventParametersKey] = event.parameters;
+    
+    return JSONDict;
+}
+
+- (NSData*)buildEventsJSONPackage:(NSArray*)JSONDicts
+{
+    return [NSJSONSerialization dataWithJSONObject:JSONDicts options:0 error:nil];
 }
 
 @end

@@ -6,6 +6,7 @@
 #import "AppAnalytics.h"
 #import "GTConstants.h"
 #import "ConnectionManager.h"
+#import "Event.h"
 
 @interface GestureDetails (Tracking)
 
@@ -297,7 +298,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     actions[[AppAnalytics instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
 #ifdef DEBUG
-    [self printDebugInfo:actionDetails];
+#warning Uncomment this if needed
+//    [self printDebugInfo:actionDetails];
 #endif
 }
 
@@ -328,6 +330,19 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     NSLog(@"Triggered VC ID [%@]", actionDetails.triggerViewControllerID);
     NSLog(@"Triggered Element ID [%@]", actionDetails.triggerViewID);
     NSLog(@"-----------------------------");
+}
+
+- (void)debugLogEvent:(Event *)event
+{
+    if (event.parameters)
+    {
+        NSLog(@"AppAnalytics: Event [%@] recorded. Parameters %@", event.descriptionText, event.parameters.description);
+    }
+    else
+    {
+        NSLog(@"AppAnalytics: Event [%@] recorded", event.descriptionText);
+    }
+    NSLog(@"indices%@\ntimestamps%@", event.indices, event.timestamps);
 }
 
 @end

@@ -3,6 +3,7 @@
 #import "LogInfo.h"
 
 @class GestureDetails;
+@class Event;
 
 @interface Logger : NSObject
 
@@ -19,5 +20,7 @@
 - (void)navigationRecognizedWithViewControllerID:(NSString*)viewControllerID;
 
 - (void)shakeRecognized;
+
+- (void)debugLogEvent:(Event*)event;
 
 @end

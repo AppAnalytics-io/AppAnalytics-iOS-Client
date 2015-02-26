@@ -12,6 +12,18 @@
 {
     [AppAnalytics initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
     
+#ifdef DEBUG
+    [AppAnalytics logEvent:@"Event 1"];
+    [AppAnalytics logEvent:nil];
+    [AppAnalytics logEvent:nil];
+//    NSDictionary* tempDict = @{@"1" : @"1", @"2" : @"2", @"3" : @"3"};
+//    [AppAnalytics logEvent:@"Event 2" parameters:tempDict];
+//    [AppAnalytics logEvent:@"Event 2" parameters:tempDict];
+//    [AppAnalytics logEvent:@"Event 2" parameters:nil];
+//    [AppAnalytics logEvent:@"Event 2" parameters:tempDict];
+//    NSLog(@"Crash %@", tempDict.allKeys[10]);
+#endif
+
     return YES;
 }
 

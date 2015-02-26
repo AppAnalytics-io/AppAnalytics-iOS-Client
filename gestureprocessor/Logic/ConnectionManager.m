@@ -1,9 +1,9 @@
 #import "ConnectionManager.h"
 #import "GTConstants.h"
-#import "AFHTTPRequestOperation.h"
-#import "HMFJSONResponseSerializerWithData.h"
 #import "ManifestBuilder.h"
 #import "AppAnalytics.h"
+#import "HMFJSONResponseSerializerWithData.h"
+#import "AFHTTPRequestOperation.h"
 
 @interface AppAnalytics (Connection)
 + (instancetype)instance;
@@ -28,6 +28,7 @@
         NSMutableSet *contentTypes = [NSMutableSet setWithSet:_sharedClient.responseSerializer.acceptableContentTypes];
         [contentTypes addObject:@"multipart/form-data"];
         [contentTypes addObject:@"application/octet-stream"];
+        [contentTypes addObject:@"application/jsonrequest"];
         _sharedClient.responseSerializer.acceptableContentTypes = contentTypes;
     });
     
@@ -84,18 +85,59 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      }
       failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"PUT Manifest error: %@", error);
+         NSLog(@"PUT Samples error: %@", error);
      }];
+}
+
+- (void)PUTevents:(NSArray*)events sessionID:(NSString*)sessionID success:(void (^)())success failure:(void (^)())failure
+{    
+    NSString* urlString = [NSString stringWithFormat:@"events?UDID=%@", [AppAnalytics instance].udid];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    parameters[@"Events"] = events;
+    parameters[@"SessionID"] = sessionID;
+    
+    NSString* s = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil] encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", s);
+    
+    [self PUT:urlString
+    parameters:nil
+    constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+      {
+          [formData appendPartWithFormData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil]
+                                      name:@"Events"];
+      }
+       success:^(AFHTTPRequestOperation *operation, id responseObject)
+      {
+          if (success)
+          {
+              success();
+          }
+      }
+       failure:^(AFHTTPRequestOperation *operation, NSError *error)
+      {
+          NSLog(@"PUT Events error: %@", error);
+          if (failure)
+          {
+              failure();
+          }
+      }];
 }
 
 - (AFHTTPRequestOperation *)PUT:(NSString *)URLString
                       parameters:(id)parameters
        constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSError *serializationError = nil;
-    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    
+    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT"
+                                                                                URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString]
+                                                                               parameters:parameters
+                                                                constructingBodyWithBlock:block
+                                                                                    error:&serializationError];
     if (serializationError) {
         if (failure) {
 #pragma clang diagnostic push
@@ -115,5 +157,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     
     return operation;
 }
+
+
 
 @end

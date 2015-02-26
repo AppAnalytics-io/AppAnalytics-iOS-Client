@@ -3,8 +3,21 @@
 #import "Logger.h"
 #import "UIGestureRecognizer+Type.h"
 #import "KeyboardWatcher.h"
-#import "OpenUDID.h"
 #import "AppAnalyticsHelpers.h"
+#import "EventsManager.h"
+#import <StoreKit/StoreKit.h>
+#import "NamespacedDependencies.h"
+#import "OpenUDID.h"
+
+@interface EventsManager (AppAnalytics)
+
+@property (nonatomic, readwrite) NSTimeInterval dispatchInterval;
+@property (nonatomic, readwrite) BOOL exceptionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL navigationAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL debugLogEnabled;
+
+@end
 
 @interface AppAnalytics () <UIGestureRecognizerDelegate>
 
@@ -22,10 +35,14 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 @implementation AppAnalytics
 
+#pragma mark - Life Cycle
+
 + (void)initWithAppKey:(NSString *)appKey
 {
     [AppAnalyticsHelpers checkAppKey:appKey];
     
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:[EventsManager instance]];
     [AppAnalytics instance].appKey = appKey;
     [KeyboardWatcher instance];
     [[Logger instance] createSessionManifest];
@@ -58,6 +75,50 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     }
     return self;
 }
+
+#pragma mark - Events Processing
+
++ (void)logEvent:(NSString*)description
+{
+    [[EventsManager instance] addEvent:description];
+}
+
++ (void)logEvent:(NSString*)description parameters:(NSDictionary*)parameters
+{
+    [[EventsManager instance] addEvent:description parameters:parameters];
+}
+
++ (void)setDispatchInverval:(NSTimeInterval)dispatchInterval
+{
+    [EventsManager instance].dispatchInterval = dispatchInterval;
+}
+
++ (void)setDebugLogEnabled:(BOOL)enabled
+{
+    [EventsManager instance].debugLogEnabled = enabled;
+}
+
++ (void)setExceptionAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].exceptionAnalyticEnabled = enabled;
+}
+
++ (void)setTransactionAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].transactionAnalyticEnabled = enabled;
+}
+
++ (void)setNavigationAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].navigationAnalyticEnabled = enabled;
+}
+
+void uncaughtExceptionHandler(NSException *exception)
+{
+    [[EventsManager instance] handleUncaughtException:exception];
+}
+
+#pragma mark - Gesture Processing
 
 - (void)trackWindowGestures:(UIWindow*)window
 {

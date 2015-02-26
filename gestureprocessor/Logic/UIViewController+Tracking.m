@@ -2,6 +2,8 @@
 #import "NSObject+Swizzling.h"
 #import <objc/runtime.h>
 #import "Logger.h"
+#import "AppAnalytics.h"
+#import "GTConstants.h"
 
 @implementation UIViewController (Tracking)
 
@@ -23,6 +25,7 @@
     if (![className isEqualToString:omittedClass])
     {
         [[Logger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
+        [AppAnalytics logEvent:kNavigationEvent parameters:@{kNavigationEventClassName : className}];
     }
 }
 

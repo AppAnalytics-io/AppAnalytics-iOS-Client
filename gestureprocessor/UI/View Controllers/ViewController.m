@@ -3,7 +3,6 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
-
 @end
 
 @implementation ViewController
@@ -22,66 +21,40 @@
     self.indexLabel.text = [NSString stringWithFormat:@"index: %d", (int)self.index];
     
     self.view.multipleTouchEnabled = YES;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^
-    {
-        TestViewController* vc = [[TestViewController alloc] init];
-        vc.view.frame = [UIScreen mainScreen].bounds;
-        vc.view.backgroundColor = [UIColor yellowColor];
-        [self.navigationController pushViewController:vc animated:NO];
-        
-        ViewController *viewCon = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
-                                   instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon.index = self.index;
-        [self.navigationController pushViewController:viewCon animated:NO];
-    });
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender
 {
-    static int flag;
+    if (!(self.index % 3) && self.index > 0)
+    {
+        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     
+    static int flag;
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
     if (flag & 1)
     {
-        ViewController *viewCon =
-        [[UIStoryboard storyboardWithName:@"Main"
-                                   bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
-    
+        ViewController *viewCon = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
         viewCon.index = ++self.index;
-    
         UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
         [self presentViewController:navController animated:YES completion:nil];
     }
     else
     {
-        ViewController *viewCon1 =
-        [[UIStoryboard storyboardWithName:@"Main"
-                                   bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon1.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
-        viewCon1.index = ++self.index;
+        NSMutableArray* vcs = [NSMutableArray array];
+        for (int vcIndex = 0; vcIndex < 4; vcIndex++)
+        {
+            ViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+            vc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:arc4random_uniform(UITabBarSystemItemMostViewed)
+                                                                       tag:vcIndex];
+            vc.index = self.index + vcIndex + 1;
+            [vcs addObject:vc];
+        }
         
-        ViewController *viewCon2 =
-        [[UIStoryboard storyboardWithName:@"Main"
-                                   bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon2.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
-        viewCon2.index = ++self.index;
-        
-        ViewController *viewCon3 =
-        [[UIStoryboard storyboardWithName:@"Main"
-                                   bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon3.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
-        viewCon3.index = ++self.index;
-        
-        ViewController *viewCon4 =
-        [[UIStoryboard storyboardWithName:@"Main"
-                                   bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon4.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
-        viewCon4.index = ++self.index;
-        
-        UITabBarController* tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-        tabBarController.viewControllers = [[NSArray alloc] initWithObjects:viewCon1, viewCon2, viewCon3, viewCon4, nil];
-        
+        UITabBarController* tabBarController = [[UITabBarController alloc] init];
+        tabBarController.viewControllers = vcs.copy;
         [self presentViewController:tabBarController animated:YES completion:nil];
     }
     flag++;
