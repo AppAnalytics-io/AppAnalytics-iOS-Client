@@ -130,6 +130,10 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     if (event)
     {
         NSMutableArray* sessionEvents = self.events[[AppAnalytics instance].sessionUUID.UUIDString];
+        if (!sessionEvents)
+        {
+            sessionEvents = [NSMutableArray array];
+        }
 
         NSUInteger index = [sessionEvents indexOfObject:event];
         if (index == NSNotFound || !self.events)

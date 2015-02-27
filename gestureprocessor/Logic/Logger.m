@@ -8,6 +8,9 @@
 #import "ConnectionManager.h"
 #import "Event.h"
 
+@import SystemConfiguration;
+@import MobileCoreServices;
+
 @interface GestureDetails (Tracking)
 
 @property (nonatomic, readwrite) NSUInteger index;
