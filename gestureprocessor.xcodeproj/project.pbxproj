@@ -64,7 +64,7 @@
 		725795EC1A4DA99E00D8572D /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		725795ED1A4DA99E00D8572D /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		725795EE1A4DA99E00D8572D /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
-		725795EF1A4DA9B100D8572D /* AppAnalytics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; };
+		725795EF1A4DA9B100D8572D /* AppAnalytics.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
@@ -170,13 +170,6 @@
 			remoteGlobalIDString = 725795B91A4DA94E00D8572D;
 			remoteInfo = gestureprocessorlib;
 		};
-		7246C1011A94BC43005C4810 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7227C4AD1A3F037F003A4C3D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 726C9A051A949569003D03AE;
-			remoteInfo = Libs;
-		};
 		72DC01361A978013003F40BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7227C4AD1A3F037F003A4C3D /* Project object */;
@@ -197,14 +190,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		725795B81A4DA94E00D8572D /* CopyFiles */ = {
+		725795B81A4DA94E00D8572D /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = .;
 			dstSubfolderSpec = 16;
 			files = (
-				725795EF1A4DA9B100D8572D /* AppAnalytics.h in CopyFiles */,
+				725795EF1A4DA9B100D8572D /* AppAnalytics.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		726C9A041A949569003D03AE /* CopyFiles */ = {
@@ -624,14 +618,13 @@
 			buildPhases = (
 				725795B61A4DA94E00D8572D /* Sources */,
 				725795B71A4DA94E00D8572D /* Frameworks */,
-				725795B81A4DA94E00D8572D /* CopyFiles */,
+				725795B81A4DA94E00D8572D /* Copy Files */,
 				723292CC1A9642E300850FEC /* Headers */,
 				723292CE1A96464000850FEC /* Prepare Framework */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7246C1021A94BC43005C4810 /* PBXTargetDependency */,
 			);
 			name = AppAnalytics;
 			productName = gestureprocessorlib;
@@ -942,11 +935,6 @@
 			isa = PBXTargetDependency;
 			target = 725795B91A4DA94E00D8572D /* AppAnalytics */;
 			targetProxy = 723292C91A9623C300850FEC /* PBXContainerItemProxy */;
-		};
-		7246C1021A94BC43005C4810 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 726C9A051A949569003D03AE /* Ext */;
-			targetProxy = 7246C1011A94BC43005C4810 /* PBXContainerItemProxy */;
 		};
 		72DC01351A978013003F40BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
