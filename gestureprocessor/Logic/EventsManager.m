@@ -8,6 +8,17 @@
 #import "AppAnalytics.h"
 #import "AFNetworkReachabilityManager.h"
 
+static dispatch_queue_t events_processing_queue()
+{
+    static dispatch_queue_t events_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        events_queue = dispatch_queue_create("com.app-analytics.events.processing", NULL);
+    });
+    
+    return events_queue;
+}
+
 @interface AppAnalytics (EventsManager)
 
 + (instancetype)instance;
@@ -19,7 +30,7 @@
 
 @interface EventsManager () 
 
-@property (nonatomic, readwrite, strong) NSMutableDictionary* events; // { sessionID : mutable array of events }
+@property (atomic, readwrite, strong) NSMutableDictionary* events; // { sessionID : mutable array of events }
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) NSTimeInterval dispatchInterval;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
@@ -34,6 +45,8 @@
 static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 @implementation EventsManager
+
+@synthesize events = _events;
 
 + (instancetype)instance
 {
@@ -71,13 +84,23 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (NSMutableDictionary*)events
 {
-    if (!_events)
+    @synchronized(self)
     {
-        _events = [NSMutableDictionary dictionary];
-        _events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
+        if (!_events)
+        {
+            _events = [NSMutableDictionary dictionary];
+            _events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
+        }
+        return _events;
     }
-    
-    return _events;
+}
+
+- (void)setEvents:(NSMutableDictionary *)events
+{
+    @synchronized(self)
+    {
+        _events = events;
+    }
 }
 
 - (void)setDispatchInterval:(NSTimeInterval)dispatchInterval
@@ -116,47 +139,50 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     [self addEvent:description parameters:nil];
 }
 
-- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters
+- (void)addEvent:(NSString *)aDescription parameters:(NSDictionary *)aParameters
 {
-    if (description.length > kEventDescriptionMaxLength)
+    __block NSString* description = aDescription;
+    __block NSDictionary* parameters = aParameters;
+    dispatch_async(events_processing_queue(), ^
     {
-        description = [description substringToIndex:kEventDescriptionMaxLength];
-    }
-    
-    Event* event = [Event eventWithIndex:self.index++
-                               timestamp:[NSDate new].timeIntervalSince1970
-                             description:description
-                              parameters:parameters];
-    if (event)
-    {
-        NSMutableArray* sessionEvents = self.events[[AppAnalytics instance].sessionUUID.UUIDString];
-        if (!sessionEvents)
+        if (description.length > kEventDescriptionMaxLength)
         {
-            sessionEvents = [NSMutableArray array];
+            description = [description substringToIndex:kEventDescriptionMaxLength];
         }
-
-        NSUInteger index = [sessionEvents indexOfObject:event];
-        if (index == NSNotFound || !self.events)
-        {
-            [sessionEvents addObject:event];
-            if (self.debugLogEnabled)
-            {
-                [[Logger instance] debugLogEvent:event];
-            }
-        }
-        else
-        {
-            Event* existingEvent = sessionEvents[index];
-            [existingEvent addTimestamp:[event.timestamps.lastObject doubleValue]];
-            [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
-            if (self.debugLogEnabled)
-            {
-                [[Logger instance] debugLogEvent:existingEvent];
-            }
-        }
+        Event* event = [Event eventWithIndex:self.index++
+                                   timestamp:[NSDate new].timeIntervalSince1970
+                                 description:description
+                                  parameters:parameters];
         
-        self.events[[AppAnalytics instance].sessionUUID.UUIDString] = sessionEvents;
-    }
+        if (event)
+        {
+            NSMutableArray* sessionEvents = self.events[[AppAnalytics instance].sessionUUID.UUIDString];
+            if (!sessionEvents)
+            {
+                sessionEvents = [NSMutableArray array];
+            }
+            NSUInteger index = [sessionEvents indexOfObject:event];
+            if (index == NSNotFound || !self.events)
+            {
+                [sessionEvents addObject:event];
+                if (self.debugLogEnabled)
+                {
+                    [[Logger instance] debugLogEvent:event];
+                }
+            }
+            else
+            {
+                Event* existingEvent = sessionEvents[index];
+                [existingEvent addTimestamp:[event.timestamps.lastObject doubleValue]];
+                [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
+                if (self.debugLogEnabled)
+                {
+                    [[Logger instance] debugLogEvent:existingEvent];
+                }
+            }
+            self.events[[AppAnalytics instance].sessionUUID.UUIDString] = sessionEvents;
+        }
+    });
 }
 
 - (void)sendData
@@ -165,44 +191,51 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     {
         return;
     }
-
-    for (NSString* sessionID in self.events.allKeys)
+    
+    dispatch_async(events_processing_queue(), ^
     {
-        NSMutableArray* wholeSessionPackage = [NSMutableArray array];
-        NSMutableArray* sessionChunkEvents = [NSMutableArray array];
-        
-        int eventInChunkIndex = 0;
-        int index = 0;
-
-        for (Event* event in self.events[sessionID])
+        @autoreleasepool
         {
-            NSDictionary* eventJSONDict = [[ManifestBuilder instance] buildEventJSONDict:event];
-            eventInChunkIndex++;
-            if (eventInChunkIndex > kEventsMaxSizeInBytes / kEventAverageSizeInBytes)
+            for (NSString* sessionID in self.events.allKeys)
             {
-                [wholeSessionPackage addObject:sessionChunkEvents];
-                sessionChunkEvents = [NSMutableArray array];
-                eventInChunkIndex = 0;
-            }
-            index++;
-            [sessionChunkEvents addObject:eventJSONDict];
-        }
-        [wholeSessionPackage addObject:sessionChunkEvents];
-        
-        for (NSMutableArray* tempSessionChunkEvents in wholeSessionPackage)
-        {
-            [[ConnectionManager instance] PUTevents:tempSessionChunkEvents
-                                          sessionID:sessionID
-                                            success:^
-            {
-                [self cleanupUploadedEvents:sessionID eventsNumber:index];
-            }
-                                            failure:^
-            {
+                NSMutableArray* wholeSessionPackage = [NSMutableArray array];
+                NSMutableArray* sessionChunkEvents = [NSMutableArray array];
                 
-            }];
+                int eventInChunkIndex = 0;
+                int index = 0;
+
+                for (Event* event in self.events[sessionID])
+                {
+                    NSDictionary* eventJSONDict = [[ManifestBuilder instance] buildEventJSONDict:event];
+                    eventInChunkIndex++;
+                    if (eventInChunkIndex > kEventsMaxSizeInBytes / kEventAverageSizeInBytes)
+                    {
+                        [wholeSessionPackage addObject:sessionChunkEvents];
+                        sessionChunkEvents = [NSMutableArray array];
+                        eventInChunkIndex = 0;
+                    }
+                    index++;
+                    [sessionChunkEvents addObject:eventJSONDict];
+                }
+                [wholeSessionPackage addObject:sessionChunkEvents];
+                
+                for (NSMutableArray* tempSessionChunkEvents in wholeSessionPackage)
+                {
+                    [[ConnectionManager instance] PUTevents:tempSessionChunkEvents
+                                                  sessionID:sessionID
+                                                    success:^
+                    {
+                        [self cleanupUploadedEvents:sessionID eventsNumber:index];
+                    }
+                                                    failure:^
+                    {
+                        
+                    }];
+                }
+                wholeSessionPackage = nil;
+            }
         }
-    }
+    });
 }
 
 - (void)cleanupUploadedEvents:(NSString*)sessionID eventsNumber:(int)uploadedEventsNumber
@@ -212,19 +245,22 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         return;
     }
     
-    NSMutableArray* allSessionEvents = self.events[sessionID];
-    NSRange cleanupRange = NSMakeRange(0, MIN(uploadedEventsNumber, allSessionEvents.count));
-    if (cleanupRange.length == allSessionEvents.count)
+    dispatch_async(events_processing_queue(), ^
     {
-        [self.events removeObjectForKey:sessionID];
-    }
-    else
-    {
-        [allSessionEvents removeObjectsInRange:cleanupRange];
-        self.events[sessionID] = allSessionEvents;
-    }
-    
-    [self serialize];
+        NSMutableArray* allSessionEvents = self.events[sessionID];
+        NSRange cleanupRange = NSMakeRange(0, MIN(uploadedEventsNumber, allSessionEvents.count));
+        if (cleanupRange.length == allSessionEvents.count)
+        {
+            [self.events removeObjectForKey:sessionID];
+        }
+        else
+        {
+            [allSessionEvents removeObjectsInRange:cleanupRange];
+            self.events[sessionID] = allSessionEvents;
+        }
+        allSessionEvents = nil;
+        [self serialize];
+    });
 }
 
 - (void)handleUncaughtException:(NSException *)exception
@@ -237,7 +273,10 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (void)serialize
 {
-    [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
+    dispatch_async(events_processing_queue(), ^
+    {
+        [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
+    });
 }
 
 - (void)deserialize

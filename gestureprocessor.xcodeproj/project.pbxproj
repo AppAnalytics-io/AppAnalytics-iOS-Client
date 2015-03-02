@@ -254,7 +254,7 @@
 		72672F251A4988C4001FDC80 /* ManifestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestBuilder.m; sourceTree = "<group>"; };
 		72672F281A49BF7E001FDC80 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		72672F291A49BF7E001FDC80 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
-		726C9A061A949569003D03AE /* libLibs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLibs.a; path = libExt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		726C9A061A949569003D03AE /* libExt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libExt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		726C9A341A949665003D03AE /* NamespacedDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NamespacedDependencies.h; sourceTree = "<group>"; };
 		727B30C21A83A8C700162711 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		727B30C31A83A8C700162711 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 			children = (
 				7227C4B51A3F037F003A4C3D /* gestureprocessor.app */,
 				725795BA1A4DA94E00D8572D /* libAppAnalytics.a */,
-				726C9A061A949569003D03AE /* libLibs.a */,
+				726C9A061A949569003D03AE /* libExt.a */,
 				72DC015F1A978013003F40BE /* libStaticAppAnalytics.a */,
 			);
 			name = Products;
@@ -653,7 +653,7 @@
 			);
 			name = Ext;
 			productName = Libs;
-			productReference = 726C9A061A949569003D03AE /* libLibs.a */;
+			productReference = 726C9A061A949569003D03AE /* libExt.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		72DC01341A978013003F40BE /* StaticAppAnalytics */ = {

@@ -1,5 +1,6 @@
 #import "ViewController.h"
 #import "TestViewController.h"
+#import "AppAnalytics.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
@@ -21,6 +22,8 @@
     self.indexLabel.text = [NSString stringWithFormat:@"index: %d", (int)self.index];
     
     self.view.multipleTouchEnabled = YES;
+    
+//    [self test];
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender
@@ -59,5 +62,20 @@
     }
     flag++;
 }
+
+- (void)test
+{
+    int repeats = 1000;
+    for (int i = 0; i < repeats; i++)
+    {
+        [self processIteration];
+    }
+}
+
+- (void)processIteration
+{
+    [AppAnalytics logEvent:[NSString stringWithFormat:@"Event %lu", (unsigned long) [@(arc4random()) hash]]];
+}
+
 
 @end

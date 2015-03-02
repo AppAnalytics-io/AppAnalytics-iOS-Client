@@ -8,7 +8,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:encodedObject forKey:key];
     [defaults synchronize];
-    
 }
 
 - (id)loadCustomObjectWithKey:(NSString *)key

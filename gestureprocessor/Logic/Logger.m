@@ -225,8 +225,11 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         NSArray* sessionSamplesToRemove = actionsToRemove[sessionID];
         NSMutableArray* sessionSamples = actions[sessionID];
-        [sessionSamples removeObjectsInArray:sessionSamplesToRemove];
-        actions[sessionID] = sessionSamples;
+        if (sessionSamples)
+        {
+            [sessionSamples removeObjectsInArray:sessionSamplesToRemove];
+            actions[sessionID] = sessionSamples;
+        }
     }
     self.actions = actions.copy;
 }

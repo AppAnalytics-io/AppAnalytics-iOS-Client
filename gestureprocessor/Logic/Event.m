@@ -11,6 +11,8 @@
 
 @implementation Event
 
+static int alloc_count;
+
 + (instancetype)eventWithIndex:(NSUInteger)index
                      timestamp:(NSTimeInterval)timestamp
                    description:(NSString*)description
@@ -23,6 +25,7 @@
         event.timestamps = @[@(timestamp)];
         event.descriptionText = description;
         event.parameters = parameters;
+        NSLog(@"created %d", alloc_count++);
     }
     return event;
 }
@@ -39,8 +42,16 @@
         event.timestamps = timestamps;
         event.descriptionText = description;
         event.parameters = parameters;
+        NSLog(@"created %d", alloc_count++);
     }
     return event;
+}
+
+- (void)dealloc
+{
+#warning debug
+    static int count;
+    NSLog(@"destroyed %d", count++);
 }
 
 - (void)addTimestamp:(NSTimeInterval)timestamp
@@ -52,6 +63,7 @@
     }
     [tempTimestamps addObject:@(timestamp)];
     self.timestamps = tempTimestamps.copy;
+    NSLog(@"created %d", alloc_count++);
 }
 
 - (void)addIndex:(NSUInteger)index
@@ -63,6 +75,7 @@
     }
     [tempIndices addObject:@(index)];
     self.indices = tempIndices.copy;
+    NSLog(@"created %d", alloc_count++);
 }
 
 - (BOOL)isEqual:(id)other
