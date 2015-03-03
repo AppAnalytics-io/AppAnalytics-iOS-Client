@@ -43,3 +43,9 @@ extern NSString* const kTransactionStateDeferred;
 
 extern NSString* const kNavigationEvent;
 extern NSString* const kNavigationEventClassName;
+
+extern NSString* const kAlertEvent;
+extern NSString* const kAlertTitle;
+extern NSString* const kAlertMessage;
+
+extern NSString* const kEmptyParameter;

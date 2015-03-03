@@ -13,10 +13,10 @@ NSString* const kGTBaseURL      = @"http://wa-api-cent-us-1.cloudapp.net/api/v1"
 NSString* const kGTManifestsURL = @"manifests";
 NSString* const kGTSamplesURL   = @"samples";
 NSString* const kEventsFullURL  = @"http://wa-api-cent-us-1.cloudapp.net/api/v1/events";
-#warning kDefaultEventsDispatchTime
+
 NSTimeInterval const kMaxEventsDispatchTime = 3600.0f;
 NSTimeInterval const kMinEventsDispatchTime = 10.0f;
-NSTimeInterval const kDefaultEventsDispatchTime = 10.0f;//120.0f;
+NSTimeInterval const kDefaultEventsDispatchTime = 120.0f;
 
 BOOL const kDebugLogEnabled = YES;
 BOOL const kExceptionAnalyticsEnabled = YES;
@@ -43,3 +43,9 @@ NSString* const kTransactionStateDeferred   = @"Transaction Deferred";
 
 NSString* const kNavigationEvent            = @"Navigation";
 NSString* const kNavigationEventClassName   = @"Screen Class Name";
+
+NSString* const kAlertEvent   = @"Pop Up";
+NSString* const kAlertTitle   = @"Title";
+NSString* const kAlertMessage = @"Message";
+
+NSString* const kEmptyParameter = @"Null";

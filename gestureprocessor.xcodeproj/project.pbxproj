@@ -65,6 +65,11 @@
 		725795ED1A4DA99E00D8572D /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		725795EE1A4DA99E00D8572D /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
 		725795EF1A4DA9B100D8572D /* AppAnalytics.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; };
+		726152E51AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */; };
+		726152E61AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */; };
+		726152E71AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */; };
+		726152E81AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */; };
+		726152E91AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */; };
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
@@ -242,6 +247,8 @@
 		7246C1051A94C237005C4810 /* gestureprocessor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gestureprocessor-Prefix.pch"; sourceTree = "<group>"; };
 		724D758E1A8509CF00F2E61D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		725795BA1A4DA94E00D8572D /* libAppAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Tracking.h"; sourceTree = "<group>"; };
+		726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Tracking.m"; sourceTree = "<group>"; };
 		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
 		72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Type.m"; sourceTree = "<group>"; };
 		72672F241A4988C4001FDC80 /* ManifestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestBuilder.h; sourceTree = "<group>"; };
@@ -535,6 +542,8 @@
 				7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */,
 				72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */,
 				72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */,
+				726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */,
+				726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */,
 				72C84E841A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.h */,
 				72C84E851A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.m */,
 			);
@@ -580,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				723292CD1A9642E800850FEC /* AppAnalytics.h in Headers */,
+				726152E51AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72DC015A1A978013003F40BE /* AppAnalytics.h in Headers */,
+				726152E61AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +812,7 @@
 				727B30C41A83A8C700162711 /* Event.m in Sources */,
 				72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
+				726152E71AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
 				727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */,
 				72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */,
 				727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */,
@@ -837,6 +849,7 @@
 			files = (
 				72DC01671A978432003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
 				72DC01621A97841A003F40BE /* Event.m in Sources */,
+				726152E81AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
 				72DC01631A97841A003F40BE /* EventsManager.m in Sources */,
 				726C9A381A949DD4003D03AE /* HMFJSONResponseSerializerWithData.m in Sources */,
 				726C9A391A949DD4003D03AE /* AFHTTPRequestOperation.m in Sources */,
@@ -894,6 +907,7 @@
 			files = (
 				72DC01641A978429003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
 				72DC01651A978429003F40BE /* Event.m in Sources */,
+				726152E91AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
 				72DC01661A978429003F40BE /* EventsManager.m in Sources */,
 				72DC01381A978013003F40BE /* HMFJSONResponseSerializerWithData.m in Sources */,
 				72DC01391A978013003F40BE /* AFHTTPRequestOperation.m in Sources */,

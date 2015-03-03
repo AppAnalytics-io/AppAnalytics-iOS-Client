@@ -28,39 +28,44 @@
 
 - (IBAction)pushUINavController:(UIButton *)sender
 {
-    if (!(self.index % 3) && self.index > 0)
-    {
-        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-    
-    static int flag;
-    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-
-    if (flag & 1)
-    {
-        ViewController *viewCon = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-        viewCon.index = ++self.index;
-        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
-        [self presentViewController:navController animated:YES completion:nil];
-    }
-    else
-    {
-        NSMutableArray* vcs = [NSMutableArray array];
-        for (int vcIndex = 0; vcIndex < 4; vcIndex++)
-        {
-            ViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-            vc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:arc4random_uniform(UITabBarSystemItemMostViewed)
-                                                                       tag:vcIndex];
-            vc.index = self.index + vcIndex + 1;
-            [vcs addObject:vc];
-        }
-        
-        UITabBarController* tabBarController = [[UITabBarController alloc] init];
-        tabBarController.viewControllers = vcs.copy;
-        [self presentViewController:tabBarController animated:YES completion:nil];
-    }
-    flag++;
+    [[[UIAlertView alloc] initWithTitle:@"Title"
+                                message:@"Message"
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+//    if (!(self.index % 3) && self.index > 0)
+//    {
+//        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+//        return;
+//    }
+//    
+//    static int flag;
+//    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//
+//    if (flag & 1)
+//    {
+//        ViewController *viewCon = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+//        viewCon.index = ++self.index;
+//        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
+//        [self presentViewController:navController animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        NSMutableArray* vcs = [NSMutableArray array];
+//        for (int vcIndex = 0; vcIndex < 4; vcIndex++)
+//        {
+//            ViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+//            vc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:arc4random_uniform(UITabBarSystemItemMostViewed)
+//                                                                       tag:vcIndex];
+//            vc.index = self.index + vcIndex + 1;
+//            [vcs addObject:vc];
+//        }
+//        
+//        UITabBarController* tabBarController = [[UITabBarController alloc] init];
+//        tabBarController.viewControllers = vcs.copy;
+//        [self presentViewController:tabBarController animated:YES completion:nil];
+//    }
+//    flag++;
 }
 
 - (void)test
