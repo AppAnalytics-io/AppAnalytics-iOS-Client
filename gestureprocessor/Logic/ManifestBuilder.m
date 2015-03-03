@@ -77,6 +77,8 @@
     float param1 = actionDetails.info;
     u_int16_t viewIDLength = actionDetails.triggerViewControllerID.length;
     u_int16_t elementIDLength = actionDetails.triggerViewID.length;
+    NSString* parametersString = [AppAnalyticsHelpers orientationParameter];
+    u_int16_t parametersLength = parametersString.length;
 
     NSMutableData* packageData = [NSMutableData data];
     
@@ -91,6 +93,8 @@
     [packageData appendBytes:actionDetails.triggerViewControllerID.UTF8String length:viewIDLength];
     [packageData appendBytes:&elementIDLength length:sizeof(elementIDLength)];
     [packageData appendBytes:actionDetails.triggerViewID.UTF8String length:elementIDLength];
+    [packageData appendBytes:&parametersLength length:sizeof(parametersLength)];
+    [packageData appendBytes:parametersString.UTF8String length:parametersLength];
     [packageData appendBytes:&endMarker length:sizeof(endMarker)];
     
     return packageData;

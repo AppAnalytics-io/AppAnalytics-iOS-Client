@@ -258,6 +258,11 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self addAction:details];
 }
 
+- (void)gestureRecognized:(UIGestureRecognizer *)gestureRecognizer responsive:(BOOL)responsive
+{
+    
+}
+
 - (void)gestureRecognized:(ActionType)type
           triggerPosition:(CGPoint)position
             triggerViewID:(NSString *)viewID
@@ -305,7 +310,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     self.actions = actions.copy;
 #ifdef DEBUG
 #warning Uncomment this if needed
-//    [self printDebugInfo:actionDetails];
+    [self printDebugInfo:actionDetails];
 #endif
 }
 

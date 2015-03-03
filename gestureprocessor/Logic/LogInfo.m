@@ -53,6 +53,7 @@ NSString* NSStringWithActionType(ActionType action)
 @property (nonatomic, readwrite) CGPoint position;
 @property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
 @property (nonatomic, strong, readwrite) NSString* triggerViewID;
+@property (nonatomic, readwrite) BOOL responsive;
 
 @end
 

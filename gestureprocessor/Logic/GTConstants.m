@@ -18,6 +18,11 @@ NSTimeInterval const kMaxEventsDispatchTime = 3600.0f;
 NSTimeInterval const kMinEventsDispatchTime = 10.0f;
 NSTimeInterval const kDefaultEventsDispatchTime = 120.0f;
 
+NSString* const kPortraitParameter           = @"P";
+NSString* const kLandscapeParameter          = @"L";
+NSString* const kUnresponsiveSampleParameter = @"U";
+NSString* const kResponsiveSampleParameter   = @"R";
+
 BOOL const kDebugLogEnabled = YES;
 BOOL const kExceptionAnalyticsEnabled = YES;
 BOOL const kTransactionAnalyticsEnabled = YES;

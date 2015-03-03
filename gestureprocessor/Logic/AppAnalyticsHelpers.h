@@ -18,5 +18,6 @@ typedef struct _Version
 + (Version)OSVersion;
 + (CGSize)screenSizeInPixels;
 + (void)checkAppKey:(NSString*)appKey;
++ (NSString*)orientationParameter;
 
 @end

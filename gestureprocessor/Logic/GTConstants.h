@@ -14,6 +14,11 @@ extern NSString* const kGTManifestsURL;
 extern NSString* const kGTSamplesURL;
 extern NSString* const kEventsFullURL;
 
+extern NSString* const kPortraitParameter;
+extern NSString* const kLandscapeParameter;
+extern NSString* const kUnresponsiveSampleParameter;
+extern NSString* const kResponsiveSampleParameter;
+
 extern NSTimeInterval const kMaxEventsDispatchTime;
 extern NSTimeInterval const kMinEventsDispatchTime;
 extern NSTimeInterval const kDefaultEventsDispatchTime;

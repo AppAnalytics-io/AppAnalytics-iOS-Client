@@ -197,6 +197,14 @@ void uncaughtExceptionHandler(NSException *exception)
     {
         [[Logger instance] gestureRecognized:gestureRecognizer];
     }
+//    if (gestureRecognizer.state == UIGestureRecognizerStateCancelled)
+//    {
+//        NSLog(@"Cancelled");
+//    }
+//    if (gestureRecognizer.state == UIGestureRecognizerStateFailed)
+//    {
+//        NSLog(@"Failed");
+//    }
 }
 
 - (void)onShake

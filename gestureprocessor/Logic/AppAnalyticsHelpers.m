@@ -1,5 +1,6 @@
 #import "AppAnalyticsHelpers.h"
 #import "KeyboardWatcher.h"
+#import "GTConstants.h"
 
 @implementation AppAnalyticsHelpers
 
@@ -181,6 +182,18 @@
                                  reason:@"Incorrect App Key"
                                userInfo:nil]
          raise];
+    }
+}
+
++ (NSString*)orientationParameter
+{
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        return kPortraitParameter;
+    }
+    else
+    {
+        return kLandscapeParameter;
     }
 }
 

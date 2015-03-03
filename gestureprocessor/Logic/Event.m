@@ -11,8 +11,6 @@
 
 @implementation Event
 
-static int alloc_count;
-
 + (instancetype)eventWithIndex:(NSUInteger)index
                      timestamp:(NSTimeInterval)timestamp
                    description:(NSString*)description

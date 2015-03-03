@@ -11,6 +11,7 @@
 @property (nonatomic, readwrite) CGPoint position;
 @property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
 @property (nonatomic, strong, readwrite) NSString* triggerViewID;
+@property (nonatomic, readwrite) BOOL responsive;
 
 @end
 
@@ -28,6 +29,7 @@
         self.position = CGPointZero;
         self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
         self.index = index;
+        self.responsive = YES;
     }
     return self;
 }

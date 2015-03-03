@@ -98,9 +98,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     parameters[@"Events"] = events;
     parameters[@"SessionID"] = sessionID;
     
-    NSString* s = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", s);
-    
     [self PUT:urlString
     parameters:nil
     constructingBodyWithBlock:^(id<AFMultipartFormData> formData)

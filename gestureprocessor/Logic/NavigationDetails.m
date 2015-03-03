@@ -2,14 +2,13 @@
 
 @interface LogObject (NavigationDetails)
 
-@property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
-
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) ActionType type;
 @property (nonatomic, strong, readwrite) NSDate* timestamp;
 @property (nonatomic, readwrite) CGPoint position;
 @property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
 @property (nonatomic, strong, readwrite) NSString* triggerViewID;
+@property (nonatomic, readwrite) BOOL responsive;
 
 @end
 
@@ -27,6 +26,7 @@
         self.position = CGPointZero;
         self.triggerViewControllerID = triggerVcID;
         self.index = index;
+        self.responsive = YES;
     }
     return self;
 }
