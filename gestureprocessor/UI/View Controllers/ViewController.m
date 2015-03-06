@@ -22,63 +22,64 @@
     self.indexLabel.text = [NSString stringWithFormat:@"index: %d", (int)self.index];
     
     self.view.multipleTouchEnabled = YES;
-    
-    [self test];
 }
 
-- (IBAction)pushUINavController:(UIButton *)sender
+- (IBAction)onTest:(UIButton *)sender
+{
+    [self pushNextScreen];
+}
+
+- (void)crash
 {
     NSArray* array = @[@1, @2, @3];
     NSLog(@"Crash %@", array[5]);
-
-//    if (!(self.index % 3) && self.index > 0)
-//    {
-//        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-//        return;
-//    }
-//    
-//    static int flag;
-//    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//
-//    if (flag & 1)
-//    {
-//        ViewController *viewCon = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-//        viewCon.index = ++self.index;
-//        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
-//        [self presentViewController:navController animated:YES completion:nil];
-//    }
-//    else
-//    {
-//        NSMutableArray* vcs = [NSMutableArray array];
-//        for (int vcIndex = 0; vcIndex < 4; vcIndex++)
-//        {
-//            ViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-//            vc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:arc4random_uniform(UITabBarSystemItemMostViewed)
-//                                                                       tag:vcIndex];
-//            vc.index = self.index + vcIndex + 1;
-//            [vcs addObject:vc];
-//        }
-//        
-//        UITabBarController* tabBarController = [[UITabBarController alloc] init];
-//        tabBarController.viewControllers = vcs.copy;
-//        [self presentViewController:tabBarController animated:YES completion:nil];
-//    }
-//    flag++;
 }
 
-- (void)test
+- (void)pushNextScreen
 {
-    int repeats = 2000;
+    static int flag;
+
+    if (!(self.index % 3) && self.index > 0)
+    {
+        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    if (flag & 1)
+    {
+        ViewController *viewCon = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        viewCon.index = ++self.index;
+        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:viewCon];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+    else
+    {
+        NSMutableArray* vcs = [NSMutableArray array];
+        for (int vcIndex = 0; vcIndex < 4; vcIndex++)
+        {
+            ViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+            vc.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:arc4random_uniform(UITabBarSystemItemMostViewed)
+                                                                       tag:vcIndex];
+            vc.index = self.index + vcIndex + 1;
+            [vcs addObject:vc];
+        }
+
+        UITabBarController* tabBarController = [[UITabBarController alloc] init];
+        tabBarController.viewControllers = vcs.copy;
+        [self presentViewController:tabBarController animated:YES completion:nil];
+    }
+    flag++;
+}
+
+- (void)createLargeData
+{
+    static int repeats = 2000;
     for (int i = 0; i < repeats; i++)
     {
-        [self processIteration];
+        [AppAnalytics logEvent:[NSString stringWithFormat:@"Event %lu", (unsigned long) [@(arc4random()) hash]]];
     }
 }
-
-- (void)processIteration
-{
-    [AppAnalytics logEvent:[NSString stringWithFormat:@"Event %lu", (unsigned long) [@(arc4random()) hash]]];
-}
-
 
 @end
