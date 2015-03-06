@@ -310,7 +310,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     self.actions = actions.copy;
 #ifdef DEBUG
 #warning Uncomment this if needed
-    [self printDebugInfo:actionDetails];
+//    [self printDebugInfo:actionDetails];
 #endif
 }
 

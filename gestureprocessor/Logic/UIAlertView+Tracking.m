@@ -18,8 +18,8 @@
 - (void)showSwizzled
 {
     [self showSwizzled];
-    NSString* title = self.title ? self.title : kEmptyParameter;
-    NSString* message = self.message ? self.message : kEmptyParameter;
+    NSString* title = self.title ? self.title : kNullParameter;
+    NSString* message = self.message ? self.message : kNullParameter;
     [AppAnalytics logEvent:kAlertEvent parameters:@{kAlertTitle : title, kAlertMessage : message}];
 }
 

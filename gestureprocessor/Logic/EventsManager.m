@@ -39,6 +39,7 @@ static dispatch_queue_t events_processing_queue()
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, strong) NSTimer* serializationTimer;
 @property (nonatomic, strong) NSTimer* dispatchTimer;
+@property (nonatomic, strong) NSLock* lock;
 
 @end
 
@@ -70,7 +71,9 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         self.transactionAnalyticEnabled = kTransactionAnalyticsEnabled;
         self.screenAnalyticEnabled = kScreenAnalyticsEnabled;
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        self.lock = [[NSLock alloc] init];
         [self scheduleTimers];
+        [self deserialize];
     }
     return self;
 }
@@ -84,23 +87,17 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (NSMutableDictionary*)events
 {
-    @synchronized(self)
+    if (!_events)
     {
-        if (!_events)
-        {
-            _events = [NSMutableDictionary dictionary];
-            _events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
-        }
-        return _events;
+        _events = [NSMutableDictionary dictionary];
+        _events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
     }
+    return _events;
 }
 
 - (void)setEvents:(NSMutableDictionary *)events
 {
-    @synchronized(self)
-    {
-        _events = events;
-    }
+    _events = events;
 }
 
 - (void)setDispatchInterval:(NSTimeInterval)dispatchInterval
@@ -134,55 +131,69 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
                           repeats:YES];
 }
 
-- (void)addEvent:(NSString *)description
+- (void)addEvent:(NSString *)description asynch:(BOOL)asynch
 {
-    [self addEvent:description parameters:nil];
+    [self addEvent:description parameters:nil asynch:asynch];
 }
 
-- (void)addEvent:(NSString *)aDescription parameters:(NSDictionary *)aParameters
+- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters asynch:(BOOL)asynch
 {
-    __block NSString* description = aDescription;
-    __block NSDictionary* parameters = aParameters;
-    dispatch_async(events_processing_queue(), ^
+    if (asynch)
     {
-        if (description.length > kEventDescriptionMaxLength)
+        dispatch_async(events_processing_queue(), ^
         {
-            description = [description substringToIndex:kEventDescriptionMaxLength];
-        }
-        Event* event = [Event eventWithIndex:self.index++
-                                   timestamp:[NSDate new].timeIntervalSince1970
-                                 description:description
-                                  parameters:parameters];
-        
-        if (event)
+            [self addEvent:description parameters:parameters];
+        });
+    }
+    else
+    {
+        dispatch_sync(events_processing_queue(), ^
         {
-            NSMutableArray* sessionEvents = self.events[[AppAnalytics instance].sessionUUID.UUIDString];
-            if (!sessionEvents)
-            {
-                sessionEvents = [NSMutableArray array];
-            }
-            NSUInteger index = [sessionEvents indexOfObject:event];
-            if (index == NSNotFound || !self.events)
-            {
-                [sessionEvents addObject:event];
-                if (self.debugLogEnabled)
-                {
-                    [[Logger instance] debugLogEvent:event];
-                }
-            }
-            else
-            {
-                Event* existingEvent = sessionEvents[index];
-                [existingEvent addTimestamp:[event.timestamps.lastObject doubleValue]];
-                [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
-                if (self.debugLogEnabled)
-                {
-                    [[Logger instance] debugLogEvent:existingEvent];
-                }
-            }
-            self.events[[AppAnalytics instance].sessionUUID.UUIDString] = sessionEvents;
+            [self addEvent:description parameters:parameters];
+        });
+//        [self addEvent:description parameters:parameters];
+    }
+}
+
+- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters
+{
+    if (description.length > kEventDescriptionMaxLength)
+    {
+        description = [description substringToIndex:kEventDescriptionMaxLength];
+    }
+    Event* event = [Event eventWithIndex:self.index++
+                               timestamp:[NSDate new].timeIntervalSince1970
+                             description:description
+                              parameters:parameters];
+    
+    if (event)
+    {
+        NSMutableArray* sessionEvents = self.events[[AppAnalytics instance].sessionUUID.UUIDString];
+        if (!sessionEvents)
+        {
+            sessionEvents = [NSMutableArray array];
         }
-    });
+        NSUInteger index = [sessionEvents indexOfObject:event];
+        if (index == NSNotFound || !self.events)
+        {
+            [sessionEvents addObject:event];
+            if (self.debugLogEnabled)
+            {
+                [[Logger instance] debugLogEvent:event];
+            }
+        }
+        else
+        {
+            Event* existingEvent = sessionEvents[index];
+            [existingEvent addTimestamp:[event.timestamps.lastObject doubleValue]];
+            [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
+            if (self.debugLogEnabled)
+            {
+                [[Logger instance] debugLogEvent:existingEvent];
+            }
+        }
+        self.events[[AppAnalytics instance].sessionUUID.UUIDString] = sessionEvents;
+    }
 }
 
 - (void)sendData
@@ -267,16 +278,43 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 {
     if (self.exceptionAnalyticEnabled)
     {
-        [self addEvent:kUncaughtExceptionEvent parameters:@{kUncaughtExceptionEventReason : exception.reason}];
+        NSString* reason = exception.reason ? exception.reason : kNullParameter;
+        NSString* name = exception.name ? exception.name : kNullParameter;
+        NSArray* stackSymbols = [exception callStackSymbols];
+        
+        [self addEvent:kExceptionEvent
+            parameters:@{kExceptionEventReason : reason,
+                         kExceptionEventName : name,
+                         kExceptionEventCallStack : stackSymbols ? stackSymbols : kNullParameter}
+                asynch:NO];
+        
+        [self serialize:NO];
     }
 }
 
 - (void)serialize
 {
-    dispatch_async(events_processing_queue(), ^
+    [self serialize:YES];
+}
+
+- (void)serialize:(BOOL)asynch
+{
+    if (asynch)
     {
-        [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
-    });
+        dispatch_async(events_processing_queue(), ^
+        {
+            [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
+            NSLog(@"Saved");
+        });
+    }
+    else
+    {
+        dispatch_sync(events_processing_queue(), ^
+        {
+            [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
+            NSLog(@"Saved");
+        });
+    }
 }
 
 - (void)deserialize

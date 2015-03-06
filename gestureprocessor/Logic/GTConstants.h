@@ -32,10 +32,11 @@ extern NSUInteger const kEventDescriptionMaxLength;
 extern float const kEventsSerializationInterval;
 extern size_t const kEventsMaxSizeInBytes;
 extern size_t const kEventAverageSizeInBytes;
-extern NSString*  const kEventDescriptionPlaceholder;
 
-extern NSString* const kUncaughtExceptionEvent;
-extern NSString* const kUncaughtExceptionEventReason;
+extern NSString* const kExceptionEvent;
+extern NSString* const kExceptionEventReason;
+extern NSString* const kExceptionEventName;
+extern NSString* const kExceptionEventCallStack;
 
 extern NSString* const kTransactionEvent;
 extern NSString* const kTransactionEventType;
@@ -53,4 +54,4 @@ extern NSString* const kAlertEvent;
 extern NSString* const kAlertTitle;
 extern NSString* const kAlertMessage;
 
-extern NSString* const kEmptyParameter;
+extern NSString* const kNullParameter;

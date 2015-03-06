@@ -32,10 +32,11 @@ NSUInteger const kEventDescriptionMaxLength = 256;
 float      const kEventsSerializationInterval = 15.0f;
 size_t     const kEventsMaxSizeInBytes = 1024 * 100;
 size_t     const kEventAverageSizeInBytes = 120;
-NSString*  const kEventDescriptionPlaceholder = @"null";
 
-NSString* const kUncaughtExceptionEvent = @"Uncaught Exception";
-NSString* const kUncaughtExceptionEventReason = @"Reason";
+NSString* const kExceptionEvent          = @"Uncaught Exception";
+NSString* const kExceptionEventReason    = @"Reason";
+NSString* const kExceptionEventName      = @"Name";
+NSString* const kExceptionEventCallStack = @"Call Stack Trace";
 
 NSString* const kTransactionEvent           = @"Transaction";
 NSString* const kTransactionEventType       = @"Type";
@@ -53,4 +54,4 @@ NSString* const kAlertEvent   = @"Pop Up";
 NSString* const kAlertTitle   = @"Title";
 NSString* const kAlertMessage = @"Message";
 
-NSString* const kEmptyParameter = @"Null";
+NSString* const kNullParameter = @"Null";

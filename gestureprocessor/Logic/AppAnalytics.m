@@ -80,12 +80,12 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 + (void)logEvent:(NSString*)description
 {
-    [[EventsManager instance] addEvent:description];
+    [[EventsManager instance] addEvent:description asynch:YES];
 }
 
 + (void)logEvent:(NSString*)description parameters:(NSDictionary*)parameters
 {
-    [[EventsManager instance] addEvent:description parameters:parameters];
+    [[EventsManager instance] addEvent:description parameters:parameters asynch:YES];
 }
 
 + (void)setDispatchInverval:(NSTimeInterval)dispatchInterval
@@ -197,14 +197,6 @@ void uncaughtExceptionHandler(NSException *exception)
     {
         [[Logger instance] gestureRecognized:gestureRecognizer];
     }
-//    if (gestureRecognizer.state == UIGestureRecognizerStateCancelled)
-//    {
-//        NSLog(@"Cancelled");
-//    }
-//    if (gestureRecognizer.state == UIGestureRecognizerStateFailed)
-//    {
-//        NSLog(@"Failed");
-//    }
 }
 
 - (void)onShake

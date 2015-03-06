@@ -5,13 +5,10 @@
 
 + (instancetype)instance;
 
-- (void)addEvent:(NSString*)description;
+- (void)addEvent:(NSString*)description asynch:(BOOL)asynch;
 
-- (void)addEvent:(NSString*)description parameters:(NSDictionary*)parameters;
+- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters asynch:(BOOL)asynch;
 
 - (void)handleUncaughtException:(NSException*)exception;
-
-@property (nonatomic, readonly) NSTimeInterval dispatchInterval;
-@property (nonatomic, readonly) BOOL debugLogEnabled;
 
 @end

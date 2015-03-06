@@ -23,16 +23,14 @@
     
     self.view.multipleTouchEnabled = YES;
     
-//    [self test];
+    [self test];
 }
 
 - (IBAction)pushUINavController:(UIButton *)sender
 {
-    [[[UIAlertView alloc] initWithTitle:@"Title"
-                                message:@"Message"
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+    NSArray* array = @[@1, @2, @3];
+    NSLog(@"Crash %@", array[5]);
+
 //    if (!(self.index % 3) && self.index > 0)
 //    {
 //        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
@@ -70,7 +68,7 @@
 
 - (void)test
 {
-    int repeats = 1000;
+    int repeats = 2000;
     for (int i = 0; i < repeats; i++)
     {
         [self processIteration];

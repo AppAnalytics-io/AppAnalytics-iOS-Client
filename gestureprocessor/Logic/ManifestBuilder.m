@@ -159,7 +159,7 @@ static NSString* const kEventParametersKey  = @"EventParameters";
     if (event.timestamps)
         JSONDict[kTimeStampsKey] = event.timestamps;
     
-    JSONDict[kEventNameKey] = event.descriptionText ? event.descriptionText : kEventDescriptionPlaceholder;
+    JSONDict[kEventNameKey] = event.descriptionText ? event.descriptionText : kNullParameter;
     
     if (event.parameters)
         JSONDict[kEventParametersKey] = event.parameters;
