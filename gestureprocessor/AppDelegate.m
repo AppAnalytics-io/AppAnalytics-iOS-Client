@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [AppAnalytics initWithAppKey:@"8QwD7Z4icUkAR5Ka8HgK2wEhvm7zOwzB"];
+    [AppAnalytics initWithAppKey:@"Z4456wJ0r6PgmwKcd9lJTTNainXzx1IJ"];
 
     return YES;
 }
