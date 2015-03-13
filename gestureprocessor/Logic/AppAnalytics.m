@@ -16,6 +16,7 @@
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL navigationAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
+@property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
 
 @end
 
@@ -111,6 +112,11 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 + (void)setNavigationAnalyticsEnabled:(BOOL)enabled
 {
     [EventsManager instance].navigationAnalyticEnabled = enabled;
+}
+
++ (void)setPopUpsAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].popupAnalyticEnabled = enabled;
 }
 
 void uncaughtExceptionHandler(NSException *exception)

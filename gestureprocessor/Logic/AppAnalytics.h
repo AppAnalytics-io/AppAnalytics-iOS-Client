@@ -18,4 +18,6 @@
 
 + (void)setNavigationAnalyticsEnabled:(BOOL)enabled;
 
++ (void)setPopUpsAnalyticsEnabled:(BOOL)enabled;
+
 @end

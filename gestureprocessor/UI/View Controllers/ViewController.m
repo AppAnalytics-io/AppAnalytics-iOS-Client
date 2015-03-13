@@ -27,6 +27,17 @@
 - (IBAction)onTest:(UIButton *)sender
 {
     [self pushNextScreen];
+    [self popup];
+}
+
+- (void)popup
+{
+    [[[UIAlertView alloc]
+      initWithTitle:nil
+      message:@"PopupMessage"
+      delegate:nil
+      cancelButtonTitle:@"OK"
+      otherButtonTitles:nil] show];
 }
 
 - (void)crash

@@ -23,10 +23,11 @@ NSString* const kLandscapeParameter          = @"L";
 NSString* const kUnresponsiveSampleParameter = @"U";
 NSString* const kResponsiveSampleParameter   = @"R";
 
-BOOL const kDebugLogEnabled = YES;
+BOOL const kDebugLogEnabled = NO;
 BOOL const kExceptionAnalyticsEnabled = YES;
 BOOL const kTransactionAnalyticsEnabled = YES;
 BOOL const kScreenAnalyticsEnabled = NO;
+BOOL const kPopupAnalyticsEnabled = YES;
 
 NSUInteger const kEventDescriptionMaxLength = 256;
 float      const kEventsSerializationInterval = 15.0f;

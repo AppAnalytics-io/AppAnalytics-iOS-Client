@@ -2,6 +2,7 @@
 #import "NSObject+Swizzling.h"
 #import "AppAnalytics.h"
 #import "GTConstants.h"
+#import "EventsManager.h"
 
 @implementation UIAlertView (Tracking)
 
@@ -18,9 +19,12 @@
 - (void)showSwizzled
 {
     [self showSwizzled];
-    NSString* title = self.title ? self.title : kNullParameter;
-    NSString* message = self.message ? self.message : kNullParameter;
-    [AppAnalytics logEvent:kAlertEvent parameters:@{kAlertTitle : title, kAlertMessage : message}];
+    if ([EventsManager instance].popupAnalyticEnabled)
+    {
+        NSString* title = self.title ? self.title : kNullParameter;
+        NSString* message = self.message ? self.message : kNullParameter;
+        [AppAnalytics logEvent:kAlertEvent parameters:@{kAlertTitle : title, kAlertMessage : message}];
+    }
 }
 
 @end

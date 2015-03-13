@@ -4,14 +4,27 @@
 
 @implementation AppAnalyticsHelpers
 
++ (NSString*)topViewControllerClassName
+{
+    UIViewController* topViewController = [self topViewController];
+    NSString* className = NSStringFromClass([topViewController class]);
+    return className;
+}
+
 + (UIViewController*)topViewController
 {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController* rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [self topControllerForVC:rootVC];
+}
+
++ (UIViewController*)topControllerForVC:(UIViewController*)vc
+{
+    UIViewController* topController = vc;
     
     if ([topController isKindOfClass:[UINavigationController class]])
     {
         UINavigationController* navCon = (UINavigationController*) topController;
-        topController = navCon.viewControllers.lastObject;
+        topController = navCon.visibleViewController;
     }
     else if ([topController isKindOfClass:[UITabBarController class]])
     {
@@ -26,7 +39,7 @@
         if ([topController isKindOfClass:[UINavigationController class]])
         {
             UINavigationController* navCon = (UINavigationController*) topController;
-            topController = navCon.viewControllers.lastObject;
+            topController = navCon.visibleViewController;
         }
         else if ([topController isKindOfClass:[UITabBarController class]])
         {
@@ -35,14 +48,57 @@
         }
     }
     
-    return topController;
-}
-
-+ (NSString*)topViewControllerClassName
-{
-    UIViewController* topViewController = [self topViewController];
-    NSString* className = NSStringFromClass([topViewController class]);
-    return className;
+    UIViewController* visibleChild = nil;
+    for (UIViewController* child in topController.childViewControllers)
+    {
+        BOOL found = YES;
+        if (child.isViewLoaded && child.view.window && !child.view.hidden &&
+            child.view.alpha > 0.0f && child.view.transform.a > 0.0f && child.view.transform.d > 0.0f)
+        {
+            UIView* superview = child.view.superview;
+            
+            if (!superview)
+            {
+                found = NO;
+                continue;
+            }
+            
+            while ([superview isKindOfClass:[UIView class]] && !superview.hidden)
+            {
+                if (superview &&
+                    (superview.alpha <= 0.0001f || superview.transform.a <= 0.0001f || superview.transform.d <= 0.0001f))
+                {
+                    found = NO;
+                    break;
+                }
+                superview = superview.superview;
+            }
+        }
+        else
+        {
+            found = NO;
+        }
+        
+        if (found)
+        {
+            visibleChild = child;
+            break;
+        }
+    }
+    
+    if (visibleChild)
+    {
+        topController = visibleChild;
+    }
+    
+    if ([topController isEqual:vc])
+    {
+        return vc;
+    }
+    else
+    {
+        return [self topControllerForVC:topController];
+    }
 }
 
 + (BOOL)isKeyboardPressed:(CGPoint)touchPosition
@@ -178,10 +234,9 @@
 {
     if (!appKey || !appKey.length)
     {
-        [[NSException exceptionWithName:@"Gesture Processor Exception"
+        [[NSException exceptionWithName:@"App Analytics Exception"
                                  reason:@"Incorrect App Key"
-                               userInfo:nil]
-         raise];
+                               userInfo:nil] raise];
     }
 }
 

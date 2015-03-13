@@ -11,4 +11,6 @@
 
 - (void)handleUncaughtException:(NSException*)exception;
 
+@property (nonatomic, readonly) BOOL popupAnalyticEnabled;
+
 @end

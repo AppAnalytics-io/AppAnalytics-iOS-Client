@@ -145,51 +145,35 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
         return;
     }
     
-    NSMutableDictionary* actions = [NSMutableDictionary dictionary];
-    int sizeInBytes = 0;
+    NSMutableDictionary* allSessionsPackages = [NSMutableDictionary dictionary];
+    NSMutableDictionary* samplesToRemove = [NSMutableDictionary dictionary];
     for (NSString* sessionID in self.actions.allKeys)
     {
-        BOOL exceedsMaxSize = NO;
-        NSArray* sessionsSamples = self.actions[sessionID];
-        for (NSData* sample in sessionsSamples)
+        NSMutableArray* wholeSessionPackage = [NSMutableArray array];
+        NSMutableData* sessionChunk = [NSMutableData data];
+        int sizeInBytes = 0;
+        
+        for (NSData* sample in self.actions[sessionID])
         {
             sizeInBytes += sample.length;
+            [sessionChunk appendData:sample];
             if (sizeInBytes > kGTMaxSamplesSizeInBytes)
             {
-                exceedsMaxSize = YES;
-                break;
+                [wholeSessionPackage addObject:sessionChunk];
+                sessionChunk = [NSMutableData data];
+                sizeInBytes = 0;
             }
-            NSMutableArray* sessionActions = actions[sessionID];
-            if (!sessionActions)
-            {
-                sessionActions = [NSMutableArray array];
-            }
-            [sessionActions addObject:sample];
-            actions[sessionID] = sessionActions;
         }
-        if (exceedsMaxSize)
-        {
-            break;
-        }
+        [wholeSessionPackage addObject:sessionChunk];
+        allSessionsPackages[sessionID] = wholeSessionPackage;
+        samplesToRemove[sessionID] = @([self.actions[sessionID] count]);
     }
     
-    NSString* sessionID = [AppAnalytics instance].sessionUUID.UUIDString;
-    __weak Logger* weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
 
-    [[ConnectionManager instance]
-     PUTsamples:[self allSamplesData:actions]
-     sessionID:sessionID
-     success:^
+    [[ConnectionManager instance] PUTsamples:allSessionsPackages success:^
     {
-        if (![actions isEqual:weakSelf.actions])
-        {
-            [self removeUploadedSamples:actions];
-        }
-        else
-        {
-            self.actions = [NSDictionary dictionary];
-        }
-        [weakSelf serialize];
+        [weakSelf cleanupSamples:samplesToRemove];
     }];
 }
 
@@ -199,55 +183,35 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         return;
     }
-    for (NSString* sessionID in self.manifests.allKeys)
-    {
-        __weak Logger* weakSelf = self;
-        
-        [[ConnectionManager instance] PUTManifest:self.manifests[sessionID] sessionID:sessionID success:^
-        {
-            [self removeManifestForSessionID:sessionID];
-            [weakSelf serialize];
-        }];
-    }
-}
-
-- (void)removeManifestForSessionID:(NSString*)sessionID
-{
-    NSMutableDictionary* manifests = self.manifests.mutableCopy;
-    [manifests removeObjectForKey:sessionID];
-    self.manifests = manifests.copy;
-}
-
-- (void)removeUploadedSamples:(NSDictionary*)actionsToRemove
-{
-    NSMutableDictionary* actions = self.actions.mutableCopy;
-    for (NSString* sessionID in actionsToRemove.allKeys)
-    {
-        NSArray* sessionSamplesToRemove = actionsToRemove[sessionID];
-        NSMutableArray* sessionSamples = actions[sessionID];
-        if (sessionSamples)
-        {
-            [sessionSamples removeObjectsInArray:sessionSamplesToRemove];
-            actions[sessionID] = sessionSamples;
-        }
-    }
-    self.actions = actions.copy;
-}
-
-- (NSData*)allSamplesData:(NSDictionary*)actionsDictionary
-{
-    NSMutableData* allSamplesData = [[NSMutableData alloc] initWithData:[ManifestBuilder instance].headerData];
     
+    __weak __typeof(self) weakSelf = self;
+    
+    [[ConnectionManager instance] PUTmanifests:self.manifests success:^
+    {
+        weakSelf.manifests = [NSDictionary dictionary];
+    }];
+}
+
+- (void)cleanupSamples:(NSDictionary*)samplesToRemove
+{
+    NSMutableDictionary* cleanedActions = self.actions.mutableCopy;
     for (NSString* sessionID in self.actions.allKeys)
     {
-        NSArray* sessionsSamples = self.actions[sessionID];
-        for (NSData* sample in sessionsSamples)
+        int objectsToRemove = (int) [samplesToRemove[sessionID] integerValue];
+        NSRange cleanupRange = NSMakeRange(0, MIN(objectsToRemove, [self.actions[sessionID] count]));
+        
+        if (cleanupRange.length == [self.actions[sessionID] count])
         {
-            [allSamplesData appendData:sample];
+            [cleanedActions removeObjectForKey:sessionID];
+        }
+        else
+        {
+            [cleanedActions[sessionID] removeObjectsInRange:cleanupRange];
         }
     }
-    
-    return allSamplesData.copy;
+    self.actions = cleanedActions;
+    cleanedActions = nil;
+    [self serialize];
 }
 
 #pragma mark - Adding Actions
@@ -256,11 +220,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 {
     GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:self.index++];
     [self addAction:details];
-}
-
-- (void)gestureRecognized:(UIGestureRecognizer *)gestureRecognizer responsive:(BOOL)responsive
-{
-    
 }
 
 - (void)gestureRecognized:(ActionType)type
@@ -315,20 +274,6 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 }
 
 #pragma mark - Debug Helpers
-
-- (int)bytesInSamples:(NSDictionary*)samples
-{
-    int bytes = 0;
-    for (NSString* sessionId in samples.allKeys)
-    {
-        NSArray* sessionSamples = samples[sessionId];
-        for (NSData* sample in sessionSamples)
-        {
-            bytes += sample.length;
-        }
-    }
-    return bytes;
-}
 
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {

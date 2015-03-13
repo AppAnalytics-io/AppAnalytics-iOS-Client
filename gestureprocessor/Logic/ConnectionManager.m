@@ -35,46 +35,21 @@
     return _sharedClient;
 }
 
-- (void)PUTManifest:(NSData*)rawManifest sessionID:(NSString*)sessionID success:(void (^)())success
+- (void)PUTmanifests:(NSDictionary *)manifests success:(void (^)())success
 {
     NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [AppAnalytics instance].udid];
-    [self PUT:url
-   parameters:nil
-constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-    {
-        [formData appendPartWithFileData:rawManifest
-                                    name:@"Manifest"
-                                fileName:[sessionID stringByAppendingString:@".manifest"]
-                                mimeType:@"application/octet-stream"];
-     }
-      success:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        if (success)
-        {
-            success();
-        }
-     }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        NSLog(@"PUT Manifest error: %@", error);
-    }];
-}
-
-- (void)PUTsamples:(NSData*)rawSamples sessionID:(NSString*)sessionID success:(void (^)())success
-{
-    static int samplesPackageIndex;
-    
-    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [AppAnalytics instance].udid];
-    NSString* filename = [NSString stringWithFormat:@"%@_%d.datapackage", sessionID, ++samplesPackageIndex];
     
     [self PUT:url
    parameters:nil
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
-         [formData appendPartWithFileData:rawSamples
-                                     name:@"Sample"
-                                 fileName:filename
-                                 mimeType:@"application/octet-stream"];
+         for (NSString* sessionID in manifests.allKeys)
+         {
+             [formData appendPartWithFileData:manifests[sessionID]
+                                         name:@"Manifest"
+                                     fileName:[sessionID stringByAppendingString:@".manifest"]
+                                     mimeType:@"application/octet-stream"];
+         }
      }
       success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -85,8 +60,41 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      }
       failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"PUT Samples error: %@", error);
+         NSLog(@"PUT Manifest error: %@", error);
      }];
+}
+
+- (void)PUTsamples:(NSDictionary *)samples success:(void (^)())success
+{
+    static int samplesPackageIndex;
+    
+    NSString* url = [NSString stringWithFormat:@"samples?UDID=%@", [AppAnalytics instance].udid];
+    
+    [self PUT:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    {
+        for (NSString* sessionID in samples.allKeys)
+        {
+            for (NSData* rawSamples in samples[sessionID])
+            {
+                NSString* filename = [NSString stringWithFormat:@"%@_%d.datapackage", sessionID, ++samplesPackageIndex];
+                [formData appendPartWithFileData:rawSamples
+                                            name:@"Sample"
+                                        fileName:filename
+                                        mimeType:@"application/octet-stream"];
+            }
+        }
+    }
+      success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        if (success)
+        {
+            success();
+        }
+    }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"PUT Samples error: %@", error);
+    }];
 }
 
 - (void)PUTevents:(NSArray*)events sessionID:(NSString*)sessionID success:(void (^)())success failure:(void (^)())failure
@@ -154,7 +162,5 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     
     return operation;
 }
-
-
 
 @end

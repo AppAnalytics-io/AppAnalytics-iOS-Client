@@ -27,6 +27,7 @@ extern BOOL const kDebugLogEnabled;
 extern BOOL const kExceptionAnalyticsEnabled;
 extern BOOL const kTransactionAnalyticsEnabled;
 extern BOOL const kScreenAnalyticsEnabled;
+extern BOOL const kPopupAnalyticsEnabled;
 
 extern NSUInteger const kEventDescriptionMaxLength;
 extern float const kEventsSerializationInterval;

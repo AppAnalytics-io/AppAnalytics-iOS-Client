@@ -37,6 +37,7 @@ static dispatch_queue_t events_processing_queue()
 @property (nonatomic, readwrite) BOOL exceptionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
 @property (nonatomic, strong) NSTimer* serializationTimer;
 @property (nonatomic, strong) NSTimer* dispatchTimer;
 @property (nonatomic, strong) NSLock* lock;
@@ -70,6 +71,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         self.exceptionAnalyticEnabled = kExceptionAnalyticsEnabled;
         self.transactionAnalyticEnabled = kTransactionAnalyticsEnabled;
         self.screenAnalyticEnabled = kScreenAnalyticsEnabled;
+        self.popupAnalyticEnabled = kPopupAnalyticsEnabled;
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
         self.lock = [[NSLock alloc] init];
         [self scheduleTimers];
@@ -151,7 +153,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         {
             [self addEvent:description parameters:parameters];
         });
-//        [self addEvent:description parameters:parameters];
     }
 }
 
@@ -304,7 +305,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         dispatch_async(events_processing_queue(), ^
         {
             [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
-            NSLog(@"Saved");
         });
     }
     else
@@ -312,7 +312,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         dispatch_sync(events_processing_queue(), ^
         {
             [[NSUserDefaults standardUserDefaults] saveCustomObject:self.events key:kEventsSerializationKey];
-            NSLog(@"Saved");
         });
     }
 }

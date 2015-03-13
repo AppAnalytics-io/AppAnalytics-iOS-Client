@@ -7,12 +7,10 @@
 
 + (instancetype)instance;
 
-- (void)PUTManifest:(NSData*)rawManifest
-          sessionID:(NSString*)sessionID
-            success:(void (^)())success;
+- (void)PUTmanifests:(NSDictionary*)manifests
+             success:(void (^)())success;
 
-- (void)PUTsamples:(NSData*)rawSamples
-         sessionID:(NSString*)sessionID
+- (void)PUTsamples:(NSDictionary*)samples
            success:(void (^)())success;
 
 - (void)PUTevents:(NSArray*)events
