@@ -2,6 +2,7 @@
 #import "UISwipeGestureRecognizer+DirectionString.h"
 #import "AppAnalyticsHelpers.h"
 #import "UIGestureRecognizer+Type.h"
+#import "GTConstants.h"
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
@@ -11,9 +12,9 @@
 @property (nonatomic, readwrite) ActionType type;
 @property (nonatomic, strong, readwrite) NSDate* timestamp;
 @property (nonatomic, readwrite) CGPoint position;
-@property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
-@property (nonatomic, strong, readwrite) NSString* triggerViewID;
-@property (nonatomic, readwrite) BOOL responsive;
+@property (nonatomic, copy, readwrite) NSString* triggerViewControllerID;
+@property (nonatomic, copy, readwrite) NSString* triggerViewID;
+@property (nonatomic, copy, readwrite) NSString* parameters;
 
 @end
 
@@ -51,7 +52,6 @@
         self.position = position;
         self.triggerViewID = viewID;
         self.index = index;
-        self.responsive = YES;
     }
     return self;
 }
@@ -65,8 +65,6 @@
     self.position = [self.gestureRecognizer locationInView:topVC.view];
     self.triggerViewID = [AppAnalyticsHelpers subviewClassNameAtPosition:self.position ofView:topVC.view];
     self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
-    
-    self.responsive = self.gestureRecognizer.state == UIGestureRecognizerStateEnded;
 }
 
 #pragma mark - LogInfo protocol

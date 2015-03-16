@@ -20,6 +20,7 @@ NSTimeInterval const kDefaultEventsDispatchTime = 120.0f;
 
 NSString* const kPortraitParameter           = @"P";
 NSString* const kLandscapeParameter          = @"L";
+NSString* const kUnknownOrientationParameter = @"N";
 NSString* const kUnresponsiveSampleParameter = @"U";
 NSString* const kResponsiveSampleParameter   = @"R";
 

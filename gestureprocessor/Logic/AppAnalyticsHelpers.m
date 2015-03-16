@@ -246,9 +246,13 @@
     {
         return kPortraitParameter;
     }
-    else
+    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
     {
         return kLandscapeParameter;
+    }
+    else
+    {
+        return kUnknownOrientationParameter;
     }
 }
 

@@ -16,6 +16,7 @@ extern NSString* const kEventsFullURL;
 
 extern NSString* const kPortraitParameter;
 extern NSString* const kLandscapeParameter;
+extern NSString* const kUnknownOrientationParameter;
 extern NSString* const kUnresponsiveSampleParameter;
 extern NSString* const kResponsiveSampleParameter;
 

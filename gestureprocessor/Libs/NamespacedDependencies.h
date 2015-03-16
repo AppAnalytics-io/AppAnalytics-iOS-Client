@@ -94,6 +94,10 @@
 #define AFXMLParserResponseSerializer __NS_SYMBOL(AFXMLParserResponseSerializer)
 #endif
 
+#ifndef HMFJSONResponseSerializerWithData
+#define HMFJSONResponseSerializerWithData __NS_SYMBOL(HMFJSONResponseSerializerWithData)
+#endif
+
 #ifndef OpenUDID
 #define OpenUDID __NS_SYMBOL(OpenUDID)
 #endif
@@ -101,18 +105,6 @@
 // Functions
 #ifndef AFStringFromNetworkReachabilityStatus
 #define AFStringFromNetworkReachabilityStatus __NS_SYMBOL(AFStringFromNetworkReachabilityStatus)
-#endif
-
-#ifndef AFStringFromNetworkReachabilityStatus
-#define AFStringFromNetworkReachabilityStatus __NS_SYMBOL(AFStringFromNetworkReachabilityStatus)
-#endif
-
-#ifndef AFQueryStringPairsFromDictionary
-#define AFQueryStringPairsFromDictionary __NS_SYMBOL(AFQueryStringPairsFromDictionary)
-#endif
-
-#ifndef AFQueryStringPairsFromKeyAndValue
-#define AFQueryStringPairsFromKeyAndValue __NS_SYMBOL(AFQueryStringPairsFromKeyAndValue)
 #endif
 
 #ifndef AFQueryStringPairsFromDictionary
@@ -124,118 +116,6 @@
 #endif
 
 // Externs
-#ifndef AFNetworkingReachabilityDidChangeNotification
-#define AFNetworkingReachabilityDidChangeNotification __NS_SYMBOL(AFNetworkingReachabilityDidChangeNotification)
-#endif
-
-#ifndef AFNetworkingReachabilityNotificationStatusItem
-#define AFNetworkingReachabilityNotificationStatusItem __NS_SYMBOL(AFNetworkingReachabilityNotificationStatusItem)
-#endif
-
-#ifndef AFURLResponseSerializationErrorDomain
-#define AFURLResponseSerializationErrorDomain __NS_SYMBOL(AFURLResponseSerializationErrorDomain)
-#endif
-
-#ifndef AFNetworkingOperationFailingURLResponseErrorKey
-#define AFNetworkingOperationFailingURLResponseErrorKey __NS_SYMBOL(AFNetworkingOperationFailingURLResponseErrorKey)
-#endif
-
-#ifndef AFNetworkingOperationFailingURLResponseDataErrorKey
-#define AFNetworkingOperationFailingURLResponseDataErrorKey __NS_SYMBOL(AFNetworkingOperationFailingURLResponseDataErrorKey)
-#endif
-
-#ifndef AFURLRequestSerializationErrorDomain
-#define AFURLRequestSerializationErrorDomain __NS_SYMBOL(AFURLRequestSerializationErrorDomain)
-#endif
-
-#ifndef AFNetworkingOperationFailingURLRequestErrorKey
-#define AFNetworkingOperationFailingURLRequestErrorKey __NS_SYMBOL(AFNetworkingOperationFailingURLRequestErrorKey)
-#endif
-
-#ifndef AFNetworkingTaskDidResumeNotification
-#define AFNetworkingTaskDidResumeNotification __NS_SYMBOL(AFNetworkingTaskDidResumeNotification)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteNotification
-#define AFNetworkingTaskDidCompleteNotification __NS_SYMBOL(AFNetworkingTaskDidCompleteNotification)
-#endif
-
-#ifndef AFNetworkingTaskDidSuspendNotification
-#define AFNetworkingTaskDidSuspendNotification __NS_SYMBOL(AFNetworkingTaskDidSuspendNotification)
-#endif
-
-#ifndef AFURLSessionDidInvalidateNotification
-#define AFURLSessionDidInvalidateNotification __NS_SYMBOL(AFURLSessionDidInvalidateNotification)
-#endif
-
-#ifndef AFURLSessionDownloadTaskDidFailToMoveFileNotification
-#define AFURLSessionDownloadTaskDidFailToMoveFileNotification __NS_SYMBOL(AFURLSessionDownloadTaskDidFailToMoveFileNotification)
-#endif
-
-#ifndef AFNetworkingTaskDidStartNotification
-#define AFNetworkingTaskDidStartNotification __NS_SYMBOL(AFNetworkingTaskDidStartNotification)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishNotification
-#define AFNetworkingTaskDidFinishNotification __NS_SYMBOL(AFNetworkingTaskDidFinishNotification)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteSerializedResponseKey
-#define AFNetworkingTaskDidCompleteSerializedResponseKey __NS_SYMBOL(AFNetworkingTaskDidCompleteSerializedResponseKey)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteResponseSerializerKey
-#define AFNetworkingTaskDidCompleteResponseSerializerKey __NS_SYMBOL(AFNetworkingTaskDidCompleteResponseSerializerKey)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteResponseDataKey
-#define AFNetworkingTaskDidCompleteResponseDataKey __NS_SYMBOL(AFNetworkingTaskDidCompleteResponseDataKey)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteErrorKey
-#define AFNetworkingTaskDidCompleteErrorKey __NS_SYMBOL(AFNetworkingTaskDidCompleteErrorKey)
-#endif
-
-#ifndef AFNetworkingTaskDidCompleteAssetPathKey
-#define AFNetworkingTaskDidCompleteAssetPathKey __NS_SYMBOL(AFNetworkingTaskDidCompleteAssetPathKey)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishSerializedResponseKey
-#define AFNetworkingTaskDidFinishSerializedResponseKey __NS_SYMBOL(AFNetworkingTaskDidFinishSerializedResponseKey)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishResponseSerializerKey
-#define AFNetworkingTaskDidFinishResponseSerializerKey __NS_SYMBOL(AFNetworkingTaskDidFinishResponseSerializerKey)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishResponseDataKey
-#define AFNetworkingTaskDidFinishResponseDataKey __NS_SYMBOL(AFNetworkingTaskDidFinishResponseDataKey)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishErrorKey
-#define AFNetworkingTaskDidFinishErrorKey __NS_SYMBOL(AFNetworkingTaskDidFinishErrorKey)
-#endif
-
-#ifndef AFNetworkingTaskDidFinishAssetPathKey
-#define AFNetworkingTaskDidFinishAssetPathKey __NS_SYMBOL(AFNetworkingTaskDidFinishAssetPathKey)
-#endif
-
-#ifndef AFNetworkingOperationDidStartNotification
-#define AFNetworkingOperationDidStartNotification __NS_SYMBOL(AFNetworkingOperationDidStartNotification)
-#endif
-
-#ifndef AFNetworkingOperationDidFinishNotification
-#define AFNetworkingOperationDidFinishNotification __NS_SYMBOL(AFNetworkingOperationDidFinishNotification)
-#endif
-
-#ifndef kAFUploadStream3GSuggestedPacketSize
-#define kAFUploadStream3GSuggestedPacketSize __NS_SYMBOL(kAFUploadStream3GSuggestedPacketSize)
-#endif
-
-#ifndef kAFUploadStream3GSuggestedDelay
-#define kAFUploadStream3GSuggestedDelay __NS_SYMBOL(kAFUploadStream3GSuggestedDelay)
-#endif
-
 #ifndef AFNetworkingReachabilityDidChangeNotification
 #define AFNetworkingReachabilityDidChangeNotification __NS_SYMBOL(AFNetworkingReachabilityDidChangeNotification)
 #endif

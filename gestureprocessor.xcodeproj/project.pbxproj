@@ -33,6 +33,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7215FC751AB6F71F0065D206 /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
 		7227C4BB1A3F037F003A4C3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BA1A3F037F003A4C3D /* main.m */; };
 		7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7227C4BD1A3F037F003A4C3D /* AppDelegate.m */; };
 		7227C4E61A3F060A003A4C3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7227C4E21A3F060A003A4C3D /* LaunchScreen.xib */; };
@@ -125,7 +126,6 @@
 		72922F0C1A4861D500CEC369 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0B1A4861D500CEC369 /* GLKit.framework */; };
 		72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0D1A4861D800CEC369 /* AdSupport.framework */; };
 		72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F0F1A4861DD00CEC369 /* MapKit.framework */; };
-		72922F131A48623300CEC369 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72922F121A48623300CEC369 /* iAd.framework */; };
 		72C84E861A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C84E851A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.m */; };
 		72DC01381A978013003F40BE /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
 		72DC01391A978013003F40BE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
@@ -329,7 +329,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				724D758F1A8509CF00F2E61D /* StoreKit.framework in Frameworks */,
-				72922F131A48623300CEC369 /* iAd.framework in Frameworks */,
 				72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */,
 				72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */,
 				72922F0C1A4861D500CEC369 /* GLKit.framework in Frameworks */,
@@ -888,6 +887,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7215FC751AB6F71F0065D206 /* HMFJSONResponseSerializerWithData.m in Sources */,
 				726C9A1F1A9495DA003D03AE /* AFHTTPRequestOperation.m in Sources */,
 				726C9A211A9495DA003D03AE /* AFHTTPRequestOperationManager.m in Sources */,
 				726C9A231A9495DA003D03AE /* AFHTTPSessionManager.m in Sources */,

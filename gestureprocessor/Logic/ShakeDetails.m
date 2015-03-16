@@ -9,9 +9,9 @@
 @property (nonatomic, readwrite) ActionType type;
 @property (nonatomic, strong, readwrite) NSDate* timestamp;
 @property (nonatomic, readwrite) CGPoint position;
-@property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
-@property (nonatomic, strong, readwrite) NSString* triggerViewID;
-@property (nonatomic, readwrite) BOOL responsive;
+@property (nonatomic, copy, readwrite) NSString* triggerViewControllerID;
+@property (nonatomic, copy, readwrite) NSString* triggerViewID;
+@property (nonatomic, copy, readwrite) NSString* parameters;
 
 @end
 
@@ -29,7 +29,6 @@
         self.position = CGPointZero;
         self.triggerViewControllerID = [AppAnalyticsHelpers topViewControllerClassName];
         self.index = index;
-        self.responsive = YES;
     }
     return self;
 }

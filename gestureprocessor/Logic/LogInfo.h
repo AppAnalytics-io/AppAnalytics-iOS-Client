@@ -51,9 +51,9 @@ extern NSString* NSStringWithActionType(ActionType input);
 @property (nonatomic, readonly) ActionType type;
 @property (nonatomic, strong, readonly) NSDate* timestamp;
 @property (nonatomic, readonly) CGPoint position;
-@property (nonatomic, strong, readonly) NSString* triggerViewControllerID;
-@property (nonatomic, strong, readonly) NSString* triggerViewID;
-@property (nonatomic, readonly) BOOL responsive;
+@property (nonatomic, copy, readonly) NSString* triggerViewControllerID;
+@property (nonatomic, copy, readonly) NSString* triggerViewID;
+@property (nonatomic, copy, readonly) NSString* parameters;
 
 @end
 

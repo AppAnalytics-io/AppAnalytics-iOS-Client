@@ -1,4 +1,5 @@
 #import "LogInfo.h"
+#import "AppAnalyticsHelpers.h"
 
 static NSDictionary* typeNames;
 NSString* NSStringWithActionType(ActionType action)
@@ -51,9 +52,9 @@ NSString* NSStringWithActionType(ActionType action)
 @property (nonatomic, readwrite) ActionType type;
 @property (nonatomic, strong, readwrite) NSDate* timestamp;
 @property (nonatomic, readwrite) CGPoint position;
-@property (nonatomic, strong, readwrite) NSString* triggerViewControllerID;
-@property (nonatomic, strong, readwrite) NSString* triggerViewID;
-@property (nonatomic, readwrite) BOOL responsive;
+@property (nonatomic, copy, readwrite) NSString* triggerViewControllerID;
+@property (nonatomic, copy, readwrite) NSString* triggerViewID;
+@property (nonatomic, copy, readwrite) NSString* parameters;
 
 @end
 
@@ -62,6 +63,16 @@ NSString* NSStringWithActionType(ActionType action)
 - (float)info
 {
     return 0;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.parameters = [AppAnalyticsHelpers orientationParameter];
+    }
+    return self;
 }
 
 @end
