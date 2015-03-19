@@ -150,7 +150,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     for (NSString* sessionID in self.actions.allKeys)
     {
         NSMutableArray* wholeSessionPackage = [NSMutableArray array];
-        NSMutableData* sessionChunk = [NSMutableData data];
+        NSMutableData* sessionChunk = [[NSMutableData alloc] initWithData:[ManifestBuilder instance].headerData];
         int sizeInBytes = 0;
         
         for (NSData* sample in self.actions[sessionID])
@@ -164,7 +164,10 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
                 sizeInBytes = 0;
             }
         }
-        [wholeSessionPackage addObject:sessionChunk];
+        
+        if (sessionChunk.length > 0)
+            [wholeSessionPackage addObject:sessionChunk];
+        
         allSessionsPackages[sessionID] = wholeSessionPackage;
         samplesToRemove[sessionID] = @([self.actions[sessionID] count]);
     }
