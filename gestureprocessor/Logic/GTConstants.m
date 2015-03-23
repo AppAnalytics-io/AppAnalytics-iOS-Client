@@ -18,6 +18,9 @@ NSTimeInterval const kMaxEventsDispatchTime = 3600.0f;
 NSTimeInterval const kMinEventsDispatchTime = 10.0f;
 NSTimeInterval const kDefaultEventsDispatchTime = 120.0f;
 
+NSString* const kHardware = @"Hardware";
+NSString* const kModelNameParameter = @"Model Name";
+
 NSString* const kPortraitParameter           = @"P";
 NSString* const kLandscapeParameter          = @"L";
 NSString* const kUnknownOrientationParameter = @"N";
@@ -57,3 +60,38 @@ NSString* const kAlertTitle   = @"Title";
 NSString* const kAlertMessage = @"Message";
 
 NSString* const kNullParameter = @"Null";
+
+NSString* const kOrientationChangedEvent            = @"Orientation Changed";
+NSString* const kOrientationParameter               = @"Orientation";
+NSString* const kOrientationChangedPortait          = @"Portrait";
+NSString* const kOrientationChangedUpsideDown       = @"Portrait Upside Down";
+NSString* const kOrientationChangedLandscapeLeft    = @"Landscape Left";
+NSString* const kOrientationChangedLandscapeRight   = @"Landscape Right";
+NSString* const kOrientationChangedFaceUp           = @"Face Up";
+NSString* const kOrientationChangedFaceDown         = @"Face Down";
+NSString* const kOrientationChangedUnknown          = @"Unknown";
+
+NSString* const kAppStateChangedEvent = @"Application State Changed";
+NSString* const kAppStateParameter    = @"State";
+NSString* const kAppStateForeground   = @"Foreground";
+NSString* const kAppStateBackground   = @"Background";
+
+NSString* const kConnectionStatusChanged   = @"Connection Status Changed";
+NSString* const kConnectionStatusParameter = @"Status";
+NSString* const kConnectionStatusWiFi      = @"WiFi";
+NSString* const kConnectionStatusWWAN      = @"Cellular";
+NSString* const kConnectionStatusNone      = @"None";
+NSString* const kConnectionStatusUnknown   = @"Unknown";
+
+NSString* const kKeyboardStateChanged = @"Keyboard State Changed";
+NSString* const kKeyboardStateParameter = @"State";
+NSString* const kKeyboardVisible = @"Visible";
+NSString* const kKeyboardHidden = @"Hidden";
+
+NSString* const kLocationServicesStatusChanged = @"Location Services Status Changed";
+NSString* const kLocationServicesStatus = @"Status";
+NSString* const kLocationServicesNotDetermined = @"Not Determined";
+NSString* const kLocationServicesRestricted = @"Restricted";
+NSString* const kLocationServicesDenied = @"Denied";
+NSString* const kLocationServicesAuthorisedAlways = @"Authorised Foreground and Background Usage";
+NSString* const kLocationServicesAuthorisedWhenInUse = @"Authorised Foreground Usage";

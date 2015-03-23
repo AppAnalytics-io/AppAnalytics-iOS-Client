@@ -111,6 +111,17 @@
 		727E6ACF1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ACD1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m */; };
 		727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
 		727E6B041A4B154D00822C51 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
+		7288E2E71ABFFB9900EEE430 /* EventsObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 7288E2E51ABFFB9900EEE430 /* EventsObserver.h */; };
+		7288E2E81ABFFB9900EEE430 /* EventsObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 7288E2E51ABFFB9900EEE430 /* EventsObserver.h */; };
+		7288E2E91ABFFB9900EEE430 /* EventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2E61ABFFB9900EEE430 /* EventsObserver.m */; };
+		7288E2EA1ABFFB9900EEE430 /* EventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2E61ABFFB9900EEE430 /* EventsObserver.m */; };
+		7288E2EB1ABFFB9900EEE430 /* EventsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2E61ABFFB9900EEE430 /* EventsObserver.m */; };
+		7288E2EE1AC0104C00EEE430 /* AAHardware.h in Headers */ = {isa = PBXBuildFile; fileRef = 7288E2EC1AC0104C00EEE430 /* AAHardware.h */; };
+		7288E2EF1AC0104C00EEE430 /* AAHardware.h in Headers */ = {isa = PBXBuildFile; fileRef = 7288E2EC1AC0104C00EEE430 /* AAHardware.h */; };
+		7288E2F01AC0104C00EEE430 /* AAHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2ED1AC0104C00EEE430 /* AAHardware.m */; };
+		7288E2F11AC0104C00EEE430 /* AAHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2ED1AC0104C00EEE430 /* AAHardware.m */; };
+		7288E2F21AC0104C00EEE430 /* AAHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7288E2ED1AC0104C00EEE430 /* AAHardware.m */; };
+		7288E2F91AC0283F00EEE430 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7288E2F81AC0283F00EEE430 /* CoreLocation.framework */; };
 		7289A9661A44401300CF5CF6 /* AppAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* AppAnalytics.m */; };
 		7289A96D1A44471E00CF5CF6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* Logger.m */; };
 		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
@@ -290,6 +301,11 @@
 		727E6AD21A4ACF1800822C51 /* GTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTConstants.m; sourceTree = "<group>"; };
 		727E6B021A4B154D00822C51 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		727E6B031A4B154D00822C51 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		7288E2E51ABFFB9900EEE430 /* EventsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsObserver.h; sourceTree = "<group>"; };
+		7288E2E61ABFFB9900EEE430 /* EventsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsObserver.m; sourceTree = "<group>"; };
+		7288E2EC1AC0104C00EEE430 /* AAHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAHardware.h; sourceTree = "<group>"; };
+		7288E2ED1AC0104C00EEE430 /* AAHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAHardware.m; sourceTree = "<group>"; };
+		7288E2F81AC0283F00EEE430 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7289A9641A44401300CF5CF6 /* AppAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAnalytics.h; sourceTree = "<group>"; };
 		7289A9651A44401300CF5CF6 /* AppAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAnalytics.m; sourceTree = "<group>"; };
 		7289A96B1A44471E00CF5CF6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -328,6 +344,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7288E2F91AC0283F00EEE430 /* CoreLocation.framework in Frameworks */,
 				724D758F1A8509CF00F2E61D /* StoreKit.framework in Frameworks */,
 				72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */,
 				72922F0E1A4861D800CEC369 /* AdSupport.framework in Frameworks */,
@@ -457,6 +474,8 @@
 				727B30C61A83B4E300162711 /* EventsManager.m */,
 				7289A96B1A44471E00CF5CF6 /* Logger.h */,
 				7289A96C1A44471E00CF5CF6 /* Logger.m */,
+				7288E2E51ABFFB9900EEE430 /* EventsObserver.h */,
+				7288E2E61ABFFB9900EEE430 /* EventsObserver.m */,
 				72672F241A4988C4001FDC80 /* ManifestBuilder.h */,
 				72672F251A4988C4001FDC80 /* ManifestBuilder.m */,
 				727E6B021A4B154D00822C51 /* ConnectionManager.h */,
@@ -472,6 +491,8 @@
 				727E6AD21A4ACF1800822C51 /* GTConstants.m */,
 				72922ED91A48155700CEC369 /* AppAnalyticsHelpers.h */,
 				72922EDA1A48155700CEC369 /* AppAnalyticsHelpers.m */,
+				7288E2EC1AC0104C00EEE430 /* AAHardware.h */,
+				7288E2ED1AC0104C00EEE430 /* AAHardware.m */,
 				72922EFD1A48339100CEC369 /* KeyboardWatcher.h */,
 				72922EFE1A48339100CEC369 /* KeyboardWatcher.m */,
 			);
@@ -569,6 +590,7 @@
 		72922F111A4861E200CEC369 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7288E2F81AC0283F00EEE430 /* CoreLocation.framework */,
 				7246C0FF1A94BC3D005C4810 /* SystemConfiguration.framework */,
 				7246C0FD1A94BC38005C4810 /* MobileCoreServices.framework */,
 				724D758E1A8509CF00F2E61D /* StoreKit.framework */,
@@ -587,7 +609,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7288E2E71ABFFB9900EEE430 /* EventsObserver.h in Headers */,
 				723292CD1A9642E800850FEC /* AppAnalytics.h in Headers */,
+				7288E2EE1AC0104C00EEE430 /* AAHardware.h in Headers */,
 				726152E51AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,7 +620,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7288E2E81ABFFB9900EEE430 /* EventsObserver.h in Headers */,
 				72DC015A1A978013003F40BE /* AppAnalytics.h in Headers */,
+				7288E2EF1AC0104C00EEE430 /* AAHardware.h in Headers */,
 				726152E61AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,11 +850,13 @@
 				727E6ACA1A4ACCDD00822C51 /* AFURLSessionManager.m in Sources */,
 				7227C4FB1A3F14BE003A4C3D /* UIWindow+Tracking.m in Sources */,
 				72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */,
+				7288E2F01AC0104C00EEE430 /* AAHardware.m in Sources */,
 				727E6AC41A4ACCDD00822C51 /* AFHTTPSessionManager.m in Sources */,
 				7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				727E6AC51A4ACCDD00822C51 /* AFNetworkReachabilityManager.m in Sources */,
 				727E6AC31A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m in Sources */,
 				727E6AC81A4ACCDD00822C51 /* AFURLRequestSerialization.m in Sources */,
+				7288E2E91ABFFB9900EEE430 /* EventsObserver.m in Sources */,
 				7289A9661A44401300CF5CF6 /* AppAnalytics.m in Sources */,
 				72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */,
 				727E6AD31A4ACF1800822C51 /* GTConstants.m in Sources */,
@@ -849,6 +877,7 @@
 				72DC01671A978432003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
 				72DC01621A97841A003F40BE /* Event.m in Sources */,
 				726152E81AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
+				7288E2EA1ABFFB9900EEE430 /* EventsObserver.m in Sources */,
 				72DC01631A97841A003F40BE /* EventsManager.m in Sources */,
 				726C9A381A949DD4003D03AE /* HMFJSONResponseSerializerWithData.m in Sources */,
 				726C9A391A949DD4003D03AE /* AFHTTPRequestOperation.m in Sources */,
@@ -860,6 +889,7 @@
 				726C9A3F1A949DD4003D03AE /* AFURLRequestSerialization.m in Sources */,
 				726C9A401A949DD4003D03AE /* AFURLResponseSerialization.m in Sources */,
 				726C9A411A949DD4003D03AE /* AFURLSessionManager.m in Sources */,
+				7288E2F11AC0104C00EEE430 /* AAHardware.m in Sources */,
 				726C9A421A949DD4003D03AE /* OpenUDID.m in Sources */,
 				725795DC1A4DA99E00D8572D /* NSObject+Swizzling.m in Sources */,
 				725795DD1A4DA99E00D8572D /* UIWindow+Tracking.m in Sources */,
@@ -908,6 +938,7 @@
 				72DC01641A978429003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
 				72DC01651A978429003F40BE /* Event.m in Sources */,
 				726152E91AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
+				7288E2EB1ABFFB9900EEE430 /* EventsObserver.m in Sources */,
 				72DC01661A978429003F40BE /* EventsManager.m in Sources */,
 				72DC01381A978013003F40BE /* HMFJSONResponseSerializerWithData.m in Sources */,
 				72DC01391A978013003F40BE /* AFHTTPRequestOperation.m in Sources */,
@@ -919,6 +950,7 @@
 				72DC013F1A978013003F40BE /* AFURLRequestSerialization.m in Sources */,
 				72DC01401A978013003F40BE /* AFURLResponseSerialization.m in Sources */,
 				72DC01411A978013003F40BE /* AFURLSessionManager.m in Sources */,
+				7288E2F21AC0104C00EEE430 /* AAHardware.m in Sources */,
 				72DC01421A978013003F40BE /* OpenUDID.m in Sources */,
 				72DC01431A978013003F40BE /* NSObject+Swizzling.m in Sources */,
 				72DC01441A978013003F40BE /* UIWindow+Tracking.m in Sources */,

@@ -72,7 +72,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         self.transactionAnalyticEnabled = kTransactionAnalyticsEnabled;
         self.screenAnalyticEnabled = kScreenAnalyticsEnabled;
         self.popupAnalyticEnabled = kPopupAnalyticsEnabled;
-        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
         self.lock = [[NSLock alloc] init];
         [self scheduleTimers];
         [self deserialize];
@@ -133,14 +132,14 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
                           repeats:YES];
 }
 
-- (void)addEvent:(NSString *)description asynch:(BOOL)asynch
+- (void)addEvent:(NSString *)description async:(BOOL)async
 {
-    [self addEvent:description parameters:nil asynch:asynch];
+    [self addEvent:description parameters:nil async:async];
 }
 
-- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters asynch:(BOOL)asynch
+- (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters async:(BOOL)async
 {
-    if (asynch)
+    if (async)
     {
         dispatch_async(events_processing_queue(), ^
         {
@@ -287,7 +286,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
             parameters:@{kExceptionEventReason : reason,
                          kExceptionEventName : name,
                          kExceptionEventCallStack : stackSymbols ? stackSymbols : kNullParameter}
-                asynch:NO];
+                async:NO];
         
         [self serialize:NO];
     }
@@ -298,9 +297,9 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     [self serialize:YES];
 }
 
-- (void)serialize:(BOOL)asynch
+- (void)serialize:(BOOL)async
 {
-    if (asynch)
+    if (async)
     {
         dispatch_async(events_processing_queue(), ^
         {
@@ -323,45 +322,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     {
         self.events = [NSMutableDictionary dictionary];
         self.events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
-    }
-}
-
-#pragma mark - SKPaymentTransactionObserver
-
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
-{
-    if (!self.transactionAnalyticEnabled)
-    {
-        return;
-    }
-    
-    for (SKPaymentTransaction * transaction in transactions)
-    {
-        NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-        parameters[kTransactionEventId] = transaction.payment.productIdentifier;
-        
-        switch (transaction.transactionState)
-        {
-            case SKPaymentTransactionStatePurchasing:
-                parameters[kTransactionEventType] = kTransactionStatePurchasing;
-                break;
-            case SKPaymentTransactionStatePurchased:
-                parameters[kTransactionEventType] = kTransactionStateSucceeded;
-                break;
-            case SKPaymentTransactionStateFailed:
-                parameters[kTransactionEventType] = kTransactionStateFailed;
-                break;
-            case SKPaymentTransactionStateRestored:
-                parameters[kTransactionEventType] = kTransactionStateRestored;
-                break;
-            case SKPaymentTransactionStateDeferred:
-                parameters[kTransactionEventType] = kTransactionStateDeferred;
-                break;
-            default:
-                break;
-        }
-        
-        [self addEvent:kTransactionEvent parameters:parameters.copy];
     }
 }
 

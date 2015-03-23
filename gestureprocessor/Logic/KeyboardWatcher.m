@@ -1,4 +1,6 @@
 #import "KeyboardWatcher.h"
+#import "EventsManager.h"
+#import "GTConstants.h"
 
 @interface KeyboardWatcher ()
 @property (nonatomic, readwrite) BOOL keyboardShown;
@@ -58,11 +60,17 @@
     NSDictionary *keyboardInfo = [notification userInfo];
     self.keyboardFrame = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.keyboardShown = YES;
+    [[EventsManager instance] addEvent:kKeyboardStateChanged
+                            parameters:@{kKeyboardStateParameter : kKeyboardVisible}
+                                 async:YES];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     self.keyboardShown = NO;
+    [[EventsManager instance] addEvent:kKeyboardStateChanged
+                            parameters:@{kKeyboardStateParameter : kKeyboardHidden}
+                                 async:YES];
 }
 
 @end

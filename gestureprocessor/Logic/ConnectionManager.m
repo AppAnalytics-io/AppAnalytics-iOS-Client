@@ -4,6 +4,7 @@
 #import "AppAnalytics.h"
 #import "HMFJSONResponseSerializerWithData.h"
 #import "AFHTTPRequestOperation.h"
+#import "AAHardware.h"
 
 @interface AppAnalytics (Connection)
 + (instancetype)instance;
@@ -38,9 +39,10 @@
 - (void)PUTmanifests:(NSDictionary *)manifests success:(void (^)())success
 {
     NSString* url = [NSString stringWithFormat:@"manifests?UDID=%@", [AppAnalytics instance].udid];
+    NSDictionary* parameters = @{ kModelNameParameter : [AAHardware modelName] };
     
     [self PUT:url
-   parameters:nil
+   parameters:nil//@{ kHardware : parameters }
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
          for (NSString* sessionID in manifests.allKeys)

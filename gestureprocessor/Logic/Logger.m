@@ -134,6 +134,11 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)sendData
 {
+    if (![[AFNetworkReachabilityManager sharedManager] isReachable])
+    {
+        return;
+    }
+    
     [self sendSamples];
     [self sendManifests];
 }

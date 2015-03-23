@@ -5,9 +5,10 @@
 #import "KeyboardWatcher.h"
 #import "AppAnalyticsHelpers.h"
 #import "EventsManager.h"
-#import <StoreKit/StoreKit.h>
 #import "NamespacedDependencies.h"
 #import "OpenUDID.h"
+#import "AFNetworkReachabilityManager.h"
+#import "EventsObserver.h"
 
 @interface EventsManager (AppAnalytics)
 
@@ -42,10 +43,11 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 {
     [AppAnalyticsHelpers checkAppKey:appKey];
     
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:[EventsManager instance]];
     [AppAnalytics instance].appKey = appKey;
     [KeyboardWatcher instance];
+    [EventsObserver instance];
     [[Logger instance] createSessionManifest];
 }
 
@@ -81,12 +83,12 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 + (void)logEvent:(NSString*)description
 {
-    [[EventsManager instance] addEvent:description asynch:YES];
+    [[EventsManager instance] addEvent:description async:YES];
 }
 
 + (void)logEvent:(NSString*)description parameters:(NSDictionary*)parameters
 {
-    [[EventsManager instance] addEvent:description parameters:parameters asynch:YES];
+    [[EventsManager instance] addEvent:description parameters:parameters async:YES];
 }
 
 + (void)setDispatchInverval:(NSTimeInterval)dispatchInterval

@@ -24,6 +24,9 @@ extern NSTimeInterval const kMaxEventsDispatchTime;
 extern NSTimeInterval const kMinEventsDispatchTime;
 extern NSTimeInterval const kDefaultEventsDispatchTime;
 
+extern NSString* const kHardware;
+extern NSString* const kModelNameParameter;
+
 extern BOOL const kDebugLogEnabled;
 extern BOOL const kExceptionAnalyticsEnabled;
 extern BOOL const kTransactionAnalyticsEnabled;
@@ -57,3 +60,39 @@ extern NSString* const kAlertTitle;
 extern NSString* const kAlertMessage;
 
 extern NSString* const kNullParameter;
+
+extern NSString* const kOrientationChangedEvent;
+extern NSString* const kOrientationParameter;
+extern NSString* const kOrientationChangedPortait;
+extern NSString* const kOrientationChangedUpsideDown;
+extern NSString* const kOrientationChangedLandscapeLeft;
+extern NSString* const kOrientationChangedLandscapeRight;
+extern NSString* const kOrientationChangedFaceUp;
+extern NSString* const kOrientationChangedFaceDown;
+extern NSString* const kOrientationChangedUnknown;
+
+extern NSString* const kAppStateChangedEvent;
+extern NSString* const kAppStateParameter;
+extern NSString* const kAppStateForeground;
+extern NSString* const kAppStateBackground;
+
+extern NSString* const kConnectionStatusChanged;
+extern NSString* const kConnectionStatusParameter;
+extern NSString* const kConnectionStatusWiFi;
+extern NSString* const kConnectionStatusWWAN;
+extern NSString* const kConnectionStatusNone;
+extern NSString* const kConnectionStatusUnknown;
+
+extern NSString* const kKeyboardStateChanged;
+extern NSString* const kKeyboardStateParameter;
+extern NSString* const kKeyboardVisible;
+extern NSString* const kKeyboardHidden;
+
+extern NSString* const kLocationServicesStatusChanged;
+extern NSString* const kLocationServicesStatus;
+extern NSString* const kLocationServicesNotDetermined;
+extern NSString* const kLocationServicesRestricted;
+extern NSString* const kLocationServicesDenied;
+extern NSString* const kLocationServicesAuthorisedAlways;
+extern NSString* const kLocationServicesAuthorisedWhenInUse;
+
