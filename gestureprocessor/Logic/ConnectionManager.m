@@ -42,9 +42,12 @@
     NSDictionary* parameters = @{ kModelNameParameter : [AAHardware modelName] };
     
     [self PUT:url
-   parameters:nil//@{ kHardware : parameters }
+   parameters:nil
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
+         [formData appendPartWithFormData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil]
+                                     name:kHardware];
+         
          for (NSString* sessionID in manifests.allKeys)
          {
              [formData appendPartWithFileData:manifests[sessionID]
