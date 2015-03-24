@@ -38,11 +38,13 @@ float      const kEventsSerializationInterval = 15.0f;
 size_t     const kEventsMaxSizeInBytes = 1024 * 100;
 size_t     const kEventAverageSizeInBytes = 120;
 
+// Exceptions
 NSString* const kExceptionEvent          = @"Uncaught Exception";
 NSString* const kExceptionEventReason    = @"Reason";
 NSString* const kExceptionEventName      = @"Name";
 NSString* const kExceptionEventCallStack = @"Call Stack Trace";
 
+// Transactions
 NSString* const kTransactionEvent           = @"Transaction";
 NSString* const kTransactionEventType       = @"Type";
 NSString* const kTransactionEventId         = @"Identifier";
@@ -61,6 +63,7 @@ NSString* const kAlertMessage = @"Message";
 
 NSString* const kNullParameter = @"Null";
 
+// Device orientation
 NSString* const kOrientationChangedEvent            = @"Orientation Changed";
 NSString* const kOrientationParameter               = @"Orientation";
 NSString* const kOrientationChangedPortait          = @"Portrait";
@@ -71,11 +74,13 @@ NSString* const kOrientationChangedFaceUp           = @"Face Up";
 NSString* const kOrientationChangedFaceDown         = @"Face Down";
 NSString* const kOrientationChangedUnknown          = @"Unknown";
 
+// Application State
 NSString* const kAppStateChangedEvent = @"Application State Changed";
 NSString* const kAppStateParameter    = @"State";
 NSString* const kAppStateForeground   = @"Foreground";
 NSString* const kAppStateBackground   = @"Background";
 
+// Internet Connection
 NSString* const kConnectionStatusChanged   = @"Connection Status Changed";
 NSString* const kConnectionStatusParameter = @"Status";
 NSString* const kConnectionStatusWiFi      = @"WiFi";
@@ -83,11 +88,13 @@ NSString* const kConnectionStatusWWAN      = @"Cellular";
 NSString* const kConnectionStatusNone      = @"None";
 NSString* const kConnectionStatusUnknown   = @"Unknown";
 
+// Keyboard
 NSString* const kKeyboardStateChanged = @"Keyboard State Changed";
 NSString* const kKeyboardStateParameter = @"State";
 NSString* const kKeyboardVisible = @"Visible";
 NSString* const kKeyboardHidden = @"Hidden";
 
+// Location Services
 NSString* const kLocationServicesStatusChanged = @"Location Services Status Changed";
 NSString* const kLocationServicesStatus = @"Status";
 NSString* const kLocationServicesNotDetermined = @"Not Determined";
@@ -95,3 +102,11 @@ NSString* const kLocationServicesRestricted = @"Restricted";
 NSString* const kLocationServicesDenied = @"Denied";
 NSString* const kLocationServicesAuthorisedAlways = @"Authorised Foreground and Background Usage";
 NSString* const kLocationServicesAuthorisedWhenInUse = @"Authorised Foreground Usage";
+
+// Battery
+NSString* const kBatteryStateChanged = @"Battery State Changed";
+NSString* const kBatteryState = @"State";
+NSString* const kBatteryStateUnknown = @"Unknown";
+NSString* const kBatteryStateUnplugged = @"Unplugged";
+NSString* const kBatteryStateCharging = @"Charging";
+NSString* const kBatteryStateFull = @"Full";

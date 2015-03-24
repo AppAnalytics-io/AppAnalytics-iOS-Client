@@ -61,6 +61,12 @@
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onBatteryStateChanged:)
+                                                 name:UIDeviceBatteryStateDidChangeNotification
+                                               object:nil];
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+
     __weak __typeof(self) weakSelf = self;
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
     {
@@ -84,6 +90,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationWillEnterForegroundNotification
                                                   object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceBatteryStateDidChangeNotification
+                                                  object:nil];
+}
+
+#pragma mark - Battery
+
+- (void)onBatteryStateChanged:(NSNotification *)note
+{
+    NSString* stateString = nil;
+    switch ([UIDevice currentDevice].batteryState)
+    {
+        case UIDeviceBatteryStateUnplugged:
+            stateString = kBatteryStateUnplugged;
+            break;
+        case UIDeviceBatteryStateCharging:
+            stateString = kBatteryStateCharging;
+            break;
+        case UIDeviceBatteryStateFull:
+            stateString = kBatteryStateFull;
+            break;
+        default:
+            stateString = kBatteryStateUnknown;
+            break;
+    }
+    [[EventsManager instance] addEvent:kBatteryStateChanged
+                            parameters:@{ kBatteryState : stateString }
+                                 async:YES];
 }
 
 #pragma mark - Location Services
