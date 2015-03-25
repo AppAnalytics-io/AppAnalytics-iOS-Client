@@ -110,3 +110,7 @@ extern NSString* const kBatteryStateUnknown;
 extern NSString* const kBatteryStateUnplugged;
 extern NSString* const kBatteryStateCharging;
 extern NSString* const kBatteryStateFull;
+
+// Motion
+extern NSString* const kMotionActivityChanged;
+extern NSString* const kMotionActivityState;

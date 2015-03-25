@@ -198,7 +198,8 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (void)sendData
 {
-    if (![[AFNetworkReachabilityManager sharedManager] isReachable])
+    if (![[AFNetworkReachabilityManager sharedManager] isReachable] ||
+        ![Logger instance].isManifestSent)
     {
         return;
     }

@@ -3,9 +3,13 @@
 #import "GTConstants.h"
 #import "AFNetworkReachabilityManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface EventsObserver () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager* locationManager;
+@property (nonatomic, strong) CMAltimeter* altimeterManager;
+@property (nonatomic, strong) CMMotionManager* motionManager;
+@property (nonatomic, strong) CMMotionActivityManager* motionActivityManager;
 @end
 
 @implementation EventsObserver
@@ -26,10 +30,8 @@
     self = [super init];
     if (self)
     {
+        [self setup];
         [self addObservers];
-        
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
     }
     return self;
 }
@@ -37,7 +39,76 @@
 - (void)dealloc
 {
     [self removeObservers];
+    [self.altimeterManager stopRelativeAltitudeUpdates];
+    [self.motionManager stopDeviceMotionUpdates];
+    [self.motionActivityManager stopActivityUpdates];
+    
     self.locationManager = nil;
+    self.altimeterManager = nil;
+    self.motionManager = nil;
+    self.motionActivityManager = nil;
+}
+
+- (void)setup
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    
+    self.motionActivityManager = [[CMMotionActivityManager alloc] init];
+    
+#if 0
+    [self configureAltitude];
+    [self configureMotion];
+    [self configureMotionActivity];
+#endif
+}
+
+- (void)configureAltitude
+{
+    if ([CMAltimeter isRelativeAltitudeAvailable])
+    {
+        self.altimeterManager = [[CMAltimeter alloc] init];
+        [self.altimeterManager startRelativeAltitudeUpdatesToQueue:[NSOperationQueue mainQueue]
+                                                       withHandler:^(CMAltitudeData *altitudeData, NSError *error)
+         {
+             NSString *data = [NSString stringWithFormat:@"Altitude: %f %f",
+                               altitudeData.relativeAltitude.floatValue,
+                               altitudeData.pressure.floatValue];
+             NSLog(@"%@", data);
+         }];
+    }
+}
+
+- (void)configureMotion
+{
+    if (self.motionManager.isDeviceMotionAvailable)
+    {
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryZVertical
+                                                                toQueue:[NSOperationQueue mainQueue]
+                                                            withHandler:^(CMDeviceMotion *motion, NSError *error)
+         {
+             CGFloat x = motion.gravity.x;
+             CGFloat y = motion.gravity.y;
+             CGFloat z = motion.gravity.z;
+             NSLog(@"%f %f %f", x, y, z);
+         }];
+    }
+}
+
+- (void)configureMotionActivity
+{
+    if ([CMMotionActivityManager isActivityAvailable])
+    {
+        [self.motionActivityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue]
+                                                    withHandler:^(CMMotionActivity *activity)
+        {
+            [[EventsManager instance] addEvent:kMotionActivityChanged
+                                    parameters:@{ kMotionActivityState : [EventsObserver activityTypeString:activity] }
+                                         async:YES];
+        }];
+    }
 }
 
 - (void)addObservers
@@ -66,12 +137,13 @@
                                                  name:UIDeviceBatteryStateDidChangeNotification
                                                object:nil];
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-
+    
     __weak __typeof(self) weakSelf = self;
+    
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
-    {
-        [weakSelf onConnectionStatusChanged:status];
-    }];
+     {
+         [weakSelf onConnectionStatusChanged:status];
+     }];
 }
 
 - (void)removeObservers
@@ -94,6 +166,25 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceBatteryStateDidChangeNotification
                                                   object:nil];
+    
+    [self.altimeterManager stopRelativeAltitudeUpdates];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+
 }
 
 #pragma mark - Battery
@@ -268,4 +359,21 @@
     }
 }
 
+#pragma mark - Helpers
+
++ (NSString *)activityTypeString:(CMMotionActivity *)activity
+{
+    if (activity.walking)
+        return @"Walking";
+    else if (activity.running)
+        return @"Running";
+    else if (activity.automotive)
+        return @"Automotive";
+    else if (activity.stationary)
+        return @"Not Moving";
+    else if (!activity.unknown)
+        return @"Moving";
+    else
+        return @"Unclassified";
+}
 @end

@@ -23,4 +23,6 @@
 
 - (void)debugLogEvent:(Event*)event;
 
+@property (nonatomic, readonly) BOOL isManifestSent;
+
 @end

@@ -107,6 +107,13 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self invalidateTimers];
 }
 
+#pragma mark - Properties
+
+- (BOOL)isManifestSent
+{
+    return self.manifests && self.manifests.count == 0;
+}
+
 #pragma mark - Working with Data
 
 - (void)scheduleTimers
@@ -134,7 +141,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)sendData
 {
-    if (![[AFNetworkReachabilityManager sharedManager] isReachable])
+    if (![[AFNetworkReachabilityManager sharedManager] isReachable] ||
+        !self.isManifestSent)
     {
         return;
     }
