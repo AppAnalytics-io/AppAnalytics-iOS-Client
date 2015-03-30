@@ -18,6 +18,8 @@ NSTimeInterval const kMaxEventsDispatchTime = 3600.0f;
 NSTimeInterval const kMinEventsDispatchTime = 10.0f;
 NSTimeInterval const kDefaultEventsDispatchTime = 120.0f;
 
+NSString* const kSDKExceptionName = @"App Analytics Exception";
+
 NSString* const kHardware = @"Hardware";
 NSString* const kModelNameParameter = @"Model Name";
 
@@ -28,10 +30,6 @@ NSString* const kUnresponsiveSampleParameter = @"U";
 NSString* const kResponsiveSampleParameter   = @"R";
 
 BOOL const kDebugLogEnabled = NO;
-BOOL const kExceptionAnalyticsEnabled = YES;
-BOOL const kTransactionAnalyticsEnabled = YES;
-BOOL const kScreenAnalyticsEnabled = NO;
-BOOL const kPopupAnalyticsEnabled = YES;
 
 NSUInteger const kEventDescriptionMaxLength = 256;
 float      const kEventsSerializationInterval = 15.0f;

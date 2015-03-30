@@ -10,8 +10,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [AppAnalytics initWithAppKey:@"Z4456wJ0r6PgmwKcd9lJTTNainXzx1IJ"];
-    [AppAnalytics setDebugLogEnabled:YES];
+    [AppAnalytics initWithAppKey:@"Z4456wJ0r6PgmwKcd9lJTTNainXzx1IJ"
+                         options:@{DebugLog : @(NO)}];
+    
     return YES;
 }
 

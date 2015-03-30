@@ -24,14 +24,12 @@ extern NSTimeInterval const kMaxEventsDispatchTime;
 extern NSTimeInterval const kMinEventsDispatchTime;
 extern NSTimeInterval const kDefaultEventsDispatchTime;
 
+extern NSString* const kSDKExceptionName;
+
 extern NSString* const kHardware;
 extern NSString* const kModelNameParameter;
 
 extern BOOL const kDebugLogEnabled;
-extern BOOL const kExceptionAnalyticsEnabled;
-extern BOOL const kTransactionAnalyticsEnabled;
-extern BOOL const kScreenAnalyticsEnabled;
-extern BOOL const kPopupAnalyticsEnabled;
 
 extern NSUInteger const kEventDescriptionMaxLength;
 extern float const kEventsSerializationInterval;

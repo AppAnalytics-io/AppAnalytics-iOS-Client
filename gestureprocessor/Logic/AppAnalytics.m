@@ -18,6 +18,12 @@
 @property (nonatomic, readwrite) BOOL navigationAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL locationServicesAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL connectionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL deviceOrientationAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL batteryAnalyticEnabled;
 
 @end
 
@@ -30,10 +36,24 @@
 @property (nonatomic, strong) NSString* appKey;
 @property (nonatomic, strong) NSUUID* sessionUUID;
 @property (nonatomic, strong) NSString* udid;
+@property (nonatomic) BOOL heatMapAnalyticsEnabled;
 
 @end
 
 static NSString* const kUDIDKey = @"NHzZ36186S";
+
+NSString* const DebugLog                     = @"DebugLog";
+NSString* const HeatMapAnalytics             = @"HeatMapAnalytics";
+NSString* const ExceptionAnalytics           = @"ExceptionAnalytics";
+NSString* const TransactionAnalytics         = @"TransactionAnalytics";
+NSString* const NavigationAnalytics          = @"NavigationAnalytics";
+NSString* const PopUpAnalytics               = @"PopUpAnalytics";
+NSString* const MotionAnalytics              = @"MotionAnalytics";
+NSString* const LocationServicesAnalytics    = @"LocationServicesAnalytics";
+NSString* const ConnectionAnalytics          = @"ConnectionAnalytics";
+NSString* const ApplicationStateAnalytics    = @"ApplicationStateAnalytics";
+NSString* const DeviceOrientationAnalytics   = @"DeviceOrientationAnalytics";
+NSString* const BatteryAnalytics             = @"BatteryAnalytics";
 
 @implementation AppAnalytics
 
@@ -41,6 +61,11 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 
 + (void)initWithAppKey:(NSString *)appKey
 {
+    if ([AppAnalytics instance].appKey)
+    {
+        return;
+    }
+    
     [AppAnalyticsHelpers checkAppKey:appKey];
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
@@ -49,6 +74,66 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     [KeyboardWatcher instance];
     [EventsObserver instance];
     [[Logger instance] createSessionManifest];
+}
+
++ (void)initWithAppKey:(NSString *)appKey options:(NSDictionary*)options
+{
+    [self initWithAppKey:appKey];
+    
+    if (!options)
+    {
+        return;
+    }
+    
+    NSArray* optionsKeys = options.allKeys;
+    
+    for (NSString* key in optionsKeys)
+    {
+        if (![options[key] isKindOfClass:[NSNumber class]] ||
+           !(options[key] == (void*)kCFBooleanFalse || options[key] == (void*)kCFBooleanTrue))
+        {
+            NSString* reason = [NSString stringWithFormat:@"Please, use @(YES) or @(NO) in options dictionary for key '%@'.", key];
+            [[NSException exceptionWithName:kSDKExceptionName
+                                     reason:reason
+                                   userInfo:nil] raise];
+        }
+    }
+            
+    if ([optionsKeys containsObject:DebugLog])
+        [self setDebugLogEnabled:[options[DebugLog] boolValue]];
+    
+    if ([optionsKeys containsObject:HeatMapAnalytics])
+        [self setHeatMapAnalyticsEnabled:[options[HeatMapAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:ExceptionAnalytics])
+        [self setExceptionAnalyticsEnabled:[options[ExceptionAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:TransactionAnalytics])
+        [self setTransactionAnalyticsEnabled:[options[TransactionAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:NavigationAnalytics])
+        [self setNavigationAnalyticsEnabled:[options[NavigationAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:PopUpAnalytics])
+        [self setPopUpsAnalyticsEnabled:[options[PopUpAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:MotionAnalytics])
+        [self setMotionAnalyticsEnabled:[options[MotionAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:LocationServicesAnalytics])
+        [self setLocationServicesAnalyticsEnabled:[options[LocationServicesAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:ConnectionAnalytics])
+        [self setConnectionAnalyticsEnabled:[options[ConnectionAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:ApplicationStateAnalytics])
+        [self setApplicationStateAnalyticsEnabled:[options[ApplicationStateAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:DeviceOrientationAnalytics])
+        [self setDeviceOrientationAnalyticsEnabled:[options[DeviceOrientationAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:BatteryAnalytics])
+        [self setBatteryAnalyticsEnabled:[options[BatteryAnalytics] boolValue]];
 }
 
 + (instancetype)instance
@@ -67,6 +152,7 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
     self = [super init];
     if (self)
     {
+        self.heatMapAnalyticsEnabled = YES;
         self.sessionUUID = [NSUUID UUID];
         self.udid = [[NSUserDefaults standardUserDefaults] objectForKey:kUDIDKey];
         if (!self.udid)
@@ -119,6 +205,41 @@ static NSString* const kUDIDKey = @"NHzZ36186S";
 + (void)setPopUpsAnalyticsEnabled:(BOOL)enabled
 {
     [EventsManager instance].popupAnalyticEnabled = enabled;
+}
+
++ (void)setMotionAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].motionAnalyticEnabled = enabled;
+}
+
++ (void)setLocationServicesAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].locationServicesAnalyticEnabled = enabled;
+}
+
++ (void)setConnectionAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].connectionAnalyticEnabled = enabled;
+}
+
++ (void)setApplicationStateAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].applicationStateAnalyticEnabled = enabled;
+}
+
++ (void)setDeviceOrientationAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].deviceOrientationAnalyticEnabled = enabled;
+}
+
++ (void)setBatteryAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].batteryAnalyticEnabled = enabled;
+}
+
++ (void)setHeatMapAnalyticsEnabled:(BOOL)enabled
+{
+    [AppAnalytics instance].heatMapAnalyticsEnabled = enabled;
 }
 
 void uncaughtExceptionHandler(NSException *exception)
@@ -201,7 +322,8 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)onGestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
-    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized)
+    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized &&
+        [AppAnalytics instance].heatMapAnalyticsEnabled)
     {
         [[Logger instance] gestureRecognized:gestureRecognizer];
     }
@@ -209,7 +331,10 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)onShake
 {
-    [[Logger instance] shakeRecognized];
+    if ([AppAnalytics instance].heatMapAnalyticsEnabled)
+    {
+        [[Logger instance] shakeRecognized];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

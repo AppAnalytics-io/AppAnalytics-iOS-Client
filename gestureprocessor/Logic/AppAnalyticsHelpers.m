@@ -234,7 +234,7 @@
 {
     if (!appKey || !appKey.length)
     {
-        [[NSException exceptionWithName:@"App Analytics Exception"
+        [[NSException exceptionWithName:kSDKExceptionName
                                  reason:@"Incorrect App Key"
                                userInfo:nil] raise];
     }

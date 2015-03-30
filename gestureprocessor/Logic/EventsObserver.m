@@ -104,9 +104,12 @@
         [self.motionActivityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue]
                                                     withHandler:^(CMMotionActivity *activity)
         {
-            [[EventsManager instance] addEvent:kMotionActivityChanged
-                                    parameters:@{ kMotionActivityState : [EventsObserver activityTypeString:activity] }
-                                         async:YES];
+            if ([EventsManager instance].motionAnalyticEnabled)
+            {
+                [[EventsManager instance] addEvent:kMotionActivityChanged
+                                        parameters:@{ kMotionActivityState : [EventsObserver activityTypeString:activity] }
+                                             async:YES];
+            }
         }];
     }
 }
@@ -191,6 +194,11 @@
 
 - (void)onBatteryStateChanged:(NSNotification *)note
 {
+    if (![EventsManager instance].batteryAnalyticEnabled)
+    {
+        return;
+    }
+    
     NSString* stateString = nil;
     switch ([UIDevice currentDevice].batteryState)
     {
@@ -216,6 +224,11 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
+    if (![EventsManager instance].locationServicesAnalyticEnabled)
+    {
+        return;
+    }
+    
     NSString* statusString = nil;
     switch (status)
     {
@@ -253,6 +266,11 @@
 
 - (void)onConnectionStatusChanged:(AFNetworkReachabilityStatus)status
 {
+    if (![EventsManager instance].connectionAnalyticEnabled)
+    {
+        return;
+    }
+    
     NSString* statusString = nil;
     switch (status)
     {
@@ -278,6 +296,11 @@
 
 - (void)onApplicationStateChanged:(NSNotification *)note
 {
+    if (![EventsManager instance].applicationStateAnalyticEnabled)
+    {
+        return;
+    }
+    
     [[EventsManager instance] addEvent:kAppStateChangedEvent
                             parameters:@{ kAppStateParameter : note.name }
                                  async:NO];
@@ -287,6 +310,11 @@
 
 - (void)onOrientationChanged:(NSNotification *)note
 {
+    if (![EventsManager instance].deviceOrientationAnalyticEnabled)
+    {
+        return;
+    }
+    
     if ([note.object isKindOfClass:[UIDevice class]])
     {
         NSString* orientationString = nil;
@@ -376,4 +404,5 @@
     else
         return @"Unclassified";
 }
+
 @end

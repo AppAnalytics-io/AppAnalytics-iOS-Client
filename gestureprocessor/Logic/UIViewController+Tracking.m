@@ -4,6 +4,7 @@
 #import "Logger.h"
 #import "AppAnalytics.h"
 #import "GTConstants.h"
+#import "EventsManager.h"
 
 @implementation UIViewController (Tracking)
 
@@ -25,7 +26,10 @@
     if (![className isEqualToString:omittedClass])
     {
         [[Logger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
-        [AppAnalytics logEvent:kNavigationEvent parameters:@{kNavigationEventClassName : className}];
+        if ([EventsManager instance].screenAnalyticEnabled)
+        {
+            [AppAnalytics logEvent:kNavigationEvent parameters:@{kNavigationEventClassName : className}];
+        }
     }
 }
 

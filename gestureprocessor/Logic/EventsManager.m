@@ -38,9 +38,14 @@ static dispatch_queue_t events_processing_queue()
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL locationServicesAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL connectionAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL deviceOrientationAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL batteryAnalyticEnabled;
 @property (nonatomic, strong) NSTimer* serializationTimer;
 @property (nonatomic, strong) NSTimer* dispatchTimer;
-@property (nonatomic, strong) NSLock* lock;
 
 @end
 
@@ -68,11 +73,16 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     {
         self.debugLogEnabled = kDebugLogEnabled;
         self.dispatchInterval = kDefaultEventsDispatchTime;
-        self.exceptionAnalyticEnabled = kExceptionAnalyticsEnabled;
-        self.transactionAnalyticEnabled = kTransactionAnalyticsEnabled;
-        self.screenAnalyticEnabled = kScreenAnalyticsEnabled;
-        self.popupAnalyticEnabled = kPopupAnalyticsEnabled;
-        self.lock = [[NSLock alloc] init];
+        self.exceptionAnalyticEnabled = YES;
+        self.transactionAnalyticEnabled = YES;
+        self.screenAnalyticEnabled = YES;
+        self.popupAnalyticEnabled = YES;
+        self.motionAnalyticEnabled = YES;
+        self.locationServicesAnalyticEnabled = YES;
+        self.connectionAnalyticEnabled = YES;
+        self.applicationStateAnalyticEnabled = YES;
+        self.deviceOrientationAnalyticEnabled = YES;
+        self.batteryAnalyticEnabled = YES;
         [self scheduleTimers];
         [self deserialize];
     }
