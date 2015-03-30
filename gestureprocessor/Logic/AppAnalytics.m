@@ -167,14 +167,14 @@ NSString* const BatteryAnalytics             = @"BatteryAnalytics";
 
 #pragma mark - Events Processing
 
-+ (void)logEvent:(NSString*)description
++ (void)logEvent:(NSString*)eventName
 {
-    [[EventsManager instance] addEvent:description async:YES];
+    [[EventsManager instance] addEvent:eventName async:YES];
 }
 
-+ (void)logEvent:(NSString*)description parameters:(NSDictionary*)parameters
++ (void)logEvent:(NSString*)eventName parameters:(NSDictionary*)parameters
 {
-    [[EventsManager instance] addEvent:description parameters:parameters async:YES];
+    [[EventsManager instance] addEvent:eventName parameters:parameters async:YES];
 }
 
 + (void)setDispatchInverval:(NSTimeInterval)dispatchInterval
