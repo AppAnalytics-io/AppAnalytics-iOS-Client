@@ -1,6 +1,8 @@
 #import "LogInfo.h"
 #import "AppAnalyticsHelpers.h"
 
+// used to obtain action name from it's index in debug purposes
+#ifdef DEBUG
 static NSDictionary* typeNames;
 NSString* NSStringWithActionType(ActionType action)
 {
@@ -45,6 +47,7 @@ NSString* NSStringWithActionType(ActionType action)
                   };
     return (NSString *) typeNames[@(action)];
 }
+#endif
 
 @interface LogObject ()
 

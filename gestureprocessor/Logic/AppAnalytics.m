@@ -87,12 +87,17 @@ NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
         return;
     }
     
+    [self setOptions:options];
+}
+
++ (void)setOptions:(NSDictionary*)options
+{
     NSArray* optionsKeys = options.allKeys;
     
     for (NSString* key in optionsKeys)
     {
         if (![options[key] isKindOfClass:[NSNumber class]] ||
-           !(options[key] == (void*)kCFBooleanFalse || options[key] == (void*)kCFBooleanTrue))
+            !(options[key] == (void*)kCFBooleanFalse || options[key] == (void*)kCFBooleanTrue))
         {
             NSString* reason = [NSString stringWithFormat:@"Please, use @(YES) or @(NO) in options dictionary for key '%@'.", key];
             [[NSException exceptionWithName:kSDKExceptionName
@@ -100,7 +105,7 @@ NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
                                    userInfo:nil] raise];
         }
     }
-            
+    
     if ([optionsKeys containsObject:DebugLog])
         [self setDebugLogEnabled:[options[DebugLog] boolValue]];
     
@@ -261,6 +266,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)trackWindowGestures:(UIWindow*)window
 {
+    // Only need the window where the application is rendered
     if (![NSStringFromClass(window.class) isEqual:@"UIWindow"])
     {
         return;

@@ -30,7 +30,7 @@ static dispatch_queue_t events_processing_queue()
 
 @interface EventsManager () 
 
-@property (atomic, readwrite, strong) NSMutableDictionary* events; // { sessionID : mutable array of events }
+@property (nonatomic, readwrite, strong) NSMutableDictionary* events; // { sessionID : mutable array of events }
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) NSTimeInterval dispatchInterval;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
@@ -106,11 +106,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         _events[[AppAnalytics instance].sessionUUID.UUIDString] = [NSMutableArray array];
     }
     return _events;
-}
-
-- (void)setEvents:(NSMutableDictionary *)events
-{
-    _events = events;
 }
 
 - (void)setDispatchInterval:(NSTimeInterval)dispatchInterval

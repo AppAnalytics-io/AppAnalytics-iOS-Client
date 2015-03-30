@@ -2,6 +2,8 @@
 
 @implementation NSUserDefaults (SaveCustomObject)
 
+#pragma mark - Custom objects serialization. Used to save Samples and Events to disk
+
 - (void)saveCustomObject:(id)object key:(NSString *)key
 {
     NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:object];

@@ -19,6 +19,7 @@
 
 + (UIViewController*)topControllerForVC:(UIViewController*)vc
 {
+    // Top most controller from navigation or tab bar containter view controllers
     UIViewController* topController = vc;
     
     if ([topController isKindOfClass:[UINavigationController class]])
@@ -48,6 +49,7 @@
         }
     }
     
+    // Split View Controller (or similar) view controllers checking
     UIViewController* visibleChild = nil;
     for (UIViewController* child in topController.childViewControllers)
     {

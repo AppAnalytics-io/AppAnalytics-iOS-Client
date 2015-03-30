@@ -2,6 +2,8 @@
 
 @implementation UIGestureRecognizer (Type)
 
+#pragma mark - Obtain App Analytics Action Type From UIGestureRecognizer
+
 - (ActionType)actionType
 {
     ActionType type = ActionType_Unknown;

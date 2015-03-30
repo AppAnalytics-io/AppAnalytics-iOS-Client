@@ -3,6 +3,8 @@
 
 @implementation NSObject (Swizzling)
 
+// To transparently handle class methods calls
+
 + (void)swizzleOriginalMethod:(SEL)originalSelector with:(SEL)swizzledSelector
 {
     Class class = [self class];

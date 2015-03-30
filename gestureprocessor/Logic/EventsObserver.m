@@ -14,6 +14,8 @@
 
 @implementation EventsObserver
 
+#pragma mark - Life Cycle
+
 + (instancetype)instance
 {
     static EventsObserver* _self;
@@ -63,22 +65,6 @@
     [self configureMotion];
     [self configureMotionActivity];
 #endif
-}
-
-- (void)configureAltitude
-{
-    if ([CMAltimeter isRelativeAltitudeAvailable])
-    {
-        self.altimeterManager = [[CMAltimeter alloc] init];
-        [self.altimeterManager startRelativeAltitudeUpdatesToQueue:[NSOperationQueue mainQueue]
-                                                       withHandler:^(CMAltitudeData *altitudeData, NSError *error)
-         {
-             NSString *data = [NSString stringWithFormat:@"Altitude: %f %f",
-                               altitudeData.relativeAltitude.floatValue,
-                               altitudeData.pressure.floatValue];
-             NSLog(@"%@", data);
-         }];
-    }
 }
 
 - (void)configureMotion
@@ -171,23 +157,6 @@
                                                   object:nil];
     
     [self.altimeterManager stopRelativeAltitudeUpdates];
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-
 }
 
 #pragma mark - Battery

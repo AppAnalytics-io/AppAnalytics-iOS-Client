@@ -65,7 +65,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      }
       failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
+#ifdef DEBUG
          NSLog(@"PUT Manifest error: %@", error);
+#endif
      }];
 }
 
@@ -98,7 +100,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
     }
       failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
+#ifdef DEBUG
         NSLog(@"PUT Samples error: %@", error);
+#endif
     }];
 }
 
@@ -127,7 +131,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
       }
        failure:^(AFHTTPRequestOperation *operation, NSError *error)
       {
+#ifdef DEBUG
           NSLog(@"PUT Events error: %@", error);
+#endif
           if (failure)
           {
               failure();

@@ -41,7 +41,10 @@ typedef NS_ENUM(u_int8_t, ActionType)
     ActionType_Navigation
 };
 
+// used to obtain action name from it's index in debug purposes
+#ifdef DEBUG
 extern NSString* NSStringWithActionType(ActionType input);
+#endif
 
 @protocol LogInfo <NSObject>
 
