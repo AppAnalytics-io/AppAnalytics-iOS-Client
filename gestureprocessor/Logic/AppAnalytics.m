@@ -24,6 +24,7 @@
 @property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL deviceOrientationAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL batteryAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL keyboardAnalyticsEnabled;
 
 @end
 
@@ -54,6 +55,7 @@ NSString* const ConnectionAnalytics          = @"ConnectionAnalytics";
 NSString* const ApplicationStateAnalytics    = @"ApplicationStateAnalytics";
 NSString* const DeviceOrientationAnalytics   = @"DeviceOrientationAnalytics";
 NSString* const BatteryAnalytics             = @"BatteryAnalytics";
+NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
 
 @implementation AppAnalytics
 
@@ -134,6 +136,9 @@ NSString* const BatteryAnalytics             = @"BatteryAnalytics";
     
     if ([optionsKeys containsObject:BatteryAnalytics])
         [self setBatteryAnalyticsEnabled:[options[BatteryAnalytics] boolValue]];
+    
+    if ([optionsKeys containsObject:KeyboardAnalytics])
+        [self setKeyboardAnalyticsEnabled:[options[KeyboardAnalytics] boolValue]];
 }
 
 + (instancetype)instance
@@ -240,6 +245,11 @@ NSString* const BatteryAnalytics             = @"BatteryAnalytics";
 + (void)setHeatMapAnalyticsEnabled:(BOOL)enabled
 {
     [AppAnalytics instance].heatMapAnalyticsEnabled = enabled;
+}
+
++ (void)setKeyboardAnalyticsEnabled:(BOOL)enabled
+{
+    [EventsManager instance].keyboardAnalyticsEnabled = enabled;
 }
 
 void uncaughtExceptionHandler(NSException *exception)

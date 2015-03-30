@@ -44,6 +44,7 @@ static dispatch_queue_t events_processing_queue()
 @property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL deviceOrientationAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL batteryAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL keyboardAnalyticsEnabled;
 @property (nonatomic, strong) NSTimer* serializationTimer;
 @property (nonatomic, strong) NSTimer* dispatchTimer;
 
@@ -83,6 +84,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         self.applicationStateAnalyticEnabled = YES;
         self.deviceOrientationAnalyticEnabled = YES;
         self.batteryAnalyticEnabled = YES;
+        self.keyboardAnalyticsEnabled = YES;
         [self scheduleTimers];
         [self deserialize];
     }

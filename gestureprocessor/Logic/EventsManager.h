@@ -19,5 +19,6 @@
 @property (nonatomic, readonly) BOOL applicationStateAnalyticEnabled;
 @property (nonatomic, readonly) BOOL deviceOrientationAnalyticEnabled;
 @property (nonatomic, readonly) BOOL batteryAnalyticEnabled;
+@property (nonatomic, readonly) BOOL keyboardAnalyticsEnabled;
 
 @end

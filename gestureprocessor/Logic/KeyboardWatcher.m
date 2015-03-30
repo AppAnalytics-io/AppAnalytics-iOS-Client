@@ -60,17 +60,25 @@
     NSDictionary *keyboardInfo = [notification userInfo];
     self.keyboardFrame = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.keyboardShown = YES;
-    [[EventsManager instance] addEvent:kKeyboardStateChanged
-                            parameters:@{kKeyboardStateParameter : kKeyboardVisible}
-                                 async:YES];
+    
+    if ([EventsManager instance].keyboardAnalyticsEnabled)
+    {
+        [[EventsManager instance] addEvent:kKeyboardStateChanged
+                                parameters:@{kKeyboardStateParameter : kKeyboardVisible}
+                                     async:YES];
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     self.keyboardShown = NO;
-    [[EventsManager instance] addEvent:kKeyboardStateChanged
-                            parameters:@{kKeyboardStateParameter : kKeyboardHidden}
-                                 async:YES];
+    
+    if ([EventsManager instance].keyboardAnalyticsEnabled)
+    {
+        [[EventsManager instance] addEvent:kKeyboardStateChanged
+                                parameters:@{kKeyboardStateParameter : kKeyboardHidden}
+                                     async:YES];
+    }
 }
 
 @end

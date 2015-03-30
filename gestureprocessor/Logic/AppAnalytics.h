@@ -33,6 +33,9 @@ extern NSString* const DeviceOrientationAnalytics;
 /*! Auto tracking battery status changes */
 extern NSString* const BatteryAnalytics;
 
+/*! Auto tracking keyboard state changes */
+extern NSString* const KeyboardAnalytics;
+
 /*!
  @class AppAnalytics
  
@@ -156,5 +159,8 @@ extern NSString* const BatteryAnalytics;
 
 /*! Enable or disable automatic heat map analytics */
 + (void)setHeatMapAnalyticsEnabled:(BOOL)enabled;
+
+/*! Enable or disable automatic keyboard state analytics */
++ (void)setKeyboardAnalyticsEnabled:(BOOL)enabled;
 
 @end
