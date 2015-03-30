@@ -272,6 +272,7 @@ void uncaughtExceptionHandler(NSException *exception)
         return;
     }
     
+    // Init gesture recognizers
     NSMutableArray* gestures = [NSMutableArray array];
     
     UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]
@@ -327,7 +328,8 @@ void uncaughtExceptionHandler(NSException *exception)
         
         [gestures addObjectsFromArray:@[tap, doubleTap, tripleTap, longTap, leftSwipe, rightSwipe, upSwipe, downSwipe]];
     }
-
+    
+    // Attach to window
     for (UIGestureRecognizer* gesture in gestures)
     {
         gesture.delegate = self;
@@ -355,6 +357,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
 #pragma mark - UIGestureRecognizerDelegate
 
+// To allow UIContols (buttons and others) correctly receive touches
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     if ([touch.view isKindOfClass:[UIControl class]])
@@ -365,6 +368,7 @@ void uncaughtExceptionHandler(NSException *exception)
     return YES;
 }
 
+// To recognize all gestures at once
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {

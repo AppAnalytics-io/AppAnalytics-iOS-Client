@@ -8,6 +8,7 @@
 #import "AppAnalytics.h"
 #import "AFNetworkReachabilityManager.h"
 
+// Background App Analytics Events queue
 static dispatch_queue_t events_processing_queue()
 {
     static dispatch_queue_t events_queue;
@@ -54,7 +55,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 @implementation EventsManager
 
-@synthesize events = _events;
+#pragma mark - Life Cycle
 
 + (instancetype)instance
 {
@@ -98,6 +99,8 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     self.events = nil;
 }
 
+#pragma mark - Properties
+
 - (NSMutableDictionary*)events
 {
     if (!_events)
@@ -114,6 +117,8 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     _dispatchInterval = MAX(dispatchInterval, kMinEventsDispatchTime);
     [self refreshDispatchTimer];
 }
+
+#pragma mark - Main Routine
 
 - (void)scheduleTimers
 {
@@ -299,6 +304,8 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         [self serialize:NO];
     }
 }
+
+#pragma mark - Serialization
 
 - (void)serialize
 {
