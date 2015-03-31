@@ -18,7 +18,6 @@
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
-@property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL locationServicesAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL connectionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
@@ -50,7 +49,6 @@ NSString* const ExceptionAnalytics           = @"ExceptionAnalytics";
 NSString* const TransactionAnalytics         = @"TransactionAnalytics";
 NSString* const NavigationAnalytics          = @"NavigationAnalytics";
 NSString* const PopUpAnalytics               = @"PopUpAnalytics";
-NSString* const MotionAnalytics              = @"MotionAnalytics";
 NSString* const LocationServicesAnalytics    = @"LocationServicesAnalytics";
 NSString* const ConnectionAnalytics          = @"ConnectionAnalytics";
 NSString* const ApplicationStateAnalytics    = @"ApplicationStateAnalytics";
@@ -124,9 +122,6 @@ NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
     
     if ([optionsKeys containsObject:PopUpAnalytics])
         [self setPopUpsAnalyticsEnabled:[options[PopUpAnalytics] boolValue]];
-    
-    if ([optionsKeys containsObject:MotionAnalytics])
-        [self setMotionAnalyticsEnabled:[options[MotionAnalytics] boolValue]];
     
     if ([optionsKeys containsObject:LocationServicesAnalytics])
         [self setLocationServicesAnalyticsEnabled:[options[LocationServicesAnalytics] boolValue]];
@@ -232,12 +227,6 @@ NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
 {
     [self checkInitialization];
     [EventsManager instance].popupAnalyticEnabled = enabled;
-}
-
-+ (void)setMotionAnalyticsEnabled:(BOOL)enabled
-{
-    [self checkInitialization];
-    [EventsManager instance].motionAnalyticEnabled = enabled;
 }
 
 + (void)setLocationServicesAnalyticsEnabled:(BOOL)enabled

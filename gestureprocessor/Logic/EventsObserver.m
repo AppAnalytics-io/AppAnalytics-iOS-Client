@@ -3,13 +3,9 @@
 #import "GTConstants.h"
 #import "AFNetworkReachabilityManager.h"
 #import <CoreLocation/CoreLocation.h>
-#import <CoreMotion/CoreMotion.h>
 
 @interface EventsObserver () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager* locationManager;
-@property (nonatomic, strong) CMAltimeter* altimeterManager;
-@property (nonatomic, strong) CMMotionManager* motionManager;
-@property (nonatomic, strong) CMMotionActivityManager* motionActivityManager;
 @end
 
 @implementation EventsObserver
@@ -41,63 +37,14 @@
 - (void)dealloc
 {
     [self removeObservers];
-    [self.altimeterManager stopRelativeAltitudeUpdates];
-    [self.motionManager stopDeviceMotionUpdates];
-    [self.motionActivityManager stopActivityUpdates];
     
     self.locationManager = nil;
-    self.altimeterManager = nil;
-    self.motionManager = nil;
-    self.motionActivityManager = nil;
 }
 
 - (void)setup
 {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    
-    self.motionManager = [[CMMotionManager alloc] init];
-    
-    self.motionActivityManager = [[CMMotionActivityManager alloc] init];
-    
-#if 0
-    [self configureAltitude];
-    [self configureMotion];
-    [self configureMotionActivity];
-#endif
-}
-
-- (void)configureMotion
-{
-    if (self.motionManager.isDeviceMotionAvailable)
-    {
-        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryZVertical
-                                                                toQueue:[NSOperationQueue mainQueue]
-                                                            withHandler:^(CMDeviceMotion *motion, NSError *error)
-         {
-             CGFloat x = motion.gravity.x;
-             CGFloat y = motion.gravity.y;
-             CGFloat z = motion.gravity.z;
-             NSLog(@"%f %f %f", x, y, z);
-         }];
-    }
-}
-
-- (void)configureMotionActivity
-{
-    if ([CMMotionActivityManager isActivityAvailable])
-    {
-        [self.motionActivityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue]
-                                                    withHandler:^(CMMotionActivity *activity)
-        {
-            if ([EventsManager instance].motionAnalyticEnabled)
-            {
-                [[EventsManager instance] addEvent:kMotionActivityChanged
-                                        parameters:@{ kMotionActivityState : [EventsObserver activityTypeString:activity] }
-                                             async:YES];
-            }
-        }];
-    }
 }
 
 - (void)addObservers
@@ -155,8 +102,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceBatteryStateDidChangeNotification
                                                   object:nil];
-    
-    [self.altimeterManager stopRelativeAltitudeUpdates];
 }
 
 #pragma mark - Battery
@@ -354,24 +299,6 @@
         
         [[EventsManager instance] addEvent:kTransactionEvent parameters:parameters.copy async:YES];
     }
-}
-
-#pragma mark - Helpers
-
-+ (NSString *)activityTypeString:(CMMotionActivity *)activity
-{
-    if (activity.walking)
-        return @"Walking";
-    else if (activity.running)
-        return @"Running";
-    else if (activity.automotive)
-        return @"Automotive";
-    else if (activity.stationary)
-        return @"Not Moving";
-    else if (!activity.unknown)
-        return @"Moving";
-    else
-        return @"Unclassified";
 }
 
 @end

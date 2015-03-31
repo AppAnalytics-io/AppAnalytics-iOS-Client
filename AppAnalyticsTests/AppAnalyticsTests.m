@@ -12,7 +12,6 @@
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
-@property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL locationServicesAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL connectionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
@@ -86,7 +85,6 @@
     XCTAssertNotNil(ExceptionAnalytics);
     XCTAssertNotNil(TransactionAnalytics);
     XCTAssertNotNil(PopUpAnalytics);
-    XCTAssertNotNil(MotionAnalytics);
     XCTAssertNotNil(LocationServicesAnalytics);
     XCTAssertNotNil(ConnectionAnalytics);
     XCTAssertNotNil(ApplicationStateAnalytics);
@@ -113,7 +111,6 @@
                                    TransactionAnalytics         : @(NO),
                                    NavigationAnalytics          : @(NO),
                                    PopUpAnalytics               : @(NO),
-                                   MotionAnalytics              : @(NO),
                                    LocationServicesAnalytics    : @(NO),
                                    ConnectionAnalytics          : @(NO),
                                    ApplicationStateAnalytics    : @(NO),
@@ -133,7 +130,6 @@
     XCTAssertFalse([EventsManager instance].transactionAnalyticEnabled, @"Passed");
     XCTAssertFalse([EventsManager instance].screenAnalyticEnabled, @"Passed");
     XCTAssertFalse([EventsManager instance].popupAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].motionAnalyticEnabled, @"Passed");
     XCTAssertFalse([EventsManager instance].locationServicesAnalyticEnabled, @"Passed");
     XCTAssertFalse([EventsManager instance].connectionAnalyticEnabled, @"Passed");
     XCTAssertFalse([EventsManager instance].applicationStateAnalyticEnabled, @"Passed");

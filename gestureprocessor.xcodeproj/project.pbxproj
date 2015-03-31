@@ -75,7 +75,6 @@
 		72672F221A4974AF001FDC80 /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72672F261A4988C4001FDC80 /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
-		72691BF11AC2CBE30098F151 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72691BF01AC2CBE30098F151 /* CoreMotion.framework */; };
 		726C9A1F1A9495DA003D03AE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
 		726C9A211A9495DA003D03AE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB21A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m */; };
 		726C9A231A9495DA003D03AE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB41A4ACCDD00822C51 /* AFHTTPSessionManager.m */; };
@@ -357,7 +356,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72691BF11AC2CBE30098F151 /* CoreMotion.framework in Frameworks */,
 				7288E2F91AC0283F00EEE430 /* CoreLocation.framework in Frameworks */,
 				724D758F1A8509CF00F2E61D /* StoreKit.framework in Frameworks */,
 				72922F101A4861DD00CEC369 /* MapKit.framework in Frameworks */,
@@ -1164,6 +1162,7 @@
 				INFOPLIST_FILE = gestureprocessor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1176,6 +1175,7 @@
 				INFOPLIST_FILE = gestureprocessor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1248,6 +1248,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1261,6 +1262,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gestureprocessor.app/gestureprocessor";
 			};
 			name = Debug;
@@ -1269,6 +1271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1277,6 +1280,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gestureprocessor.app/gestureprocessor";
 			};
 			name = Release;

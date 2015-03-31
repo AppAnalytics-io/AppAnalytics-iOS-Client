@@ -18,9 +18,6 @@ extern NSString* const NavigationAnalytics;
 /*! Auto tracking pop ups */
 extern NSString* const PopUpAnalytics;
 
-/*! Auto tracking motion state changes (walking, running, automotive, not moving, moving) */
-extern NSString* const MotionAnalytics;
-
 /*! Auto tracking location services state */
 extern NSString* const LocationServicesAnalytics;
 
@@ -141,9 +138,6 @@ extern NSString* const KeyboardAnalytics;
 
 /*! Enable or disable automatic pop ups analytics */
 + (void)setPopUpsAnalyticsEnabled:(BOOL)enabled;
-
-/*! Enable or disable automatic motion state changes (walking, running, automotive, not moving, moving) */
-+ (void)setMotionAnalyticsEnabled:(BOOL)enabled;
 
 /*! Enable or disable automatic location services analytics */
 + (void)setLocationServicesAnalyticsEnabled:(BOOL)enabled;

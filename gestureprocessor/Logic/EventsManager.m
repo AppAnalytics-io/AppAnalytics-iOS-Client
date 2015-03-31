@@ -44,7 +44,6 @@ static dispatch_queue_t events_processing_queue()
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
-@property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL locationServicesAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL connectionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL applicationStateAnalyticEnabled;
@@ -85,7 +84,6 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         self.transactionAnalyticEnabled = YES;
         self.screenAnalyticEnabled = YES;
         self.popupAnalyticEnabled = YES;
-        self.motionAnalyticEnabled = YES;
         self.locationServicesAnalyticEnabled = YES;
         self.connectionAnalyticEnabled = YES;
         self.applicationStateAnalyticEnabled = YES;

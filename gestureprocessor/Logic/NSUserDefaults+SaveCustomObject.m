@@ -16,8 +16,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *encodedObject = [defaults objectForKey:key];
-    id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
-    return object;
+    if (encodedObject)
+    {
+        id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+        return object;
+    }
+    return nil;
 }
 
 @end
