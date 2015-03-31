@@ -66,6 +66,7 @@
 		725795ED1A4DA99E00D8572D /* ManifestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F251A4988C4001FDC80 /* ManifestBuilder.m */; };
 		725795EE1A4DA99E00D8572D /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* ConnectionManager.m */; };
 		725795EF1A4DA9B100D8572D /* AppAnalytics.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; };
+		7260BC7D1ACA855500E93DFE /* AppAnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7260BC7C1ACA855500E93DFE /* AppAnalyticsTests.m */; };
 		726152E51AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */; };
 		726152E61AA4C83D00F418A2 /* UIAlertView+Tracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */; };
 		726152E71AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */; };
@@ -187,6 +188,13 @@
 			remoteGlobalIDString = 725795B91A4DA94E00D8572D;
 			remoteInfo = gestureprocessorlib;
 		};
+		7260BC7E1ACA855500E93DFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7227C4AD1A3F037F003A4C3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7227C4B41A3F037F003A4C3D;
+			remoteInfo = gestureprocessor;
+		};
 		72DC01361A978013003F40BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7227C4AD1A3F037F003A4C3D /* Project object */;
@@ -259,6 +267,9 @@
 		7246C1051A94C237005C4810 /* gestureprocessor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gestureprocessor-Prefix.pch"; sourceTree = "<group>"; };
 		724D758E1A8509CF00F2E61D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		725795BA1A4DA94E00D8572D /* libAppAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7260BC781ACA855500E93DFE /* AppAnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppAnalyticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7260BC7B1ACA855500E93DFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7260BC7C1ACA855500E93DFE /* AppAnalyticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppAnalyticsTests.m; sourceTree = "<group>"; };
 		726152E31AA4C83D00F418A2 /* UIAlertView+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Tracking.h"; sourceTree = "<group>"; };
 		726152E41AA4C83D00F418A2 /* UIAlertView+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Tracking.m"; sourceTree = "<group>"; };
 		72672F201A4974AF001FDC80 /* UIGestureRecognizer+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Type.h"; sourceTree = "<group>"; };
@@ -362,6 +373,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7260BC751ACA855500E93DFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		726C9A031A949569003D03AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				7227C4B71A3F037F003A4C3D /* gestureprocessor */,
+				7260BC791ACA855500E93DFE /* AppAnalyticsTests */,
 				72922F111A4861E200CEC369 /* Frameworks */,
 				7227C4B61A3F037F003A4C3D /* Products */,
 			);
@@ -397,6 +416,7 @@
 				725795BA1A4DA94E00D8572D /* libAppAnalytics.a */,
 				726C9A061A949569003D03AE /* libExt.a */,
 				72DC015F1A978013003F40BE /* libStaticAppAnalytics.a */,
+				7260BC781ACA855500E93DFE /* AppAnalyticsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -485,6 +505,23 @@
 				727E6B031A4B154D00822C51 /* ConnectionManager.m */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		7260BC791ACA855500E93DFE /* AppAnalyticsTests */ = {
+			isa = PBXGroup;
+			children = (
+				7260BC7C1ACA855500E93DFE /* AppAnalyticsTests.m */,
+				7260BC7A1ACA855500E93DFE /* Supporting Files */,
+			);
+			path = AppAnalyticsTests;
+			sourceTree = "<group>";
+		};
+		7260BC7A1ACA855500E93DFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7260BC7B1ACA855500E93DFE /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		72672F231A49889B001FDC80 /* Helpers */ = {
@@ -671,6 +708,24 @@
 			productReference = 725795BA1A4DA94E00D8572D /* libAppAnalytics.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		7260BC771ACA855500E93DFE /* AppAnalyticsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7260BC801ACA855500E93DFE /* Build configuration list for PBXNativeTarget "AppAnalyticsTests" */;
+			buildPhases = (
+				7260BC741ACA855500E93DFE /* Sources */,
+				7260BC751ACA855500E93DFE /* Frameworks */,
+				7260BC761ACA855500E93DFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7260BC7F1ACA855500E93DFE /* PBXTargetDependency */,
+			);
+			name = AppAnalyticsTests;
+			productName = AppAnalyticsTests;
+			productReference = 7260BC781ACA855500E93DFE /* AppAnalyticsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		726C9A051A949569003D03AE /* Ext */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 726C9A171A949569003D03AE /* Build configuration list for PBXNativeTarget "Ext" */;
@@ -727,6 +782,10 @@
 					725795B91A4DA94E00D8572D = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					7260BC771ACA855500E93DFE = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 7227C4B41A3F037F003A4C3D;
+					};
 					726C9A051A949569003D03AE = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -754,6 +813,7 @@
 				726C9A051A949569003D03AE /* Ext */,
 				72942EC61A4DBA7000974C79 /* UniversalLib */,
 				723292C51A9623A900850FEC /* Framework */,
+				7260BC771ACA855500E93DFE /* AppAnalyticsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -766,6 +826,13 @@
 				7227C4F11A3F06BC003A4C3D /* Images.xcassets in Resources */,
 				7227C4EE1A3F0648003A4C3D /* Main.storyboard in Resources */,
 				7227C4E61A3F060A003A4C3D /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7260BC761ACA855500E93DFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +985,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7260BC741ACA855500E93DFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7260BC7D1ACA855500E93DFE /* AppAnalyticsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		726C9A021A949569003D03AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -986,6 +1061,11 @@
 			isa = PBXTargetDependency;
 			target = 725795B91A4DA94E00D8572D /* AppAnalytics */;
 			targetProxy = 723292C91A9623C300850FEC /* PBXContainerItemProxy */;
+		};
+		7260BC7F1ACA855500E93DFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7227C4B41A3F037F003A4C3D /* gestureprocessor */;
+			targetProxy = 7260BC7E1ACA855500E93DFE /* PBXContainerItemProxy */;
 		};
 		72DC01351A978013003F40BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1164,6 +1244,43 @@
 			};
 			name = Release;
 		};
+		7260BC811ACA855500E93DFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AppAnalyticsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gestureprocessor.app/gestureprocessor";
+			};
+			name = Debug;
+		};
+		7260BC821ACA855500E93DFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AppAnalyticsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gestureprocessor.app/gestureprocessor";
+			};
+			name = Release;
+		};
 		726C9A181A949569003D03AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1282,6 +1399,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7260BC801ACA855500E93DFE /* Build configuration list for PBXNativeTarget "AppAnalyticsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7260BC811ACA855500E93DFE /* Debug */,
+				7260BC821ACA855500E93DFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		726C9A171A949569003D03AE /* Build configuration list for PBXNativeTarget "Ext" */ = {
 			isa = XCConfigurationList;

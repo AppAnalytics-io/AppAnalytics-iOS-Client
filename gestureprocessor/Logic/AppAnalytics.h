@@ -12,6 +12,9 @@ extern NSString* const ExceptionAnalytics;
 /*! Auto tracking transactions */
 extern NSString* const TransactionAnalytics;
 
+/*! Auto tracking navigation */
+extern NSString* const NavigationAnalytics;
+
 /*! Auto tracking pop ups */
 extern NSString* const PopUpAnalytics;
 

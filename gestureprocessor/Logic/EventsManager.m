@@ -23,13 +23,18 @@ static dispatch_queue_t events_processing_queue()
 @interface AppAnalytics (EventsManager)
 
 + (instancetype)instance;
++ (void)checkInitialization;
 @property (nonatomic, strong) NSString* appKey;
 @property (nonatomic, strong) NSUUID* sessionUUID;
 @property (nonatomic, strong) NSString* udid;
 
 @end
 
-@interface EventsManager () 
+@interface EventsManager ()
+
+- (void)sendData;
+- (void)serialize;
+- (void)deserialize;
 
 @property (nonatomic, readwrite, strong) NSMutableDictionary* events; // { sessionID : mutable array of events }
 @property (nonatomic, readwrite) NSUInteger index;
@@ -68,6 +73,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     return _self;
 }
 
+// all analytics options are enabled by default
 - (instancetype)init
 {
     self = [super init];
@@ -120,6 +126,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 #pragma mark - Main Routine
 
+// serialization and dispatch timers
 - (void)scheduleTimers
 {
     self.serializationTimer = [NSTimer
@@ -169,10 +176,12 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (void)addEvent:(NSString *)description parameters:(NSDictionary *)parameters
 {
+    // Cut if exceeds max length
     if (description.length > kEventDescriptionMaxLength)
     {
         description = [description substringToIndex:kEventDescriptionMaxLength];
     }
+    
     Event* event = [Event eventWithIndex:self.index++
                                timestamp:[NSDate new].timeIntervalSince1970
                              description:description
@@ -186,6 +195,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
             sessionEvents = [NSMutableArray array];
         }
         NSUInteger index = [sessionEvents indexOfObject:event];
+        // first or new event
         if (index == NSNotFound || !self.events)
         {
             [sessionEvents addObject:event];
@@ -194,6 +204,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
                 [[Logger instance] debugLogEvent:event];
             }
         }
+        // duplicated event. add time and index to existing container
         else
         {
             Event* existingEvent = sessionEvents[index];
@@ -210,6 +221,9 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
 - (void)sendData
 {
+    [AppAnalytics checkInitialization];
+
+    // if no Internet of manifest hasn't been sent yet
     if (![[AFNetworkReachabilityManager sharedManager] isReachable] ||
         ![Logger instance].isManifestSent)
     {
@@ -288,9 +302,10 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 }
 
 - (void)handleUncaughtException:(NSException *)exception
-{
+{    
     if (self.exceptionAnalyticEnabled)
     {
+        // handle synchronously and serialize, as the app is gonna crash right after
         NSString* reason = exception.reason ? exception.reason : kNullParameter;
         NSString* name = exception.name ? exception.name : kNullParameter;
         NSArray* stackSymbols = [exception callStackSymbols];
@@ -312,6 +327,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
     [self serialize:YES];
 }
 
+// save to disk in xml format
 - (void)serialize:(BOOL)async
 {
     if (async)

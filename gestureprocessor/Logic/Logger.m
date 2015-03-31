@@ -36,6 +36,7 @@
 @interface AppAnalytics (Logger)
 
 + (instancetype)instance;
++ (void)checkInitialization;
 @property (nonatomic, strong) NSString* appKey;
 @property (nonatomic, strong) NSUUID* sessionUUID;
 @property (nonatomic, strong) NSString* udid;
@@ -81,6 +82,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     return self;
 }
 
+// save to disk in xml format
 - (void)serialize
 {
     [[NSUserDefaults standardUserDefaults] setObject:self.manifests forKey:kManifestsSerializationKey];
@@ -116,6 +118,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 #pragma mark - Working with Data
 
+// serialization and dispatch timers
 - (void)scheduleTimers
 {
     self.serializationTimer = [NSTimer
@@ -141,6 +144,9 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)sendData
 {
+    [AppAnalytics checkInitialization];
+    
+    // if no Internet of manifest hasn't been sent yet
     if (![[AFNetworkReachabilityManager sharedManager] isReachable] ||
         !self.isManifestSent)
     {
@@ -157,6 +163,10 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     {
         return;
     }
+    
+    // iterate through all samples, prepare data to send
+    // format { session_id : array_of_samples_1, ... , array_of_samples_n }
+    // make sure each array doesn't exceed threshold
     
     NSMutableDictionary* allSessionsPackages = [NSMutableDictionary dictionary];
     NSMutableDictionary* samplesToRemove = [NSMutableDictionary dictionary];
@@ -187,6 +197,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     
     __weak __typeof(self) weakSelf = self;
 
+    // send and cleanup on success
     [[ConnectionManager instance] PUTsamples:allSessionsPackages success:^
     {
         [weakSelf cleanupSamples:samplesToRemove];
@@ -202,6 +213,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     
     __weak __typeof(self) weakSelf = self;
     
+    // send and cleanup on success
     [[ConnectionManager instance] PUTmanifests:self.manifests success:^
     {
         weakSelf.manifests = [NSDictionary dictionary];
@@ -232,6 +244,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 #pragma mark - Adding Actions
 
+// Touch-based sample
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
     GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:self.index++];
@@ -249,6 +262,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self addAction:details];
 }
 
+// Navigation-based sample
 - (void)navigationRecognizedWithViewControllerID:(NSString *)viewControllerID
 {
     NavigationDetails* details = [[NavigationDetails alloc] initWithIndex:self.index++
@@ -256,6 +270,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self addAction:details];
 }
 
+// Shake-based sample
 - (void)shakeRecognized
 {
     ShakeDetails* details = [[ShakeDetails alloc] init];
@@ -271,6 +286,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [self sendManifests];
 }
 
+// Add sample to array
 - (void)addAction:(id<LogInfo>)actionDetails
 {
     NSData* actionData = [[ManifestBuilder instance] buildDataPackage:actionDetails];
@@ -283,6 +299,8 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     [sessionActions addObject:actionData];
     actions[[AppAnalytics instance].sessionUUID.UUIDString] = sessionActions;
     self.actions = actions.copy;
+    
+    // log if needed for debug purposes
 #ifdef DEBUG
 #warning Uncomment this if needed
 //    [self printDebugInfo:actionDetails];
@@ -291,6 +309,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 #pragma mark - Debug Helpers
 
+// Used to log sample info in debug purposes
 - (void)printDebugInfo:(id<LogInfo>)actionDetails
 {
     NSLog(@"Order ID [%lu]", (unsigned long)actionDetails.index);
@@ -304,6 +323,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     NSLog(@"-----------------------------");
 }
 
+// Log event to console
 - (void)debugLogEvent:(Event *)event
 {
     if (event.parameters)

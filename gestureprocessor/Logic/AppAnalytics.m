@@ -15,7 +15,7 @@
 @property (nonatomic, readwrite) NSTimeInterval dispatchInterval;
 @property (nonatomic, readwrite) BOOL exceptionAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL transactionAnalyticEnabled;
-@property (nonatomic, readwrite) BOOL navigationAnalyticEnabled;
+@property (nonatomic, readwrite) BOOL screenAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL debugLogEnabled;
 @property (nonatomic, readwrite) BOOL popupAnalyticEnabled;
 @property (nonatomic, readwrite) BOOL motionAnalyticEnabled;
@@ -33,6 +33,7 @@
 + (instancetype)instance;
 - (void)trackWindowGestures:(UIWindow*)window;
 - (void)onShake;
++ (void)checkInitialization;
 
 @property (nonatomic, strong) NSString* appKey;
 @property (nonatomic, strong) NSUUID* sessionUUID;
@@ -175,90 +176,115 @@ NSString* const KeyboardAnalytics            = @"KeyboardAnalytics";
     return self;
 }
 
-#pragma mark - Events Processing
+#pragma mark - Setting Options
+
++ (void)checkInitialization
+{
+    if (![AppAnalytics instance].appKey)
+    {
+        [AppAnalyticsHelpers raiseNotInitializedException];
+    }
+}
 
 + (void)logEvent:(NSString*)eventName
 {
+    [self checkInitialization];
     [[EventsManager instance] addEvent:eventName async:YES];
 }
 
 + (void)logEvent:(NSString*)eventName parameters:(NSDictionary*)parameters
 {
+    [self checkInitialization];
     [[EventsManager instance] addEvent:eventName parameters:parameters async:YES];
 }
 
 + (void)setDispatchInverval:(NSTimeInterval)dispatchInterval
 {
+    [self checkInitialization];
     [EventsManager instance].dispatchInterval = dispatchInterval;
 }
 
 + (void)setDebugLogEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].debugLogEnabled = enabled;
 }
 
 + (void)setExceptionAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].exceptionAnalyticEnabled = enabled;
 }
 
 + (void)setTransactionAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].transactionAnalyticEnabled = enabled;
 }
 
 + (void)setNavigationAnalyticsEnabled:(BOOL)enabled
 {
-    [EventsManager instance].navigationAnalyticEnabled = enabled;
+    [self checkInitialization];
+    [EventsManager instance].screenAnalyticEnabled = enabled;
 }
 
 + (void)setPopUpsAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].popupAnalyticEnabled = enabled;
 }
 
 + (void)setMotionAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].motionAnalyticEnabled = enabled;
 }
 
 + (void)setLocationServicesAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].locationServicesAnalyticEnabled = enabled;
 }
 
 + (void)setConnectionAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].connectionAnalyticEnabled = enabled;
 }
 
 + (void)setApplicationStateAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].applicationStateAnalyticEnabled = enabled;
 }
 
 + (void)setDeviceOrientationAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].deviceOrientationAnalyticEnabled = enabled;
 }
 
 + (void)setBatteryAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].batteryAnalyticEnabled = enabled;
 }
 
 + (void)setHeatMapAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [AppAnalytics instance].heatMapAnalyticsEnabled = enabled;
 }
 
 + (void)setKeyboardAnalyticsEnabled:(BOOL)enabled
 {
+    [self checkInitialization];
     [EventsManager instance].keyboardAnalyticsEnabled = enabled;
 }
 
 void uncaughtExceptionHandler(NSException *exception)
 {
+    [AppAnalytics checkInitialization];
     [[EventsManager instance] handleUncaughtException:exception];
 }
 
@@ -343,6 +369,7 @@ void uncaughtExceptionHandler(NSException *exception)
     if (gestureRecognizer.state == UIGestureRecognizerStateRecognized &&
         [AppAnalytics instance].heatMapAnalyticsEnabled)
     {
+        [AppAnalytics checkInitialization];
         [[Logger instance] gestureRecognized:gestureRecognizer];
     }
 }
@@ -351,6 +378,7 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     if ([AppAnalytics instance].heatMapAnalyticsEnabled)
     {
+        [AppAnalytics checkInitialization];
         [[Logger instance] shakeRecognized];
     }
 }

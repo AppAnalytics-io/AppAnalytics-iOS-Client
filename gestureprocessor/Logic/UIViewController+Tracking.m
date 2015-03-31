@@ -6,6 +6,13 @@
 #import "GTConstants.h"
 #import "EventsManager.h"
 
+@interface AppAnalytics (AnalyticsEnabled)
+
++ (instancetype)instance;
+@property (nonatomic, readonly) BOOL heatMapAnalyticsEnabled;
+
+@end
+
 @implementation UIViewController (Tracking)
 
 + (void)load
@@ -25,7 +32,11 @@
     NSString* className = NSStringFromClass(self.class);
     if (![className isEqualToString:omittedClass])
     {
-        [[Logger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
+        if ([AppAnalytics instance].heatMapAnalyticsEnabled)
+        {
+            [[Logger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
+        }
+        
         if ([EventsManager instance].screenAnalyticEnabled)
         {
             [AppAnalytics logEvent:kNavigationEvent parameters:@{kNavigationEventClassName : className}];

@@ -258,4 +258,11 @@
     }
 }
 
++ (void)raiseNotInitializedException
+{
+    [[NSException exceptionWithName:kSDKExceptionName
+                             reason:@"SDK is used without being initialized"
+                           userInfo:nil] raise];
+}
+
 @end
