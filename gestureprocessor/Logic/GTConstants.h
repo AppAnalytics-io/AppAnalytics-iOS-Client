@@ -17,8 +17,6 @@ extern NSString* const kEventsFullURL;
 extern NSString* const kPortraitParameter;
 extern NSString* const kLandscapeParameter;
 extern NSString* const kUnknownOrientationParameter;
-extern NSString* const kUnresponsiveSampleParameter;
-extern NSString* const kResponsiveSampleParameter;
 
 extern NSTimeInterval const kMaxEventsDispatchTime;
 extern NSTimeInterval const kMinEventsDispatchTime;
@@ -108,7 +106,3 @@ extern NSString* const kBatteryStateUnknown;
 extern NSString* const kBatteryStateUnplugged;
 extern NSString* const kBatteryStateCharging;
 extern NSString* const kBatteryStateFull;
-
-// Motion
-extern NSString* const kMotionActivityChanged;
-extern NSString* const kMotionActivityState;

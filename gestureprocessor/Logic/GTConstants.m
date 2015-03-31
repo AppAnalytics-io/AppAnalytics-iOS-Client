@@ -26,8 +26,6 @@ NSString* const kModelNameParameter = @"Model Name";
 NSString* const kPortraitParameter           = @"P";
 NSString* const kLandscapeParameter          = @"L";
 NSString* const kUnknownOrientationParameter = @"N";
-NSString* const kUnresponsiveSampleParameter = @"U";
-NSString* const kResponsiveSampleParameter   = @"R";
 
 BOOL const kDebugLogEnabled = NO;
 
@@ -108,7 +106,3 @@ NSString* const kBatteryStateUnknown = @"Unknown";
 NSString* const kBatteryStateUnplugged = @"Unplugged";
 NSString* const kBatteryStateCharging = @"Charging";
 NSString* const kBatteryStateFull = @"Full";
-
-// Motion
-NSString* const kMotionActivityChanged = @"Motion Activity Changed";
-NSString* const kMotionActivityState = @"State";

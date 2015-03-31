@@ -11,7 +11,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [AppAnalytics initWithAppKey:@"Z4456wJ0r6PgmwKcd9lJTTNainXzx1IJ"
-                         options:@{DebugLog : @(NO)}];
+                         options:@{DebugLog : @(YES)}];
     
     return YES;
 }
