@@ -1,11 +1,11 @@
-#import "Logger.h"
+#import "AALogger.h"
 #import "GestureDetails.h"
 #import "ShakeDetails.h"
 #import "NavigationDetails.h"
-#import "ManifestBuilder.h"
+#import "AAManifestBuilder.h"
 #import "AppAnalytics.h"
 #import "GTConstants.h"
-#import "ConnectionManager.h"
+#import "AAConnectionManager.h"
 #import "Event.h"
 
 @import SystemConfiguration;
@@ -43,7 +43,7 @@
 
 @end
 
-@interface Logger ()
+@interface AALogger ()
 
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, strong) NSDictionary* manifests; // { sessionId : manifestData }
@@ -56,17 +56,17 @@
 static NSString* const kManifestsSerializationKey   = @"uwDYiXJN1R";
 static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
-@implementation Logger
+@implementation AALogger
 
 #pragma mark - Life Cycle
 
 + (instancetype)instance
 {
-    static Logger* _self;
+    static AALogger* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[Logger alloc] init];
+        _self = [[AALogger alloc] init];
     });
     return _self;
 }
@@ -173,7 +173,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     for (NSString* sessionID in self.actions.allKeys)
     {
         NSMutableArray* wholeSessionPackage = [NSMutableArray array];
-        NSMutableData* sessionChunk = [[NSMutableData alloc] initWithData:[ManifestBuilder instance].headerData];
+        NSMutableData* sessionChunk = [[NSMutableData alloc] initWithData:[AAManifestBuilder instance].headerData];
         int sizeInBytes = 0;
         
         for (NSData* sample in self.actions[sessionID])
@@ -198,7 +198,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     __weak __typeof(self) weakSelf = self;
 
     // send and cleanup on success
-    [[ConnectionManager instance] PUTsamples:allSessionsPackages success:^
+    [[AAConnectionManager instance] PUTsamples:allSessionsPackages success:^
     {
         [weakSelf cleanupSamples:samplesToRemove];
     }];
@@ -214,7 +214,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
     __weak __typeof(self) weakSelf = self;
     
     // send and cleanup on success
-    [[ConnectionManager instance] PUTmanifests:self.manifests success:^
+    [[AAConnectionManager instance] PUTmanifests:self.manifests success:^
     {
         weakSelf.manifests = [NSDictionary dictionary];
     }];
@@ -279,7 +279,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 
 - (void)createSessionManifest
 {
-    NSData* manifest = [[ManifestBuilder instance] builSessionManifest];
+    NSData* manifest = [[AAManifestBuilder instance] builSessionManifest];
     NSMutableDictionary* manifests = self.manifests.mutableCopy;
     manifests[[AppAnalytics instance].sessionUUID.UUIDString] = manifest;
     self.manifests = manifests.copy;
@@ -289,7 +289,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 // Add sample to array
 - (void)addAction:(id<LogInfo>)actionDetails
 {
-    NSData* actionData = [[ManifestBuilder instance] buildDataPackage:actionDetails];
+    NSData* actionData = [[AAManifestBuilder instance] buildDataPackage:actionDetails];
     NSMutableDictionary* actions = self.actions.mutableCopy;
     NSMutableArray* sessionActions = actions[[AppAnalytics instance].sessionUUID.UUIDString];
     if (!sessionActions)

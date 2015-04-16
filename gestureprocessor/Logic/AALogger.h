@@ -5,7 +5,7 @@
 @class GestureDetails;
 @class Event;
 
-@interface Logger : NSObject
+@interface AALogger : NSObject
 
 + (instancetype)instance;
 

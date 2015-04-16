@@ -1,5 +1,5 @@
-#import "ManifestBuilder.h"
-#import "Logger.h"
+#import "AAManifestBuilder.h"
+#import "AALogger.h"
 #import "GTConstants.h"
 #import "AppAnalytics.h"
 #import "AppAnalyticsHelpers.h"
@@ -14,21 +14,21 @@
 
 @end
 
-@interface ManifestBuilder ()
+@interface AAManifestBuilder ()
 @property (nonatomic, strong) NSDate* sessionStartDate;
 @property (nonatomic, strong, readwrite) NSData* headerData;
 @end
 
 
-@implementation ManifestBuilder
+@implementation AAManifestBuilder
 
 + (instancetype)instance
 {
-    static ManifestBuilder* _self;
+    static AAManifestBuilder* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[ManifestBuilder alloc] init];
+        _self = [[AAManifestBuilder alloc] init];
     });
     return _self;
 }

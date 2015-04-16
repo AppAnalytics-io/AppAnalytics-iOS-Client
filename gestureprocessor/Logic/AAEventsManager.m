@@ -1,10 +1,10 @@
-#import "EventsManager.h"
+#import "AAEventsManager.h"
 #import "GTConstants.h"
 #import "Event.h"
-#import "Logger.h"
+#import "AALogger.h"
 #import "NSUserDefaults+SaveCustomObject.h"
-#import "ManifestBuilder.h"
-#import "ConnectionManager.h"
+#import "AAManifestBuilder.h"
+#import "AAConnectionManager.h"
 #import "AppAnalytics.h"
 #import "AFNetworkReachabilityManager.h"
 
@@ -30,7 +30,7 @@ static dispatch_queue_t events_processing_queue()
 
 @end
 
-@interface EventsManager ()
+@interface AAEventsManager ()
 
 - (void)sendData;
 - (void)serialize;
@@ -57,17 +57,17 @@ static dispatch_queue_t events_processing_queue()
 
 static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
-@implementation EventsManager
+@implementation AAEventsManager
 
 #pragma mark - Life Cycle
 
 + (instancetype)instance
 {
-    static EventsManager* _self;
+    static AAEventsManager* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[EventsManager alloc] init];
+        _self = [[AAEventsManager alloc] init];
     });
     return _self;
 }
@@ -199,7 +199,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
             [sessionEvents addObject:event];
             if (self.debugLogEnabled)
             {
-                [[Logger instance] debugLogEvent:event];
+                [[AALogger instance] debugLogEvent:event];
             }
         }
         // duplicated event. add time and index to existing container
@@ -210,7 +210,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
             [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
             if (self.debugLogEnabled)
             {
-                [[Logger instance] debugLogEvent:existingEvent];
+                [[AALogger instance] debugLogEvent:existingEvent];
             }
         }
         self.events[[AppAnalytics instance].sessionUUID.UUIDString] = sessionEvents;
@@ -223,7 +223,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
     // if no Internet of manifest hasn't been sent yet
     if (![[AFNetworkReachabilityManager sharedManager] isReachable] ||
-        ![Logger instance].isManifestSent)
+        ![AALogger instance].isManifestSent)
     {
         return;
     }
@@ -242,7 +242,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
 
                 for (Event* event in self.events[sessionID])
                 {
-                    NSDictionary* eventJSONDict = [[ManifestBuilder instance] buildEventJSONDict:event];
+                    NSDictionary* eventJSONDict = [[AAManifestBuilder instance] buildEventJSONDict:event];
                     eventInChunkIndex++;
                     if (eventInChunkIndex > kEventsMaxSizeInBytes / kEventAverageSizeInBytes)
                     {
@@ -257,7 +257,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
                 
                 for (NSMutableArray* tempSessionChunkEvents in wholeSessionPackage)
                 {
-                    [[ConnectionManager instance] PUTevents:tempSessionChunkEvents
+                    [[AAConnectionManager instance] PUTevents:tempSessionChunkEvents
                                                   sessionID:sessionID
                                                     success:^
                     {

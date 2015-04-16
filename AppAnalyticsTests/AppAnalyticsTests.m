@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "EventsManager.h"
+#import "AAEventsManager.h"
 #import "AppAnalytics.h"
 
-@interface EventsManager (Tests)
+@interface AAEventsManager (Tests)
 - (void)sendData;
 - (void)deserialize;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* events;
@@ -65,13 +65,13 @@
 - (void)testSerialization
 {
     for (int i = 0; i < 10; i++)
-        [[EventsManager instance] addEvent:@"Event" async:NO];
+        [[AAEventsManager instance] addEvent:@"Event" async:NO];
     
-    int eventsBefore = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    int eventsBefore = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     
-    [[EventsManager instance] deserialize];
+    [[AAEventsManager instance] deserialize];
     
-    int eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    int eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     
     XCTAssertNotEqual(eventsBefore, eventsAfter);
 }
@@ -125,17 +125,17 @@
     XCTAssertNotNil([AppAnalytics instance].udid);
     
     // options correctly set
-    XCTAssertFalse([EventsManager instance].debugLogEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].exceptionAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].transactionAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].screenAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].popupAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].locationServicesAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].connectionAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].applicationStateAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].deviceOrientationAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].batteryAnalyticEnabled, @"Passed");
-    XCTAssertFalse([EventsManager instance].keyboardAnalyticsEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].debugLogEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].exceptionAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].transactionAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].screenAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].popupAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].locationServicesAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].connectionAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].applicationStateAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].deviceOrientationAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].batteryAnalyticEnabled, @"Passed");
+    XCTAssertFalse([AAEventsManager instance].keyboardAnalyticsEnabled, @"Passed");
     XCTAssertFalse([AppAnalytics instance].heatMapAnalyticsEnabled, @"Passed");
 }
 
@@ -152,42 +152,42 @@
 - (void)testLogEvent
 {
     // unique event added. new container created
-    int eventsBefore = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
-    [[EventsManager instance] addEvent:@"UniqueEvent" async:NO];
-    int eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    int eventsBefore = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"UniqueEvent" async:NO];
+    int eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssert(eventsAfter - eventsBefore == 1, @"Pass");
     
     // duplicated event added. new container should not be created
     eventsBefore = eventsAfter;
-    [[EventsManager instance] addEvent:@"UniqueEvent" async:NO];
-    eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"UniqueEvent" async:NO];
+    eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssertEqual(eventsBefore, eventsAfter);
 }
 
 - (void)testLogEventWithParameters
 {
     // first event with parameters. allocate new container
-    int eventsBefore = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
-    [[EventsManager instance] addEvent:@"X" parameters:@{} async:NO];
-    int eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    int eventsBefore = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"X" parameters:@{} async:NO];
+    int eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssert(eventsAfter - eventsBefore == 1, @"Pass");
     
     // duplicated event with parameters. use existing container
     eventsBefore = eventsAfter;
-    [[EventsManager instance] addEvent:@"X" parameters:@{} async:NO];
-    eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"X" parameters:@{} async:NO];
+    eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssertEqual(eventsBefore, eventsAfter);
     
     // same event name, new parameters. allocate new container
     eventsBefore = eventsAfter;
-    [[EventsManager instance] addEvent:@"X" parameters:@{@"X" : @"XXX"} async:NO];
-    eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"X" parameters:@{@"X" : @"XXX"} async:NO];
+    eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssert(eventsAfter - eventsBefore == 1, @"Pass");
     
     // duplicated event with parameters 2. use existing container 2
     eventsBefore = eventsAfter;
-    [[EventsManager instance] addEvent:@"X" parameters:@{@"X" : @"XXX"} async:NO];
-    eventsAfter = (int) [[EventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
+    [[AAEventsManager instance] addEvent:@"X" parameters:@{@"X" : @"XXX"} async:NO];
+    eventsAfter = (int) [[AAEventsManager instance].events[[AppAnalytics instance].sessionUUID.UUIDString] count];
     XCTAssertEqual(eventsBefore, eventsAfter);
 }
 

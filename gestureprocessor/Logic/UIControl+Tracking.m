@@ -1,6 +1,6 @@
 #import "UIControl+Tracking.h"
 #import "NSObject+Swizzling.h"
-#import "Logger.h"
+#import "AALogger.h"
 #import "UIGestureRecognizer+Type.h"
 
 @implementation UIControl (Tracking)
@@ -29,7 +29,7 @@
     
     UITouch* touch = [touches anyObject];
     
-    [[Logger instance] gestureRecognized:[UIGestureRecognizer singleTapActionTypeWithTouchesCount:touches.count]
+    [[AALogger instance] gestureRecognized:[UIGestureRecognizer singleTapActionTypeWithTouchesCount:touches.count]
                          triggerPosition:[touch locationInView:nil]
                            triggerViewID:NSStringFromClass([self class])];
 }

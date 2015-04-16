@@ -1,24 +1,24 @@
-#import "EventsObserver.h"
-#import "EventsManager.h"
+#import "AAEventsObserver.h"
+#import "AAEventsManager.h"
 #import "GTConstants.h"
 #import "AFNetworkReachabilityManager.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface EventsObserver () <CLLocationManagerDelegate>
+@interface AAEventsObserver () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @end
 
-@implementation EventsObserver
+@implementation AAEventsObserver
 
 #pragma mark - Life Cycle
 
 + (instancetype)instance
 {
-    static EventsObserver* _self;
+    static AAEventsObserver* _self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _self = [[EventsObserver alloc] init];
+        _self = [[AAEventsObserver alloc] init];
     });
     return _self;
 }
@@ -108,7 +108,7 @@
 
 - (void)onBatteryStateChanged:(NSNotification *)note
 {
-    if (![EventsManager instance].batteryAnalyticEnabled)
+    if (![AAEventsManager instance].batteryAnalyticEnabled)
     {
         return;
     }
@@ -129,7 +129,7 @@
             stateString = kBatteryStateUnknown;
             break;
     }
-    [[EventsManager instance] addEvent:kBatteryStateChanged
+    [[AAEventsManager instance] addEvent:kBatteryStateChanged
                             parameters:@{ kBatteryState : stateString }
                                  async:YES];
 }
@@ -138,7 +138,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    if (![EventsManager instance].locationServicesAnalyticEnabled)
+    if (![AAEventsManager instance].locationServicesAnalyticEnabled)
     {
         return;
     }
@@ -171,7 +171,7 @@
             statusString = kLocationServicesNotDetermined;
             break;
     }
-    [[EventsManager instance] addEvent:kLocationServicesStatusChanged
+    [[AAEventsManager instance] addEvent:kLocationServicesStatusChanged
                             parameters:@{ kLocationServicesStatus : statusString }
                                  async:YES];
 }
@@ -180,7 +180,7 @@
 
 - (void)onConnectionStatusChanged:(AFNetworkReachabilityStatus)status
 {
-    if (![EventsManager instance].connectionAnalyticEnabled)
+    if (![AAEventsManager instance].connectionAnalyticEnabled)
     {
         return;
     }
@@ -201,7 +201,7 @@
             statusString = kConnectionStatusUnknown;
             break;
     }
-    [[EventsManager instance] addEvent:kConnectionStatusChanged
+    [[AAEventsManager instance] addEvent:kConnectionStatusChanged
                             parameters:@{ kConnectionStatusParameter : statusString }
                                  async:YES];
 }
@@ -210,12 +210,12 @@
 
 - (void)onApplicationStateChanged:(NSNotification *)note
 {
-    if (![EventsManager instance].applicationStateAnalyticEnabled)
+    if (![AAEventsManager instance].applicationStateAnalyticEnabled)
     {
         return;
     }
     
-    [[EventsManager instance] addEvent:kAppStateChangedEvent
+    [[AAEventsManager instance] addEvent:kAppStateChangedEvent
                             parameters:@{ kAppStateParameter : note.name }
                                  async:NO];
 }
@@ -224,7 +224,7 @@
 
 - (void)onOrientationChanged:(NSNotification *)note
 {
-    if (![EventsManager instance].deviceOrientationAnalyticEnabled)
+    if (![AAEventsManager instance].deviceOrientationAnalyticEnabled)
     {
         return;
     }
@@ -256,7 +256,7 @@
                 orientationString = kOrientationChangedUnknown;
                 break;
         }
-        [[EventsManager instance] addEvent:kOrientationChangedEvent
+        [[AAEventsManager instance] addEvent:kOrientationChangedEvent
                                 parameters:@{ kOrientationParameter : orientationString }
                                      async:YES];
     }
@@ -266,7 +266,7 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    if (![EventsManager instance].transactionAnalyticEnabled)
+    if (![AAEventsManager instance].transactionAnalyticEnabled)
     {
         return;
     }
@@ -297,7 +297,7 @@
                 break;
         }
         
-        [[EventsManager instance] addEvent:kTransactionEvent parameters:parameters.copy async:YES];
+        [[AAEventsManager instance] addEvent:kTransactionEvent parameters:parameters.copy async:YES];
     }
 }
 

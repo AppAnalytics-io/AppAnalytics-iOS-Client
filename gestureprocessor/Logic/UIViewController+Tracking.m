@@ -1,10 +1,10 @@
 #import "UIViewController+Tracking.h"
 #import "NSObject+Swizzling.h"
 #import <objc/runtime.h>
-#import "Logger.h"
+#import "AALogger.h"
 #import "AppAnalytics.h"
 #import "GTConstants.h"
-#import "EventsManager.h"
+#import "AAEventsManager.h"
 
 @interface AppAnalytics (AnalyticsEnabled)
 
@@ -34,10 +34,10 @@
     {
         if ([AppAnalytics instance].heatMapAnalyticsEnabled)
         {
-            [[Logger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
+            [[AALogger instance] navigationRecognizedWithViewControllerID:NSStringFromClass(self.class)];
         }
         
-        if ([EventsManager instance].screenAnalyticEnabled)
+        if ([AAEventsManager instance].screenAnalyticEnabled)
         {
             [AppAnalytics logEvent:kNavigationEvent parameters:@{kNavigationEventClassName : className}];
         }

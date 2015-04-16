@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface EventsManager : NSObject
+@interface AAEventsManager : NSObject
 
 + (instancetype)instance;
 

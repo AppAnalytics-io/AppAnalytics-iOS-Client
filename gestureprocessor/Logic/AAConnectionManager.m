@@ -1,6 +1,6 @@
-#import "ConnectionManager.h"
+#import "AAConnectionManager.h"
 #import "GTConstants.h"
-#import "ManifestBuilder.h"
+#import "AAManifestBuilder.h"
 #import "AppAnalytics.h"
 #import "HMFJSONResponseSerializerWithData.h"
 #import "AFHTTPRequestOperation.h"
@@ -11,15 +11,15 @@
 @property (nonatomic, strong, readwrite) NSString* udid;
 @end
 
-@implementation ConnectionManager
+@implementation AAConnectionManager
 
 + (instancetype)instance
 {
-    static ConnectionManager *_sharedClient = nil;
+    static AAConnectionManager *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        _sharedClient = [[ConnectionManager alloc] initWithBaseURL:[NSURL URLWithString:kGTBaseURL]];
+        _sharedClient = [[AAConnectionManager alloc] initWithBaseURL:[NSURL URLWithString:kGTBaseURL]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         
         AFJSONResponseSerializer *responseSerializer = [HMFJSONResponseSerializerWithData serializerWithReadingOptions:NSJSONReadingAllowFragments];

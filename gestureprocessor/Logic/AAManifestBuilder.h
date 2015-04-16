@@ -3,7 +3,7 @@
 @protocol LogInfo;
 @class Event;
 
-@interface ManifestBuilder : NSObject
+@interface AAManifestBuilder : NSObject
 
 + (instancetype)instance;
 - (NSData*)buildDataPackage:(id<LogInfo>)actionDetails;

@@ -2,7 +2,7 @@
 #import <StoreKit/StoreKit.h>
 #import "AppAnalytics.h"
 
-@interface EventsObserver : NSObject <SKPaymentTransactionObserver>
+@interface AAEventsObserver : NSObject <SKPaymentTransactionObserver>
 
 + (instancetype)instance;
 

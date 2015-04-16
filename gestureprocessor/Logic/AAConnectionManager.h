@@ -3,7 +3,7 @@
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
 
-@interface ConnectionManager : AFHTTPRequestOperationManager
+@interface AAConnectionManager : AFHTTPRequestOperationManager
 
 + (instancetype)instance;
 

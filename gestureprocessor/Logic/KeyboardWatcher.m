@@ -1,5 +1,5 @@
 #import "KeyboardWatcher.h"
-#import "EventsManager.h"
+#import "AAEventsManager.h"
 #import "GTConstants.h"
 
 @interface KeyboardWatcher ()
@@ -61,9 +61,9 @@
     self.keyboardFrame = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.keyboardShown = YES;
     
-    if ([EventsManager instance].keyboardAnalyticsEnabled)
+    if ([AAEventsManager instance].keyboardAnalyticsEnabled)
     {
-        [[EventsManager instance] addEvent:kKeyboardStateChanged
+        [[AAEventsManager instance] addEvent:kKeyboardStateChanged
                                 parameters:@{kKeyboardStateParameter : kKeyboardVisible}
                                      async:YES];
     }
@@ -73,9 +73,9 @@
 {
     self.keyboardShown = NO;
     
-    if ([EventsManager instance].keyboardAnalyticsEnabled)
+    if ([AAEventsManager instance].keyboardAnalyticsEnabled)
     {
-        [[EventsManager instance] addEvent:kKeyboardStateChanged
+        [[AAEventsManager instance] addEvent:kKeyboardStateChanged
                                 parameters:@{kKeyboardStateParameter : kKeyboardHidden}
                                      async:YES];
     }
