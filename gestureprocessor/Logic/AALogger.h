@@ -2,8 +2,8 @@
 #import <UIKit/UIKit.h>
 #import "LogInfo.h"
 
-@class GestureDetails;
-@class Event;
+@class AAGestureDetails;
+@class AAEvent;
 
 @interface AALogger : NSObject
 
@@ -21,7 +21,7 @@
 
 - (void)shakeRecognized;
 
-- (void)debugLogEvent:(Event*)event;
+- (void)debugLogEvent:(AAEvent*)event;
 
 @property (nonatomic, readonly) BOOL isManifestSent;
 

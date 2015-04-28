@@ -1,4 +1,4 @@
-#import "NavigationDetails.h"
+#import "AANavigationDetails.h"
 
 @interface LogObject (NavigationDetails)
 
@@ -12,7 +12,7 @@
 
 @end
 
-@implementation NavigationDetails
+@implementation AANavigationDetails
 
 #pragma mark - LogInfo protocol
 

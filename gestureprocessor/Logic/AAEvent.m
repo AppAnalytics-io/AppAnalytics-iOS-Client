@@ -1,6 +1,6 @@
-#import "Event.h"
+#import "AAEvent.h"
 
-@interface Event ()
+@interface AAEvent ()
 
 @property (nonatomic, readwrite, copy) NSArray* indices;
 @property (nonatomic, readwrite, copy) NSArray* timestamps;
@@ -9,14 +9,14 @@
 
 @end
 
-@implementation Event
+@implementation AAEvent
 
 + (instancetype)eventWithIndex:(NSUInteger)index
                      timestamp:(NSTimeInterval)timestamp
                    description:(NSString*)description
                     parameters:(NSDictionary*)parameters
 {
-    Event* event = [[Event alloc] init];
+    AAEvent* event = [[AAEvent alloc] init];
     if (event)
     {
         event.indices = @[@(index)];
@@ -32,7 +32,7 @@
                    description:(NSString*)description
                     parameters:(NSDictionary*)parameters
 {
-    Event* event = [[Event alloc] init];
+    AAEvent* event = [[AAEvent alloc] init];
     if (event)
     {
         event.indices = indices;
@@ -76,7 +76,7 @@
     return [self isEqualToEvent:other];
 }
 
-- (BOOL)isEqualToEvent:(Event *)anotherEvent
+- (BOOL)isEqualToEvent:(AAEvent *)anotherEvent
 {
     if (self == anotherEvent)
         return YES;

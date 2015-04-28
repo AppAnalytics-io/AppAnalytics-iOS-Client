@@ -1,4 +1,4 @@
-#import "GestureDetails.h"
+#import "AAGestureDetails.h"
 #import "UISwipeGestureRecognizer+DirectionString.h"
 #import "AppAnalyticsHelpers.h"
 #import "UIGestureRecognizer+Type.h"
@@ -18,13 +18,13 @@
 
 @end
 
-@interface GestureDetails ()
+@interface AAGestureDetails ()
 
 @property (nonatomic, strong, readwrite) UIGestureRecognizer* gestureRecognizer;
 
 @end
 
-@implementation GestureDetails
+@implementation AAGestureDetails
 
 - (instancetype)initWithGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer index:(NSUInteger)index
 {

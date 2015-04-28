@@ -3,7 +3,7 @@
 #import "GTConstants.h"
 #import "AppAnalytics.h"
 #import "AppAnalyticsHelpers.h"
-#import "Event.h"
+#import "AAEvent.h"
 
 @interface AppAnalytics (ManifestBuilder)
 
@@ -149,7 +149,7 @@ static NSString* const kTimeStampsKey = @"ActionTime";
 static NSString* const kEventNameKey  = @"EventName";
 static NSString* const kEventParametersKey  = @"EventParameters";
 
-- (NSDictionary*)buildEventJSONDict:(Event*)event
+- (NSDictionary*)buildEventJSONDict:(AAEvent*)event
 {
     NSMutableDictionary* JSONDict = [NSMutableDictionary dictionary];
     

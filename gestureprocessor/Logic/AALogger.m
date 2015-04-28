@@ -1,17 +1,17 @@
 #import "AALogger.h"
-#import "GestureDetails.h"
-#import "ShakeDetails.h"
-#import "NavigationDetails.h"
+#import "AAGestureDetails.h"
+#import "AAShakeDetails.h"
+#import "AANavigationDetails.h"
 #import "AAManifestBuilder.h"
 #import "AppAnalytics.h"
 #import "GTConstants.h"
 #import "AAConnectionManager.h"
-#import "Event.h"
+#import "AAEvent.h"
 
 @import SystemConfiguration;
 @import MobileCoreServices;
 
-@interface GestureDetails (Tracking)
+@interface AAGestureDetails (Tracking)
 
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) ActionType type;
@@ -22,7 +22,7 @@
 
 @end
 
-@interface ShakeDetails (Tracking)
+@interface AAShakeDetails (Tracking)
 
 @property (nonatomic, readwrite) NSUInteger index;
 @property (nonatomic, readwrite) ActionType type;
@@ -247,7 +247,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 // Touch-based sample
 - (void)gestureRecognized:(UIGestureRecognizer*)gestureRecognizer
 {
-    GestureDetails* details = [[GestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:self.index++];
+    AAGestureDetails* details = [[AAGestureDetails alloc] initWithGestureRecognizer:gestureRecognizer index:self.index++];
     [self addAction:details];
 }
 
@@ -255,7 +255,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
           triggerPosition:(CGPoint)position
             triggerViewID:(NSString *)viewID
 {
-    GestureDetails* details = [[GestureDetails alloc] initWithType:type
+    AAGestureDetails* details = [[AAGestureDetails alloc] initWithType:type
                                                    triggerPosition:position
                                                      triggerViewID:viewID
                                                              index:self.index++];
@@ -265,7 +265,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 // Navigation-based sample
 - (void)navigationRecognizedWithViewControllerID:(NSString *)viewControllerID
 {
-    NavigationDetails* details = [[NavigationDetails alloc] initWithIndex:self.index++
+    AANavigationDetails* details = [[AANavigationDetails alloc] initWithIndex:self.index++
                                                   triggerViewControllerID:viewControllerID];
     [self addAction:details];
 }
@@ -273,7 +273,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 // Shake-based sample
 - (void)shakeRecognized
 {
-    ShakeDetails* details = [[ShakeDetails alloc] init];
+    AAShakeDetails* details = [[AAShakeDetails alloc] init];
     [self addAction:details];
 }
 
@@ -324,7 +324,7 @@ static NSString* const kActionsSerializationKey     = @"seM18uY8nQ";
 }
 
 // Log event to console
-- (void)debugLogEvent:(Event *)event
+- (void)debugLogEvent:(AAEvent *)event
 {
     if (event.parameters)
     {

@@ -1,6 +1,6 @@
 #import "AAEventsManager.h"
 #import "GTConstants.h"
-#import "Event.h"
+#import "AAEvent.h"
 #import "AALogger.h"
 #import "NSUserDefaults+SaveCustomObject.h"
 #import "AAManifestBuilder.h"
@@ -180,7 +180,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         description = [description substringToIndex:kEventDescriptionMaxLength];
     }
     
-    Event* event = [Event eventWithIndex:self.index++
+    AAEvent* event = [AAEvent eventWithIndex:self.index++
                                timestamp:[NSDate new].timeIntervalSince1970
                              description:description
                               parameters:parameters];
@@ -205,7 +205,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
         // duplicated event. add time and index to existing container
         else
         {
-            Event* existingEvent = sessionEvents[index];
+            AAEvent* existingEvent = sessionEvents[index];
             [existingEvent addTimestamp:[event.timestamps.lastObject doubleValue]];
             [existingEvent addIndex:[event.indices.lastObject unsignedIntegerValue]];
             if (self.debugLogEnabled)
@@ -240,7 +240,7 @@ static NSString* const kEventsSerializationKey = @"vKSN9lFJ4d";
                 int eventInChunkIndex = 0;
                 int index = 0;
 
-                for (Event* event in self.events[sessionID])
+                for (AAEvent* event in self.events[sessionID])
                 {
                     NSDictionary* eventJSONDict = [[AAManifestBuilder instance] buildEventJSONDict:event];
                     eventInChunkIndex++;

@@ -1,4 +1,4 @@
-#import "ShakeDetails.h"
+#import "AAShakeDetails.h"
 #import "AppAnalyticsHelpers.h"
 
 @interface LogObject (ShakeDetails)
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation ShakeDetails
+@implementation AAShakeDetails
 
 #pragma mark - LogInfo protocol
 

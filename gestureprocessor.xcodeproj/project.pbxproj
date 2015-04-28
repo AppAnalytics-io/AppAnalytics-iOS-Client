@@ -55,9 +55,9 @@
 		725795E21A4DA99E00D8572D /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
 		725795E31A4DA99E00D8572D /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		725795E41A4DA99E00D8572D /* LogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfo.m */; };
-		725795E51A4DA99E00D8572D /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
-		725795E61A4DA99E00D8572D /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
-		725795E71A4DA99E00D8572D /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
+		725795E51A4DA99E00D8572D /* AAGestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* AAGestureDetails.m */; };
+		725795E61A4DA99E00D8572D /* AAShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* AAShakeDetails.m */; };
+		725795E71A4DA99E00D8572D /* AANavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* AANavigationDetails.m */; };
 		725795E81A4DA99E00D8572D /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
 		725795E91A4DA99E00D8572D /* AppAnalyticsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* AppAnalyticsHelpers.m */; };
 		725795EA1A4DA99E00D8572D /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
@@ -96,10 +96,10 @@
 		726C9A401A949DD4003D03AE /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6ABF1A4ACCDD00822C51 /* AFURLResponseSerialization.m */; };
 		726C9A411A949DD4003D03AE /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AC11A4ACCDD00822C51 /* AFURLSessionManager.m */; };
 		726C9A421A949DD4003D03AE /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F291A49BF7E001FDC80 /* OpenUDID.m */; };
-		727B30C41A83A8C700162711 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* Event.m */; };
+		727B30C41A83A8C700162711 /* AAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* AAEvent.m */; };
 		727B30C71A83B4E300162711 /* AAEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C61A83B4E300162711 /* AAEventsManager.m */; };
 		727E6AA71A4AB6C500822C51 /* UIViewController+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */; };
-		727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
+		727E6AAA1A4AB71700822C51 /* AANavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* AANavigationDetails.m */; };
 		727E6AC21A4ACCDD00822C51 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */; };
 		727E6AC31A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB21A4ACCDD00822C51 /* AFHTTPRequestOperationManager.m */; };
 		727E6AC41A4ACCDD00822C51 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AB41A4ACCDD00822C51 /* AFHTTPSessionManager.m */; };
@@ -125,9 +125,9 @@
 		7288E2F91AC0283F00EEE430 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7288E2F81AC0283F00EEE430 /* CoreLocation.framework */; };
 		7289A9661A44401300CF5CF6 /* AppAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9651A44401300CF5CF6 /* AppAnalytics.m */; };
 		7289A96D1A44471E00CF5CF6 /* AALogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A96C1A44471E00CF5CF6 /* AALogger.m */; };
-		7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
+		7289A9711A44477800CF5CF6 /* AAGestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* AAGestureDetails.m */; };
 		7289A9751A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
-		7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
+		7289A9791A4469BA00CF5CF6 /* AAShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* AAShakeDetails.m */; };
 		7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */; };
 		72922EDB1A48155700CEC369 /* AppAnalyticsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* AppAnalyticsHelpers.m */; };
 		72922EFC1A48300400CEC369 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFB1A48300400CEC369 /* NSObject+Swizzling.m */; };
@@ -159,9 +159,9 @@
 		72DC01491A978013003F40BE /* UISwipeGestureRecognizer+DirectionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */; };
 		72DC014A1A978013003F40BE /* UIGestureRecognizer+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 72672F211A4974AF001FDC80 /* UIGestureRecognizer+Type.m */; };
 		72DC014B1A978013003F40BE /* LogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922F031A4849AA00CEC369 /* LogInfo.m */; };
-		72DC014C1A978013003F40BE /* GestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* GestureDetails.m */; };
-		72DC014D1A978013003F40BE /* ShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */; };
-		72DC014E1A978013003F40BE /* NavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* NavigationDetails.m */; };
+		72DC014C1A978013003F40BE /* AAGestureDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9701A44477800CF5CF6 /* AAGestureDetails.m */; };
+		72DC014D1A978013003F40BE /* AAShakeDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7289A9781A4469BA00CF5CF6 /* AAShakeDetails.m */; };
+		72DC014E1A978013003F40BE /* AANavigationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AA91A4AB71700822C51 /* AANavigationDetails.m */; };
 		72DC014F1A978013003F40BE /* GTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6AD21A4ACF1800822C51 /* GTConstants.m */; };
 		72DC01501A978013003F40BE /* AppAnalyticsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EDA1A48155700CEC369 /* AppAnalyticsHelpers.m */; };
 		72DC01511A978013003F40BE /* KeyboardWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 72922EFE1A48339100CEC369 /* KeyboardWatcher.m */; };
@@ -171,10 +171,10 @@
 		72DC01551A978013003F40BE /* AAConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727E6B031A4B154D00822C51 /* AAConnectionManager.m */; };
 		72DC01581A978013003F40BE /* AppAnalytics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; };
 		72DC015A1A978013003F40BE /* AppAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 7289A9641A44401300CF5CF6 /* AppAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		72DC01621A97841A003F40BE /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* Event.m */; };
+		72DC01621A97841A003F40BE /* AAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* AAEvent.m */; };
 		72DC01631A97841A003F40BE /* AAEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C61A83B4E300162711 /* AAEventsManager.m */; };
 		72DC01641A978429003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C84E851A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.m */; };
-		72DC01651A978429003F40BE /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* Event.m */; };
+		72DC01651A978429003F40BE /* AAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C31A83A8C700162711 /* AAEvent.m */; };
 		72DC01661A978429003F40BE /* AAEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B30C61A83B4E300162711 /* AAEventsManager.m */; };
 		72DC01671A978432003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C84E851A8A53790075EF99 /* NSUserDefaults+SaveCustomObject.m */; };
 /* End PBXBuildFile section */
@@ -280,14 +280,14 @@
 		72691BF01AC2CBE30098F151 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		726C9A061A949569003D03AE /* libExt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libExt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		726C9A341A949665003D03AE /* NamespacedDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NamespacedDependencies.h; sourceTree = "<group>"; };
-		727B30C21A83A8C700162711 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		727B30C31A83A8C700162711 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		727B30C21A83A8C700162711 /* AAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEvent.h; sourceTree = "<group>"; };
+		727B30C31A83A8C700162711 /* AAEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEvent.m; sourceTree = "<group>"; };
 		727B30C51A83B4E300162711 /* AAEventsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEventsManager.h; sourceTree = "<group>"; };
 		727B30C61A83B4E300162711 /* AAEventsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEventsManager.m; sourceTree = "<group>"; };
 		727E6AA51A4AB6C500822C51 /* UIViewController+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tracking.h"; sourceTree = "<group>"; };
 		727E6AA61A4AB6C500822C51 /* UIViewController+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tracking.m"; sourceTree = "<group>"; };
-		727E6AA81A4AB71700822C51 /* NavigationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationDetails.h; sourceTree = "<group>"; };
-		727E6AA91A4AB71700822C51 /* NavigationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationDetails.m; sourceTree = "<group>"; };
+		727E6AA81A4AB71700822C51 /* AANavigationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AANavigationDetails.h; sourceTree = "<group>"; };
+		727E6AA91A4AB71700822C51 /* AANavigationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AANavigationDetails.m; sourceTree = "<group>"; };
 		727E6AAF1A4ACCDD00822C51 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		727E6AB01A4ACCDD00822C51 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		727E6AB11A4ACCDD00822C51 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -322,13 +322,13 @@
 		7289A9651A44401300CF5CF6 /* AppAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAnalytics.m; sourceTree = "<group>"; };
 		7289A96B1A44471E00CF5CF6 /* AALogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALogger.h; sourceTree = "<group>"; };
 		7289A96C1A44471E00CF5CF6 /* AALogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALogger.m; sourceTree = "<group>"; };
-		7289A96F1A44477800CF5CF6 /* GestureDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDetails.h; sourceTree = "<group>"; };
-		7289A9701A44477800CF5CF6 /* GestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDetails.m; sourceTree = "<group>"; };
+		7289A96F1A44477800CF5CF6 /* AAGestureDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGestureDetails.h; sourceTree = "<group>"; };
+		7289A9701A44477800CF5CF6 /* AAGestureDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAGestureDetails.m; sourceTree = "<group>"; };
 		7289A9731A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwipeGestureRecognizer+DirectionString.h"; sourceTree = "<group>"; };
 		7289A9741A4462E200CF5CF6 /* UISwipeGestureRecognizer+DirectionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwipeGestureRecognizer+DirectionString.m"; sourceTree = "<group>"; };
 		7289A9761A4468AC00CF5CF6 /* LogInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInfo.h; sourceTree = "<group>"; };
-		7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeDetails.h; sourceTree = "<group>"; };
-		7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeDetails.m; sourceTree = "<group>"; };
+		7289A9771A4469BA00CF5CF6 /* AAShakeDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAShakeDetails.h; sourceTree = "<group>"; };
+		7289A9781A4469BA00CF5CF6 /* AAShakeDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAShakeDetails.m; sourceTree = "<group>"; };
 		7289A97A1A447FEE00CF5CF6 /* UIResponder+Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Tracking.h"; sourceTree = "<group>"; };
 		7289A97B1A447FEE00CF5CF6 /* UIResponder+Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Tracking.m"; sourceTree = "<group>"; };
 		72922ED91A48155700CEC369 /* AppAnalyticsHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAnalyticsHelpers.h; sourceTree = "<group>"; };
@@ -611,16 +611,16 @@
 		7289A9721A44477D00CF5CF6 /* Data Types */ = {
 			isa = PBXGroup;
 			children = (
-				727B30C21A83A8C700162711 /* Event.h */,
-				727B30C31A83A8C700162711 /* Event.m */,
+				727B30C21A83A8C700162711 /* AAEvent.h */,
+				727B30C31A83A8C700162711 /* AAEvent.m */,
 				7289A9761A4468AC00CF5CF6 /* LogInfo.h */,
 				72922F031A4849AA00CEC369 /* LogInfo.m */,
-				7289A96F1A44477800CF5CF6 /* GestureDetails.h */,
-				7289A9701A44477800CF5CF6 /* GestureDetails.m */,
-				7289A9771A4469BA00CF5CF6 /* ShakeDetails.h */,
-				7289A9781A4469BA00CF5CF6 /* ShakeDetails.m */,
-				727E6AA81A4AB71700822C51 /* NavigationDetails.h */,
-				727E6AA91A4AB71700822C51 /* NavigationDetails.m */,
+				7289A96F1A44477800CF5CF6 /* AAGestureDetails.h */,
+				7289A9701A44477800CF5CF6 /* AAGestureDetails.m */,
+				7289A9771A4469BA00CF5CF6 /* AAShakeDetails.h */,
+				7289A9781A4469BA00CF5CF6 /* AAShakeDetails.m */,
+				727E6AA81A4AB71700822C51 /* AANavigationDetails.h */,
+				727E6AA91A4AB71700822C51 /* AANavigationDetails.m */,
 			);
 			name = "Data Types";
 			sourceTree = "<group>";
@@ -900,11 +900,11 @@
 				7246C1071A94C30B005C4810 /* TestViewController.m in Sources */,
 				7246C1061A94C309005C4810 /* ViewController.m in Sources */,
 				727E6AC71A4ACCDD00822C51 /* AFURLConnectionOperation.m in Sources */,
-				7289A9711A44477800CF5CF6 /* GestureDetails.m in Sources */,
+				7289A9711A44477800CF5CF6 /* AAGestureDetails.m in Sources */,
 				727E6ACF1A4ACE7800822C51 /* HMFJSONResponseSerializerWithData.m in Sources */,
 				727E6AC21A4ACCDD00822C51 /* AFHTTPRequestOperation.m in Sources */,
 				727E6AC91A4ACCDD00822C51 /* AFURLResponseSerialization.m in Sources */,
-				727B30C41A83A8C700162711 /* Event.m in Sources */,
+				727B30C41A83A8C700162711 /* AAEvent.m in Sources */,
 				72672F2A1A49BF7E001FDC80 /* OpenUDID.m in Sources */,
 				7227C4BE1A3F037F003A4C3D /* AppDelegate.m in Sources */,
 				726152E71AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
@@ -933,10 +933,10 @@
 				7289A96D1A44471E00CF5CF6 /* AALogger.m in Sources */,
 				72922EDB1A48155700CEC369 /* AppAnalyticsHelpers.m in Sources */,
 				72922F041A4849AA00CEC369 /* LogInfo.m in Sources */,
-				727E6AAA1A4AB71700822C51 /* NavigationDetails.m in Sources */,
+				727E6AAA1A4AB71700822C51 /* AANavigationDetails.m in Sources */,
 				7289A97C1A447FEE00CF5CF6 /* UIResponder+Tracking.m in Sources */,
 				7227C4BB1A3F037F003A4C3D /* main.m in Sources */,
-				7289A9791A4469BA00CF5CF6 /* ShakeDetails.m in Sources */,
+				7289A9791A4469BA00CF5CF6 /* AAShakeDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,7 +945,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72DC01671A978432003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
-				72DC01621A97841A003F40BE /* Event.m in Sources */,
+				72DC01621A97841A003F40BE /* AAEvent.m in Sources */,
 				726152E81AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
 				7288E2EA1ABFFB9900EEE430 /* AAEventsObserver.m in Sources */,
 				72DC01631A97841A003F40BE /* AAEventsManager.m in Sources */,
@@ -970,9 +970,9 @@
 				725795E21A4DA99E00D8572D /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				725795E31A4DA99E00D8572D /* UIGestureRecognizer+Type.m in Sources */,
 				725795E41A4DA99E00D8572D /* LogInfo.m in Sources */,
-				725795E51A4DA99E00D8572D /* GestureDetails.m in Sources */,
-				725795E61A4DA99E00D8572D /* ShakeDetails.m in Sources */,
-				725795E71A4DA99E00D8572D /* NavigationDetails.m in Sources */,
+				725795E51A4DA99E00D8572D /* AAGestureDetails.m in Sources */,
+				725795E61A4DA99E00D8572D /* AAShakeDetails.m in Sources */,
+				725795E71A4DA99E00D8572D /* AANavigationDetails.m in Sources */,
 				725795E81A4DA99E00D8572D /* GTConstants.m in Sources */,
 				725795E91A4DA99E00D8572D /* AppAnalyticsHelpers.m in Sources */,
 				725795EA1A4DA99E00D8572D /* KeyboardWatcher.m in Sources */,
@@ -1014,7 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72DC01641A978429003F40BE /* NSUserDefaults+SaveCustomObject.m in Sources */,
-				72DC01651A978429003F40BE /* Event.m in Sources */,
+				72DC01651A978429003F40BE /* AAEvent.m in Sources */,
 				726152E91AA4C83D00F418A2 /* UIAlertView+Tracking.m in Sources */,
 				7288E2EB1ABFFB9900EEE430 /* AAEventsObserver.m in Sources */,
 				72DC01661A978429003F40BE /* AAEventsManager.m in Sources */,
@@ -1039,9 +1039,9 @@
 				72DC01491A978013003F40BE /* UISwipeGestureRecognizer+DirectionString.m in Sources */,
 				72DC014A1A978013003F40BE /* UIGestureRecognizer+Type.m in Sources */,
 				72DC014B1A978013003F40BE /* LogInfo.m in Sources */,
-				72DC014C1A978013003F40BE /* GestureDetails.m in Sources */,
-				72DC014D1A978013003F40BE /* ShakeDetails.m in Sources */,
-				72DC014E1A978013003F40BE /* NavigationDetails.m in Sources */,
+				72DC014C1A978013003F40BE /* AAGestureDetails.m in Sources */,
+				72DC014D1A978013003F40BE /* AAShakeDetails.m in Sources */,
+				72DC014E1A978013003F40BE /* AANavigationDetails.m in Sources */,
 				72DC014F1A978013003F40BE /* GTConstants.m in Sources */,
 				72DC01501A978013003F40BE /* AppAnalyticsHelpers.m in Sources */,
 				72DC01511A978013003F40BE /* KeyboardWatcher.m in Sources */,
